@@ -1,0 +1,8 @@
+{
+  "name": "substance-nodes",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "substance-util": "git+https://github.com/substance/util.git#master"
+  }
+}
