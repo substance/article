@@ -32,7 +32,6 @@ ImageView.Prototype = function() {
     this.stopListening();
   };
 
-
   this.delete = function(pos, length) {
     var content = this.$('.content')[0];
     var spans = content.childNodes;
