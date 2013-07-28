@@ -3,5 +3,6 @@
 module.exports = {
   Paragraph: require('./paragraph'),
   Heading: require('./heading'),
-  Image: require('./image')
+  Image: require('./image'),
+  Codeblock: require('./codeblock')
 };
