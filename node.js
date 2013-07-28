@@ -22,8 +22,6 @@ var NodeTransformer = function(document, node) {
 
 NodeTransformer.Prototype = function() {
 
-
-
   // Deletes a given range from the node's content
   // --------
   // 

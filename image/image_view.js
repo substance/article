@@ -4,7 +4,6 @@ var _ = require('underscore');
 var util = require('substance-util');
 var html = util.html;
 var View = require('substance-application').View;
-var Surface = require('substance-surface');
 
 // Substance.Image.View
 // ==========================================================================

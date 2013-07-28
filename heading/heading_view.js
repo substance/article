@@ -4,7 +4,6 @@ var _ = require('underscore');
 var util = require('substance-util');
 var html = util.html;
 var View = require('substance-application').View;
-var Surface = require('substance-surface');
 
 // Substance.Heading.View
 // ==========================================================================
@@ -74,8 +73,5 @@ HeadingView.Prototype = function() {
 
 HeadingView.Prototype.prototype = View.prototype;
 HeadingView.prototype = new HeadingView.Prototype();
-
-// Register
-// Surface.registerContentType("heading", Heading);
 
 module.exports = HeadingView;

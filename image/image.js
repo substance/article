@@ -10,6 +10,9 @@ Image.properties = {
     preventEmpty: true,
     attemptMerge: false
   },
+  split: {
+    splittable: false
+  },
   allowedAnnotations: ["idea", "question", "error"]
 };
 

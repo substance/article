@@ -10,6 +10,10 @@ Paragraph.properties = {
     preventEmpty: false,
     attemptMerge: true
   },
+  split: {
+    splittable: true,
+    nodeType: "paragraph"
+  },
   allowedAnnotations: ["emphasis", "strong", "link", "idea", "question", "error"]
 };
 
