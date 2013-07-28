@@ -1,6 +1,6 @@
 "use strict";
 
-var Image = function() {
+var Image = function(node) {
 
 };
 
