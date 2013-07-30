@@ -5,14 +5,8 @@ var Image = function(node) {
 };
 
 Image.properties = {
-  isText: false,
-  deletion: {
-    preventEmpty: true,
-    attemptMerge: false
-  },
-  split: {
-    splittable: false
-  },
+  mergeableWith: [],
+  preventEmpty: true,
   allowedAnnotations: ["idea", "question", "error"]
 };
 

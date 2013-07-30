@@ -5,15 +5,9 @@ var Codeblock = function() {
 };
 
 Codeblock.properties = {
-  isText: true,
-  deletion: {
-    preventEmpty: false,
-    attemptMerge: false
-  },
-  split: {
-    splittable: true,
-    nodeType: "paragraph"
-  },
+  mergeableWith: ["codeblock"],
+  preventEmpty: false,
+  splitInto: 'codeblock',
   allowedAnnotations: ["idea", "question", "error"]
 };
 

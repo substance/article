@@ -5,15 +5,9 @@ var Paragraph = function() {
 };
 
 Paragraph.properties = {
-  isText: true,
-  deletion: {
-    preventEmpty: false,
-    attemptMerge: true
-  },
-  split: {
-    splittable: true,
-    nodeType: "paragraph"
-  },
+  mergeableWith: ["paragraph", "heading"], // maybe remove heading here
+  preventEmpty: false,
+  splitInto: 'paragraph',
   allowedAnnotations: ["emphasis", "strong", "link", "idea", "question", "error"]
 };
 

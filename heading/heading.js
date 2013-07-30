@@ -5,16 +5,11 @@ var Heading = function() {
 };
 
 Heading.properties = {
-  isText: true,
-  deletion: {
-    preventEmpty: false,
-    attemptMerge: true,
-  },
-  split: {
-    splittable: true,
-    nodeType: "paragraph"
-  },
+  mergeableWith: ["paragraph", "heading"],
+  preventEmpty: false,
+  splitInto: 'paragraph',
   allowedAnnotations: ["emphasis", "strong", "idea", "question", "error"]
 };
+
 
 module.exports = Heading;

@@ -79,6 +79,7 @@ TextView.Prototype = function() {
     var charEls = _.map(chars, function(ch) {
       if (ch === " ") ch = " ";
       // if (ch === "\n") return $('<br/>')[0];
+      // if (ch === " ") return $('<span class="space">'+ch+'</span>')[0];
       return $('<span>'+ch+'</span>')[0];
     });
 

@@ -4,5 +4,6 @@ module.exports = {
   Paragraph: require('./paragraph'),
   Heading: require('./heading'),
   Image: require('./image'),
-  Codeblock: require('./codeblock')
+  Codeblock: require('./codeblock'),
+  Codeline: require('./codeline')
 };
