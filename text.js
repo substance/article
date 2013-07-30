@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var SubstanceNode = require('./node');
 var View = require('substance-application').View;
 var NodeTransformer = SubstanceNode.Transformer;
