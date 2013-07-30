@@ -70,6 +70,7 @@ TextView.Prototype = function() {
   this.renderContent = function() {
     this.$('.content').empty();
     this.insert(0, this.node.content);
+    // Insert invisble char
   };
 
   this.insert = function(pos, str) {
