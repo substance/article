@@ -1,10 +1,21 @@
 "use strict";
 
+var View = require("substance-application").View;
+var util = require("substance-util");
+var html = util.html;
+
+
 // Substance.Node
 // -----------------
 
-var SubstanceNode = function() {
+var Node = function() {
 
+};
+
+Node.properties = {
+  mergeableWith: [],
+  preventEmpty: true,
+  allowedAnnotations: []
 };
 
 // Substance.Node.Transformer
@@ -34,6 +45,41 @@ NodeTransformer.Prototype = function() {
 };
 
 NodeTransformer.prototype = new NodeTransformer.Prototype();
-SubstanceNode.Transformer = NodeTransformer;
 
-module.exports = SubstanceNode;
+
+// Substance.Node.View
+// -----------------
+
+var NodeView = function(node) {
+  View.call(this);
+  this.node = node;
+
+  this.$el.addClass('content-node node');
+  this.$el.attr('id', this.node.id);
+};
+
+NodeView.Prototype = function() {
+
+  // Rendering
+  // --------
+  //
+
+  this.render = function() {
+    this.$el.html(html.tpl('node', this.node));
+    return this;
+  };
+
+  this.dispose = function() {
+    console.log('disposing paragraph view');
+    this.stopListening();
+  };
+};
+
+NodeView.Prototype.prototype = View.prototype;
+NodeView.prototype = new NodeView.Prototype();
+
+
+Node.Transformer = NodeTransformer;
+Node.View = NodeView;
+
+module.exports = Node;
