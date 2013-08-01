@@ -1,10 +1,8 @@
 "use strict";
 
+var _ = require("underscore");
 var util = require("substance-util");
-var html = util.html;
 var Document = require("substance-document");
-var nodes = require('./nodes');
-
 
 // Substance.Article
 // -----------------
