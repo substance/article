@@ -28,17 +28,13 @@ test.setup = function() {
     id: "substance_doc"
   });
 
-<<<<<<< HEAD
   console.log('constructed article', this.doc);
-=======
   // TODO: we should move annotation buisness to extra test
   this.annotator = new Annotator(this.doc);
->>>>>>> 90eca88b385d55b2503f84770166fc6b35350e57
 };
 
 test.actions = [
 
-<<<<<<< HEAD
   // "Check if valid document has been constructed", function() {
   //   assert.isArrayEqual(["content"], this.doc.get('document').views);
   //   assert.isTrue(_.isArray(this.doc.get('content').nodes));
@@ -224,7 +220,6 @@ test.actions = [
   //   this.doc.hide("content", ["t1", "t2"]);
   //   assert.isArrayEqual(["h1"], this.doc.get('content').nodes);
   // },
-=======
   "Check if valid document has been constructed", function() {
     assert.isArrayEqual(["content"], this.doc.get('document').views);
     assert.isTrue(_.isArray(this.doc.get('content').nodes));
@@ -410,7 +405,6 @@ test.actions = [
     this.doc.hide("content", ["t1", "t2"]);
     assert.isArrayEqual(["h1"], this.doc.get('content').nodes);
   },
->>>>>>> 90eca88b385d55b2503f84770166fc6b35350e57
 
   // "Delete nodes from graph and view(s)", function() {
   //   this.doc.delete("t1");
