@@ -210,10 +210,10 @@ Article.types = {
 
 Article.indexes = {
   // All annotations are now indexed by node
-  "annotations": {
-    "type": "annotation",
-    "properties": ["node"]
-  },
+  // "annotations": {
+  //   "type": "annotation",
+  //   "properties": ["node"]
+  // },
   // all comments are now indexed by node association
   "comments": {
     "type": "comment",
