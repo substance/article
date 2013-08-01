@@ -1,49 +1,16 @@
 var _ = require('underscore');
-var Node = require('./node');
-var NodeView = Node.View;
-var NodeTransformer = Node.Transformer;
-var util = require('substance-util');
+var Node = require('../node');
+var util = require("substance-util");
 var html = util.html;
 
-// Substance.Text
-// -----------------
-//
-
-var Text = function() {
-
-};
-
-Text.prototype = Node.prototype;
-
-
-// Substance.Text.Transformer
-// -----------------
-//
-// Manipulation interface shared by all textish types (paragraphs, headings)
-// This behavior can overriden by the concrete node types
-
-var TextTransformer = function(document, node) {
-  NodeTransformer.call(this, document, node);
-};
-
-TextTransformer.Prototype = function() {
-  
-};
-
-TextTransformer.Prototype.prototype = NodeTransformer.prototype;
-TextTransformer.prototype = new TextTransformer.Prototype();
-
 // Substance.Text.View
 // -----------------
 //
 // Manipulation interface shared by all textish types (paragraphs, headings)
 // This behavior can overriden by the concrete node types
-
-// Substance.Text.View
-// ==========================================================================
 
 var TextView = function(node) {
-  NodeView.call(this, node);
+  Node.View.call(this, node);
 
   this.$el.addClass('content-node text');
   this.$el.attr('id', this.node.id);
@@ -107,11 +74,7 @@ TextView.Prototype = function() {
   };
 };
 
-TextView.Prototype.prototype = NodeView.prototype;
+TextView.Prototype.prototype = Node.View.prototype;
 TextView.prototype = new TextView.Prototype();
 
-
-Text.Transformer = TextTransformer;
-Text.View = TextView;
-
-module.exports = Text;
+module.exports = TextView;

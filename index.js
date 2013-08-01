@@ -1,10 +1,10 @@
 "use strict";
 
 module.exports = {
-  Node: require('./node'),
-  Paragraph: require('./paragraph'),
-  Heading: require('./heading'),
-  Image: require('./image'),
-  Codeblock: require('./codeblock'),
-  Codeline: require('./codeline')
+  Node: require('./nodes/node'),
+  Paragraph: require('./nodes/paragraph'),
+  Heading: require('./nodes/heading'),
+  Image: require('./nodes/image'),
+  Codeblock: require('./nodes/codeblock'),
+  Codeline: require('./nodes/codeline')
 };

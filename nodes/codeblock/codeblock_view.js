@@ -16,7 +16,7 @@ var CodeblockView = function(node) {
 };
 
 CodeblockView.Prototype = function() {
-
+  
 };
 
 CodeblockView.Prototype.prototype = TextView.prototype;

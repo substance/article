@@ -3,14 +3,14 @@
 var _ = require('underscore');
 var util = require('substance-util');
 var html = util.html;
-var View = require('substance-application').View;
+var Node = require("../node");
 
 // Substance.Image.View
 // ==========================================================================
 
 var ImageView = function(node) {
-  View.call(this);
-  this.node = node;
+  Node.View.call(this, node);
+
 
   this.$el.addClass('content-node image');
   this.$el.attr('id', this.node.id);
@@ -41,7 +41,7 @@ ImageView.Prototype = function() {
   };
 };
 
-ImageView.Prototype.prototype = View.prototype;
+ImageView.Prototype.prototype = Node.View.prototype;
 ImageView.prototype = new ImageView.Prototype();
 
 module.exports = ImageView;

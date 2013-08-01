@@ -12,6 +12,8 @@ var TextView = require('../text').View;
 var CodelineView = function(node) {
   TextView.call(this, node);
 
+  // Provide rich interface to node
+
   this.$el.addClass('content-node codeline');
 };
 

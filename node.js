@@ -4,19 +4,62 @@ var View = require("substance-application").View;
 var util = require("substance-util");
 var html = util.html;
 
-
 // Substance.Node
 // -----------------
 
-var Node = function() {
+var Node = function(node) {
+  this.properties = node;
+};
 
+// Does not define any properties
+// since it's read only and immutable
+
+Node.schema = {
+  "parent": "content",
+  "properties": {
+  }
 };
 
 Node.properties = {
+  immutable: true,
   mergeableWith: [],
   preventEmpty: true,
   allowedAnnotations: []
 };
+
+
+Node.Prototype = function() {
+
+};
+
+Node.prototype = new Node.Prototype();
+
+
+// TODO: Construct dynamically using schema
+
+Object.defineProperties(Node.prototype, {
+  id: {
+    get: function () {
+      return this.properties.id;
+    }
+  },
+  type: {
+    get: function () {
+      return this.properties.type;
+    }
+  },
+  content: {
+    get: function () {
+      return [
+        {"type": "paragraph", "name": "Paragraph"},
+        {"type": "heading", "name": "Heading"},
+        {"type": "image", "name": "Image"},
+        {"type": "codeblock", "name": "Codeblock"}
+      ]
+    }
+  }
+});
+
 
 // Substance.Node.Transformer
 // -----------------
@@ -52,7 +95,13 @@ NodeTransformer.prototype = new NodeTransformer.Prototype();
 
 var NodeView = function(node) {
   View.call(this);
-  this.node = node;
+
+  // Hacky hack
+  if (node.type === "node") {
+    this.node = new Node(node);  
+  } else {
+    this.node = node;
+  }
 
   this.$el.addClass('content-node node');
   this.$el.attr('id', this.node.id);
@@ -66,11 +115,12 @@ NodeView.Prototype = function() {
 
   this.render = function() {
     this.$el.html(html.tpl('node', this.node));
+
+
     return this;
   };
 
   this.dispose = function() {
-    console.log('disposing paragraph view');
     this.stopListening();
   };
 };
