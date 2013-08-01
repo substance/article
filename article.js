@@ -72,6 +72,10 @@ var Article = function(options) {
 
 Article.Prototype = function() {
 
+  this.fromSnapshot = function(data, options) {
+    return Article.fromSnapshot(data, options);
+  };
+
 };
 
 
