@@ -8,12 +8,7 @@ var html = util.html;
 var NodeView = function(node) {
   View.call(this);
 
-  // Hacky hack
-  if (node.type === "node") {
-    this.node = new Node(node);  
-  } else {
-    this.node = node;
-  }
+  this.node = node;
 
   this.$el.addClass('content-node node');
   this.$el.attr('id', this.node.id);
@@ -27,8 +22,6 @@ NodeView.Prototype = function() {
 
   this.render = function() {
     this.$el.html(html.tpl('node', this.node));
-
-
     return this;
   };
 

@@ -32,7 +32,7 @@ Codeblock.Prototype = function() {
 };
 
 
-Codeblock.Prototype.prototype = Node.prototype;
+Codeblock.Prototype.prototype = Text.prototype;
 Codeblock.prototype = new Codeblock.Prototype();
 
 

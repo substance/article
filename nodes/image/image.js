@@ -35,7 +35,17 @@ Object.defineProperties(Image.prototype, {
     get: function () {
       return " ";
     }
-  }
+  },
+  medium: {
+    get: function() { return this.properties.medium; }
+  },
+  large: {
+    get: function() { return this.properties.large; }
+  },
+  url: {
+    get: function() { return this.properties.url; }
+  },
+  
 });
 
 module.exports = Image;

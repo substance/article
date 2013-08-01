@@ -27,7 +27,7 @@ var Article = function(options) {
 
 
   // Merge in node types
-  _.each(Article.nodes, function(node, key) {
+  _.each(Article.nodeTypes, function(node, key) {
     options.schema.types[key] = node.type;
   });
 
@@ -41,6 +41,8 @@ var Article = function(options) {
   // --------
 
   Document.call(this, options);
+
+  this.nodeTypes = Article.nodeTypes;
 
   // Seed the doc
   // --------
@@ -110,7 +112,7 @@ Article.views = ["content"];
 // Register node types
 // --------
 
-Article.nodes = {
+Article.nodeTypes = {
   "node": require("./nodes/node"),
   "paragraph": require("./nodes/paragraph"),
   "heading": require("./nodes/heading"),
