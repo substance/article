@@ -1,10 +1,19 @@
 "use strict";
 
-module.exports = {
-  Node: require('./nodes/node'),
-  Paragraph: require('./nodes/paragraph'),
-  Heading: require('./nodes/heading'),
-  Image: require('./nodes/image'),
-  Codeblock: require('./nodes/codeblock'),
-  Codeline: require('./nodes/codeline')
+var Article = require("./article");
+
+Article.Node = require('./nodes/node');
+Article.Paragraph = require('./nodes/paragraph');
+Article.Heading = require('./nodes/heading');
+Article.Image = require('./nodes/image');
+Article.Codeblock = require('./nodes/codeblock');
+
+Article.nodes = {
+  "node": Article.Node,
+  "paragraph": Article.Paragraph,
+  "heading": Article.Heading,
+  "image": Article.Image,
+  "codeblock": Article.Codeblock
 };
+
+module.exports = Article;

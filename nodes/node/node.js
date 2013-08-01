@@ -2,7 +2,6 @@
 
 var util = require("substance-util");
 
-
 // Substance.Node
 // -----------------
 
@@ -10,14 +9,20 @@ var Node = function(node) {
   this.properties = node;
 };
 
-// Does not define any properties
-// since it's read only and immutable
+// Type definition
+// --------
+// 
 
-Node.schema = {
+Node.type = {
   "parent": "content",
   "properties": {
+    "content": ["array", "object"]
   }
 };
+
+
+// Define node behavior
+// --------
 
 Node.properties = {
   immutable: true,
@@ -26,13 +31,11 @@ Node.properties = {
   allowedAnnotations: []
 };
 
-
 Node.Prototype = function() {
 
 };
 
 Node.prototype = new Node.Prototype();
-
 
 // TODO: Construct dynamically using schema
 

@@ -1,9 +1,5 @@
 "use strict";
 
-var _ = require('underscore');
-var util = require('substance-util');
-var html = util.html;
-
 var TextView = require('../text').View;
 
 // Substance.Codeblock.View

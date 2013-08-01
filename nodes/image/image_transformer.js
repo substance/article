@@ -1,10 +1,8 @@
 var NodeTransformer = require('../node').Transformer;
 
-// Substance.Image.Transformer
+// Image.Transformer
 // -----------------
 //
-// Manipulation interface for all node types
-// This behavior can overriden by the concrete node types
 
 var ImageTransformer = function(document, node) {
   NodeTransformer.call(this, document, node);

@@ -6,8 +6,8 @@ var Node = require('../node');
 // -----------------
 //
 
-var Text = function() {
-
+var Text = function(node) {
+  Node.call(this, node);
 };
 
 Text.prototype = Node.prototype;

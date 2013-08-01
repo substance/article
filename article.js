@@ -2,13 +2,100 @@
 
 var util = require("substance-util");
 var html = util.html;
+var Document = require("substance-document");
+var nodes = require('./nodes');
+
 
 // Substance.Article
 // -----------------
 
-var Article = function(node) {
-  
+var Article = function(options) {
+  options = options || {};
+
+  // Extend Schema
+  // --------
+
+  options.schema = util.deepclone(Document.schema);
+
+  // Merge in custom types
+  _.each(Article.types, function(type, key) {
+    options.schema.types[key] = type;
+  });
+
+  // Register annotation types
+  _.each(Article.annotations, function(aType, key) {
+    options.schema.types[key] = aType;
+  });
+
+
+  // Merge in node types
+  _.each(Article.nodes, function(node, key) {
+    options.schema.types[key] = node.type;
+  });
+
+  // Merge in custom indexes
+  _.each(Article.indexes, function(index, key) {
+    options.schema.indexes[key] = index;
+  });
+
+
+  // Call parent constructor
+  // --------
+
+  Document.call(this, options);
+
+  // Seed the doc
+  // --------
+
+  // Create the document node
+
+  this.create({
+    id: "document",
+    type: "document",
+    guid: options.id, // external global document id
+    creator: options.creator,
+    created_at: options.created_at,
+    views: ["content"], // is views really needed on the instance level
+    title: "",
+    abstract: ""
+  });
+
+  // Create views on the doc
+  _.each(Article.views, function(view) {
+    this.create({
+      id: view,
+      "type": "view",
+      nodes: []
+    });
+  }, this);
+
 };
+
+
+Article.Prototype = function() {
+
+};
+
+
+
+// Factory method
+// --------
+//
+// TODO: Ensure the snapshot doesn't get chronicled
+
+Article.fromSnapshot = function(data, options) {
+  options = options || {};
+  // options.seed = [];
+  var doc = new Article(options);
+
+  _.each(data.nodes, function(n) {
+    if (doc.get(n.id)) return; // skip existing nodes
+    doc.create(n);
+  });
+
+  return doc;
+};
+
 
 // Define available views
 // --------
@@ -20,26 +107,17 @@ Article.views = ["content"];
 // --------
 
 Article.nodes = {
-  "paragraph": require("./paragraph/paragraph"),
-  "heading": require("./paragraph/heading"),
-  "image": require("./paragraph/image"),
-  "codeblock": require("./paragraph/codeblock")
+  "node": require("./nodes/node"),
+  "paragraph": require("./nodes/paragraph"),
+  "heading": require("./nodes/heading"),
+  "image": require("./nodes/image"),
+  "codeblock": require("./nodes/codeblock")
 };
-
 
 // Define annotation types
 // --------
 
 Article.annotations = {
-  // Annotations
-  "annotation": {
-    "properties": {
-      "node": "content",
-      "property": "string",
-      "range": "object"
-      // path: ["array", "string"] -> could be ["text_1", "content"]
-    }
-  },
 
   "strong": {
     "parent": "annotation",
@@ -85,30 +163,39 @@ Article.annotations = {
   }
 };
 
-// Custom schema definitions
+// Custom type definitions
 // --------
 // 
 // Holds comments
 
-Article.schema = {
-  // The generic ones should live in the document module
-  // -------------
-  
-  // Specific type for substance documents, holding all content elements
-  "content": {
+Article.types = {
+
+  // Abstarct Annotation Node
+  // --------
+
+  "annotation": {
     "properties": {
+      "path": ["array", "string"], // -> e.g. ["text_1", "content"]
+      "range": "object"
     }
   },
 
-  // Abstract node nodetype
-  "node": {
-    "parent": "content",
+  // Document
+  // --------
+
+  "document": {
     "properties": {
-      "content": "string"
+      "views": ["array", "view"],
+      "guid": "string",
+      "creator": "string",
+      "title": "string",
+      "abstract": "string"
     }
   },
 
   // Comments
+  // --------
+
   "comment": {
     "properties": {
       "content": "string",
@@ -119,162 +206,64 @@ Article.schema = {
   }
 };
 
-// Custom schema definitions
+// Custom indexes
 // --------
 // 
 
 Article.indexes = {
-  // all comments are now indexed by node association
-  "comments": {
-    "type": "comment",
-    "properties": ["node"]
-  },
   // All annotations are now indexed by node
   "annotations": {
     "type": "annotation",
     "properties": ["node"]
-  }
-};
-
-
-
-
-// Does not define any properties
-// since it's read only and immutable
-
-var SCHEMA = {
-  // Static indexes
-  "indexes": {
-
   },
-
-  "types": {
-
-
-    "paragraph": {
-      "parent": "content",
-      "properties": {
-        "content": "string"
-      }
-    },
-
-    "document": {
-      "properties": {
-        "views": ["array", "view"],
-        "guid": "string",
-        "creator": "string",
-        "title": "string",
-        "abstract": "string",
-        "keywords": ["array", "string"]
-      }
-    },
-
-    "view": {
-      "properties": {
-        "nodes": ["array", "content"]
-      }
-    },
-
-    "codeblock": {
-      "parent": "content",
-      "properties": {
-        "content": "string"
-      }
-    },
-
-    "codeline": {
-      "parent": "content",
-      "properties": {
-        "content": "string"
-      }
-    },
-
-    "image": {
-      "parent": "content",
-      "properties": {
-        "large": "string",
-        "medium": "string",
-        "url": "string",
-        "content": "string"
-      }
-    },
-
-    "heading": {
-      "parent": "content",
-      "properties": {
-        "content": "string",
-        "level": "number"
-      }
-    },
-
-
-
+  // all comments are now indexed by node association
+  "comments": {
+    "type": "comment",
+    "properties": ["node"]
   }
 };
 
 
-
-
-
-// Node.properties = {
-//   immutable: true,
-//   mergeableWith: [],
-//   preventEmpty: true,
-//   allowedAnnotations: []
-// };
-
-
-Article.Prototype = function() {
-
-};
-
+Article.Prototype.prototype = Document.prototype;
 Article.prototype = new Article.Prototype();
 
 
-// TODO: Construct dynamically using schema
+// Add convenience accessors for builtin document attributes
+Object.defineProperties(Document.prototype, {
+  id: {
+    get: function () {
+      return this.get("document").guid;
+    },
+    set: function() {
+      throw "doc.id is immutable";
+    }
+  },
+  creator: {
+    get: function () {
+      return this.get("document").creator;
+    }
+  },
+  created_at: {
+    get: function () {
+      return this.get("document").created_at;
+    }
+  },
+  title: {
+    get: function () {
+      return this.get("document").title;
+    }
+  },
+  abstract: {
+    get: function () {
+      return this.get("document").abstract;
+    }
+  },
+  views: {
+    get: function () {
+      // Note: returing a copy to avoid inadvertent changes
+      return this.get("document").views.slice(0);
+    }
+  },
+});
 
-// Object.defineProperties(Node.prototype, {
-//   id: {
-//     get: function () {
-//       return this.properties.id;
-//     }
-//   },
-//   type: {
-//     get: function () {
-//       return this.properties.type;
-//     }
-//   },
-//   content: {
-//     get: function () {
-//       return [
-//         {"type": "paragraph", "name": "Paragraph"},
-//         {"type": "heading", "name": "Heading"},
-//         {"type": "image", "name": "Image"},
-//         {"type": "codeblock", "name": "Codeblock"}
-//       ]
-//     }
-//   }
-// });
-
-
-// Substance.Node.Transformer
-// -----------------
-//
-// Manipulation interface for all node types
-// This behavior can overriden by the concrete node types
-
-// var NodeTransformer = function(document, node) {
-//   // Usually you get passed in a simulation here
-//   this.document = document;
-//   this.node = node;
-// };
-
-
-NodeView.Prototype.prototype = View.prototype;
-NodeView.prototype = new NodeView.Prototype();
-
-
-Node.Transformer = NodeTransformer;
-Node.View = NodeView;
-
-module.exports = Node;
+module.exports = Article;
