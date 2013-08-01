@@ -11,7 +11,7 @@ var TextView = require('../text').View;
 var HeadingView = function(node) {
   TextView.call(this, node);
 
-  this.$el.addClass('content-node heading');
+  this.$el.addClass('heading');
 };
 
 HeadingView.Prototype = function() {

@@ -1,5 +1,5 @@
-var View = require("substance-application").View;
 var util = require("substance-util");
+var View = require("substance-application").View;
 var html = util.html;
 
 // Substance.Node.View
@@ -10,7 +10,7 @@ var NodeView = function(node) {
 
   this.node = node;
 
-  this.$el.addClass('content-node node');
+  this.$el.addClass('content-node');
   this.$el.attr('id', this.node.id);
 };
 

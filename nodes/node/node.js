@@ -20,11 +20,11 @@ Node.type = {
   }
 };
 
-
 // Define node behavior
 // --------
 
 Node.properties = {
+  abstract: true,
   immutable: true,
   mergeableWith: [],
   preventEmpty: true,
@@ -37,7 +37,6 @@ Node.Prototype = function() {
 
 Node.prototype = new Node.Prototype();
 
-// TODO: Construct dynamically using schema
 
 Object.defineProperties(Node.prototype, {
   id: {
@@ -48,16 +47,6 @@ Object.defineProperties(Node.prototype, {
   type: {
     get: function () {
       return this.properties.type;
-    }
-  },
-  content: {
-    get: function () {
-      return [
-        {"type": "paragraph", "name": "Paragraph"},
-        {"type": "heading", "name": "Heading"},
-        {"type": "image", "name": "Image"},
-        {"type": "codeblock", "name": "Codeblock"}
-      ]
     }
   }
 });

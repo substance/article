@@ -114,6 +114,7 @@ Article.views = ["content"];
 
 Article.nodeTypes = {
   "node": require("./nodes/node"),
+  "constructor": require("./nodes/constructor"),
   "paragraph": require("./nodes/paragraph"),
   "heading": require("./nodes/heading"),
   "image": require("./nodes/image"),

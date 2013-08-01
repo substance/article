@@ -12,7 +12,7 @@ var ImageView = function(node) {
   Node.View.call(this, node);
 
 
-  this.$el.addClass('content-node image');
+  this.$el.addClass('image');
   this.$el.attr('id', this.node.id);
 };
 
