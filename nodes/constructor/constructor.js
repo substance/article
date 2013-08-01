@@ -43,10 +43,10 @@ Object.defineProperties(Constructor.prototype, {
   content: {
     get: function () {
       return [
-        {"type": "paragraph", "name": "Paragraph"},
-        {"type": "heading", "name": "Heading"},
-        {"type": "image", "name": "Image"},
-        {"type": "codeblock", "name": "Codeblock"}
+        {"type": "paragraph", "name": '<i class="icon-align-left"></i> Paragraph'},
+        {"type": "heading", "name": '<i class="icon-h-sign"></i> Heading'},
+        {"type": "image", "name": '<i class="icon-picture"></i> Image'},
+        {"type": "codeblock", "name": '<i class="icon-code"></i> Codeblock'}
       ]
     }
   }
