@@ -87,7 +87,9 @@ Article.fromSnapshot = function(data, options) {
   var doc = new Article(options);
 
   _.each(data.nodes, function(n) {
-    if (doc.get(n.id)) return; // skip existing nodes
+    if (doc.get(n.id)) {
+      doc.delete(n.id); // skip existing nodes
+    }
     doc.create(n);
   });
 
