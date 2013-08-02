@@ -1,0 +1,11 @@
+{
+  "name":"substance-article",
+  "private":true,
+  "dependencies":{
+    "underscore":"",
+    "substance-document":"",
+    "substance-util":"",
+    "substance-application":""
+  },
+  "version":"0.1.0"
+}
