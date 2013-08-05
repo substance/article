@@ -22,7 +22,9 @@ Image.properties = {
 };
 
 Image.Prototype = function() {
-
+  this.toJSON = function() {
+    return this.properties;
+  };
 };
 
 Image.Prototype.prototype = Node.prototype;
