@@ -22,9 +22,7 @@ Image.properties = {
 };
 
 Image.Prototype = function() {
-  this.toJSON = function() {
-    return this.properties;
-  };
+
 };
 
 Image.Prototype.prototype = Node.prototype;
@@ -47,7 +45,7 @@ Object.defineProperties(Image.prototype, {
   url: {
     get: function() { return this.properties.url; }
   },
-  
+
 });
 
 module.exports = Image;

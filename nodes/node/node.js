@@ -32,7 +32,9 @@ Node.properties = {
 };
 
 Node.Prototype = function() {
-
+  this.toJSON = function() {
+    return _.clone(this.properties);
+  };
 };
 
 Node.prototype = new Node.Prototype();
