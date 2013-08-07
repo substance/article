@@ -30,5 +30,12 @@ Heading.Prototype = function() {
 Heading.Prototype.prototype = Text.prototype;
 Heading.prototype = new Heading.Prototype();
 
+Object.defineProperties(Heading.prototype, {
+  level: {
+    get: function () {
+      return this.properties.level;
+    }
+  }
+});
 
 module.exports = Heading;
