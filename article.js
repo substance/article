@@ -36,6 +36,33 @@ var Article = function(options) {
     options.schema.indexes[key] = index;
   });
 
+  if (options.seed === undefined) {
+    var seed = {
+      nodes : {
+        document: {
+          id: "document",
+          type: "document",
+          guid: options.id, // external global document id
+          creator: options.creator,
+          created_at: options.created_at,
+          views: ["content"], // is views really needed on the instance level
+          title: "",
+          abstract: ""
+        }
+      }
+    }
+
+    // Create views on the doc
+    _.each(Article.views, function(view) {
+      seed.nodes[view] = {
+        id: view,
+        type: "view",
+        nodes: []
+      };
+    }, this);
+
+    options.seed = seed;
+  }
 
   // Call parent constructor
   // --------
@@ -43,32 +70,6 @@ var Article = function(options) {
   Document.call(this, options);
 
   this.nodeTypes = Article.nodeTypes;
-
-  // Seed the doc
-  // --------
-
-  // Create the document node
-
-  this.create({
-    id: "document",
-    type: "document",
-    guid: options.id, // external global document id
-    creator: options.creator,
-    created_at: options.created_at,
-    views: ["content"], // is views really needed on the instance level
-    title: "",
-    abstract: ""
-  });
-
-  // Create views on the doc
-  _.each(Article.views, function(view) {
-    this.create({
-      id: view,
-      "type": "view",
-      nodes: []
-    });
-  }, this);
-
 };
 
 
@@ -80,8 +81,6 @@ Article.Prototype = function() {
 
 };
 
-
-
 // Factory method
 // --------
 //
@@ -89,17 +88,8 @@ Article.Prototype = function() {
 
 Article.fromSnapshot = function(data, options) {
   options = options || {};
-  // options.seed = [];
-  var doc = new Article(options);
-
-  _.each(data.nodes, function(n) {
-    if (doc.get(n.id)) {
-      doc.delete(n.id); // skip existing nodes
-    }
-    doc.create(n);
-  });
-
-  return doc;
+  options.seed = data;
+  return new Article(options);
 };
 
 
@@ -172,7 +162,7 @@ Article.annotations = {
 
 // Custom type definitions
 // --------
-// 
+//
 // Holds comments
 
 Article.types = {
@@ -215,7 +205,7 @@ Article.types = {
 
 // Custom indexes
 // --------
-// 
+//
 
 Article.indexes = {
   // All annotations are now indexed by node
