@@ -18,13 +18,30 @@ var TextView = function(node) {
 
 TextView.Prototype = function() {
 
+  var _createSpans = function(str) {
+    var chars = str.split('');
+    return _.map(chars, function(ch) {
+      if (ch === " ") ch = " ";
+      // if (ch === "\n") return $('<br/>')[0];
+      // if (ch === " ") return $('<span class="space">'+ch+'</span>')[0];
+      // My resume: jquery ... nope. Stop.
+      // Exchanging this has lead to a speed-up of factor 10x (initial rendering)
+      // var span $('<span>'+ch+'</span>')[0];
+      var span = document.createElement("SPAN");
+      span.innerHTML = ch;
+      return span;
+    });
+  };
+
   // Rendering
   // =============================
   //
 
   this.render = function() {
+    var tic = Date.now();
     this.$el.html(html.tpl('text', this.node));
     this.renderContent();
+    console.log("TextView.render()", Date.now() - tic, "ms", this.node.content.length, "chars");
     return this;
   };
 
@@ -34,24 +51,24 @@ TextView.Prototype = function() {
   };
 
   this.renderContent = function() {
-    this.$('.content').empty();
-    this.insert(0, this.node.content);
-    // Insert invisble char
+    content = this.el.querySelector(".content");
+
+    var newContent = document.createDocumentFragment();
+    var charEls = _createSpans(this.node.content);
+    for (i = 0; i < charEls.length; i++) {
+      newContent.appendChild(charEls[i]);
+    }
+
+    content.innerHTML = "";
+    content.appendChild(newContent);
   };
 
   this.insert = function(pos, str) {
     var content = this.$('.content')[0];
 
-    // TODO: explain why this whitespace thingie is necessary
-    var chars = str.split('');
-    var charEls = _.map(chars, function(ch) {
-      if (ch === " ") ch = " ";
-      // if (ch === "\n") return $('<br/>')[0];
-      // if (ch === " ") return $('<span class="space">'+ch+'</span>')[0];
-      return $('<span>'+ch+'</span>')[0];
-    });
+    var spans = content.children;
+    var charEls = _createSpans(str);
 
-    var spans = content.childNodes;
     var i;
     if (pos >= spans.length) {
       for (i = 0; i < charEls.length; i++) {
