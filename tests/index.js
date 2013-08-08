@@ -1,7 +1,7 @@
 // Document Tests
 // ---------------
 
-require("./document");
+require("./article_test");
 
 // Selection Tests
 // ---------------

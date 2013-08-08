@@ -14,7 +14,7 @@ var Article = require('../index');
 // Test
 // ========
 
-var DocumentTest = function () {
+var ArticleTest = function () {
 
   this.setup = function() {
     // this.doc = new Document({
@@ -251,4 +251,4 @@ var DocumentTest = function () {
   ];
 };
 
-registerTest(['Document', 'Document Manipulation'], new DocumentTest());
+registerTest(['Article', 'Article Nodes'], new ArticleTest());
