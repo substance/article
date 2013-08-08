@@ -41,7 +41,6 @@ TextView.Prototype = function() {
     var tic = Date.now();
     this.$el.html(html.tpl('text', this.node));
     this.renderContent();
-    console.log("TextView.render()", Date.now() - tic, "ms", this.node.content.length, "chars");
     return this;
   };
 
