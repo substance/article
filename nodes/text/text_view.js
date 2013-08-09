@@ -18,27 +18,11 @@ var TextView = function(node) {
 
 TextView.Prototype = function() {
 
-  var _createSpans = function(str) {
-    var chars = str.split('');
-    return _.map(chars, function(ch) {
-      if (ch === " ") ch = " ";
-      // if (ch === "\n") return $('<br/>')[0];
-      // if (ch === " ") return $('<span class="space">'+ch+'</span>')[0];
-      // My resume: jquery ... nope. Stop.
-      // Exchanging this has lead to a speed-up of factor 10x (initial rendering)
-      // var span $('<span>'+ch+'</span>')[0];
-      var span = document.createElement("SPAN");
-      span.innerHTML = ch;
-      return span;
-    });
-  };
-
   // Rendering
   // =============================
   //
 
   this.render = function() {
-    var tic = Date.now();
     this.$el.html(html.tpl('text', this.node));
     this.renderContent();
     return this;
@@ -51,42 +35,17 @@ TextView.Prototype = function() {
 
   this.renderContent = function() {
     content = this.el.querySelector(".content");
-
-    var newContent = document.createDocumentFragment();
-    var charEls = _createSpans(this.node.content);
-    for (i = 0; i < charEls.length; i++) {
-      newContent.appendChild(charEls[i]);
-    }
-
-    content.innerHTML = "";
-    content.appendChild(newContent);
+    content.innerHTML = this.node.content;
   };
 
   this.insert = function(pos, str) {
-    var content = this.$('.content')[0];
-
-    var spans = content.children;
-    var charEls = _createSpans(str);
-
-    var i;
-    if (pos >= spans.length) {
-      for (i = 0; i < charEls.length; i++) {
-        content.appendChild(charEls[i]);
-      }
-    } else {
-      var refNode = spans[pos];
-      for (i = 0; i < charEls.length; i++) {
-        content.insertBefore(charEls[i], refNode);
-      }
-    }
+    content = this.el.querySelector(".content");
+    content.innerHTML = this.node.content;
   };
 
   this.delete = function(pos, length) {
-    var content = this.$('.content')[0];
-    var spans = content.childNodes;
-    for (var i = length - 1; i >= 0; i--) {
-      content.removeChild(spans[pos+i]);
-    }
+    content = this.el.querySelector(".content");
+    content.innerHTML = this.node.content;
   };
 };
 

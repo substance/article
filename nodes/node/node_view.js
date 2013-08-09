@@ -28,6 +28,17 @@ NodeView.Prototype = function() {
   this.dispose = function() {
     this.stopListening();
   };
+
+  this.getCharPosition = function(el, offset) {
+    return offset;
+  };
+
+  this.getDOMPosition = function(charPos) {
+    var el = this.$(".content")[0].childNodes[0];
+    var offset = charPos;
+    return [el, charPos];
+  };
+
 };
 
 NodeView.Prototype.prototype = View.prototype;
