@@ -227,7 +227,7 @@ var createAnnotationElement = function(entry) {
   var el = document.createElement("SPAN");
   el.classList.add("annotation");
   el.classList.add(entry.type);
-  el.setAttribute("data-id", entry.id);
+  el.setAttribute("id", entry.id);
   return el;
 };
 
