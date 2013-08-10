@@ -10,10 +10,15 @@ var Document = require("substance-document");
 var Article = function(options) {
   options = options || {};
 
+  // Check if format is compatible
+
   // Extend Schema
   // --------
 
   options.schema = util.deepclone(Document.schema);
+
+  options.schema.id = "substance-article";
+  options.schema.version = "0.1.0";
 
   // Merge in custom types
   _.each(Article.types, function(type, key) {
@@ -104,7 +109,6 @@ Article.views = ["content"];
 
 Article.nodeTypes = {
   "node": require("./nodes/node"),
-  "constructor": require("./nodes/constructor"),
   "paragraph": require("./nodes/paragraph"),
   "heading": require("./nodes/heading"),
   "image": require("./nodes/image"),
