@@ -23,7 +23,8 @@ TextView.Prototype = function() {
   //
 
   this.render = function() {
-    this.$el.html(html.tpl('text', this.node));
+    this.$el.append($('<div class="content">'));
+
     this.content = this.el.querySelector(".content");
     this.renderContent();
     return this;
