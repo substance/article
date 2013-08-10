@@ -36,7 +36,7 @@ NodeView.Prototype = function() {
   this.getDOMPosition = function(charPos) {
     var el = this.$(".content")[0].childNodes[0];
     var offset = charPos;
-    return [el, charPos];
+    return [el, offset];
   };
 
 };
