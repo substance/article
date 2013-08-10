@@ -1,7 +1,5 @@
 var _ = require('underscore');
 var DocumentNode = require('../node');
-var util = require("substance-util");
-var html = util.html;
 
 // Substance.Text.View
 // -----------------
@@ -23,9 +21,8 @@ TextView.Prototype = function() {
   //
 
   this.render = function() {
-    this.$el.append($('<div class="content">'));
-
-    this.content = this.el.querySelector(".content");
+    this.content = $('<div class="content">')[0];
+    this.$el.append(this.content);
     this.renderContent();
     return this;
   };
@@ -36,7 +33,8 @@ TextView.Prototype = function() {
   };
 
   this.renderContent = function() {
-    this.content.innerHTML = this.node.content;
+    var el = document.createTextNode(this.node.content);
+    this.content.appendChild(el);
   };
 
   this.insert = function(pos, str) {
@@ -61,13 +59,12 @@ TextView.Prototype = function() {
     // lookup the given element and compute a
     // the corresponding char position in the plain document
     var range = document.createRange();
+
     range.setStart(this.content.childNodes[0], 0);
     range.setEnd(el, offset);
     var str = range.toString();
     return str.length;
   };
-
-  var _push = Array.prototype.push;
 
   // Returns the corresponding DOM element position for the given character
   // --------
@@ -81,6 +78,11 @@ TextView.Prototype = function() {
     }
 
     var range = document.createRange();
+
+    if (this.node.content.length === 0) {
+      range.setStart(this.content.childNodes[0], 0);
+      return range;
+    }
 
     // if the requested charPos is at the end
     // return the last position immediately
@@ -110,8 +112,8 @@ TextView.Prototype = function() {
       } else if (el.childNodes.length > 0) {
         // push in reverse order to have a left bound DFS
         for (var i = el.childNodes.length - 1; i >= 0; i--) {
-          stack.push(el.childNodes[i])
-        };
+          stack.push(el.childNodes[i]);
+        }
       }
     }
 
