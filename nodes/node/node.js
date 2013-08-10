@@ -16,7 +16,6 @@ var Node = function(node) {
 Node.type = {
   "parent": "content",
   "properties": {
-    "content": ["array", "object"]
   }
 };
 
@@ -38,6 +37,8 @@ Node.Prototype = function() {
 };
 
 Node.prototype = new Node.Prototype();
+Node.prototype.constructor = Node;
+
 
 Object.defineProperties(Node.prototype, {
   id: {

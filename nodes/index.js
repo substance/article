@@ -1,9 +1,8 @@
 "use strict";
 
 module.exports = {
-  Constructor: require('./constructor'),
-  Paragraph: require('./paragraph'),
-  Heading: require('./heading'),
-  Image: require('./image'),
-  Codeblock: require('./codeblock')
+  "paragraph": require('./paragraph'),
+  "heading": require('./heading'),
+  "image": require('./image'),
+  "codeblock": require('./codeblock')
 };

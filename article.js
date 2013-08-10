@@ -41,40 +41,37 @@ var Article = function(options) {
     options.schema.indexes[key] = index;
   });
 
-  if (options.seed === undefined) {
-    var seed = {
-      nodes : {
-        document: {
-          id: "document",
-          type: "document",
-          guid: options.id, // external global document id
-          creator: options.creator,
-          created_at: options.created_at,
-          views: ["content"], // is views really needed on the instance level
-          title: "",
-          abstract: ""
-        }
-      }
-    }
-
-    // Create views on the doc
-    _.each(Article.views, function(view) {
-      seed.nodes[view] = {
-        id: view,
-        type: "view",
-        nodes: []
-      };
-    }, this);
-
-    options.seed = seed;
-  }
-
   // Call parent constructor
   // --------
 
   Document.call(this, options);
 
   this.nodeTypes = Article.nodeTypes;
+
+  // Seed the doc
+  // --------
+
+  if (options.seed === undefined) {
+    this.create({
+      id: "document",
+      type: "document",
+      guid: options.id, // external global document id
+      creator: options.creator,
+      created_at: options.created_at,
+      views: ["content"], // is views really needed on the instance level
+      title: "",
+      abstract: ""
+    });
+
+    // Create views on the doc
+    _.each(Article.views, function(view) {
+      this.create({
+        id: view,
+        "type": "view",
+        nodes: []
+      });
+    }, this);
+  }
 };
 
 
@@ -107,13 +104,8 @@ Article.views = ["content"];
 // Register node types
 // --------
 
-Article.nodeTypes = {
-  "node": require("./nodes/node"),
-  "paragraph": require("./nodes/paragraph"),
-  "heading": require("./nodes/heading"),
-  "image": require("./nodes/image"),
-  "codeblock": require("./nodes/codeblock")
-};
+
+Article.nodeTypes = require("./nodes");
 
 // Define annotation types
 // --------

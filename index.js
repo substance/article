@@ -3,7 +3,6 @@
 var Article = require("./article");
 
 Article.Node = require('./nodes/node');
-Article.Constructor = require('./nodes/constructor');
 Article.Paragraph = require('./nodes/paragraph');
 Article.Heading = require('./nodes/heading');
 Article.Image = require('./nodes/image');
