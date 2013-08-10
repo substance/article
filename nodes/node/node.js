@@ -1,6 +1,6 @@
 "use strict";
 
-var util = require("substance-util");
+var _ = require("underscore");
 
 // Substance.Node
 // -----------------
@@ -38,7 +38,6 @@ Node.Prototype = function() {
 };
 
 Node.prototype = new Node.Prototype();
-
 
 Object.defineProperties(Node.prototype, {
   id: {
