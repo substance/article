@@ -79,6 +79,8 @@ TextView.Prototype = function() {
       throw new Error("Not rendered yet.");
     }
 
+    var range = document.createRange();
+
     // if the requested charPos is at the end
     // return the last position immediately
     if (charPos === this.node.content.length) {
@@ -87,7 +89,8 @@ TextView.Prototype = function() {
         last = document.createTextNode("");
         this.content.appendChild(last);
       }
-      return [last, last.length];
+      range.setStart(last, last.length);
+      return range;
     }
 
     // otherwise look for the containing node in DFS order
@@ -98,7 +101,8 @@ TextView.Prototype = function() {
       if (el.nodeType === Node.TEXT_NODE) {
         var text = el;
         if (text.length >= charPos) {
-          return [el, charPos];
+          range.setStart(el, charPos);
+          return range;
         } else {
           charPos -= text.length;
         }

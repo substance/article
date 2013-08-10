@@ -22,6 +22,7 @@ NodeView.Prototype = function() {
 
   this.render = function() {
     this.$el.html(html.tpl('node', this.node));
+    this.content = this.el.querySelector(".content");
     return this;
   };
 
@@ -29,14 +30,20 @@ NodeView.Prototype = function() {
     this.stopListening();
   };
 
+  // Retrieves the corresponding character position for the given DOM position.
+  // --------
+  //
+
   this.getCharPosition = function(el, offset) {
-    return offset;
+    throw new Error("NodeView.getCharPosition() is abstract.");
   };
 
+  // Retrieves the corresponding DOM position for a given character.
+  // --------
+  //
+
   this.getDOMPosition = function(charPos) {
-    var el = this.$(".content")[0].childNodes[0];
-    var offset = charPos;
-    return [el, offset];
+    throw new Error("NodeView.getDOMPosition() is abstract.");
   };
 
 };
