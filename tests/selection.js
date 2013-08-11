@@ -70,7 +70,7 @@ var SelectionTest = function() {
     this.__document = Document.fromSnapshot(doc);
     this.writer = new Document.Writer(this.__document);
     this.sel = this.writer.selection;
-  }
+  };
 
   // deactivate the default fixture
   // for testing basic behavior
@@ -79,10 +79,7 @@ var SelectionTest = function() {
   this.actions = [
 
     "Set cursor before first char of last paragraph", function() {
-      this.sel.set({
-        start: [2, 0],
-        end: [2, 0]
-      });
+      this.sel.set([2, 0]);
     },
 
     "Expand selection to the left once ", function() {
