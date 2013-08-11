@@ -17,7 +17,7 @@ Paragraph.properties = {
   mergeableWith: ["paragraph", "heading"], // maybe remove heading here
   preventEmpty: false,
   splitInto: 'paragraph',
-  allowedAnnotations: ["emphasis", "strong", "link", "idea", "question", "error"]
+  allowedAnnotations: ["emphasis", "strong", "link", "code", "idea", "question", "error"]
 };
 
 
