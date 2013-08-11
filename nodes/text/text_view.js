@@ -255,7 +255,7 @@ TextView.createAnnotatedFragment = function(text, annotations) {
     if (entry.mode === ENTER) {
       // find the correct position and insert an entry
       for (; level < stack.length; level++) {
-        if (entry.level > stack[level].entry) {
+        if (entry.level < stack[level].entry.level) {
           break;
         }
       }
