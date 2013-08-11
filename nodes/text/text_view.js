@@ -33,7 +33,7 @@ TextView.Prototype = function() {
   };
 
   this.renderContent = function() {
-    var el = document.createTextNode(this.node.content);
+    var el = document.createTextNode(this.node.content+" ");
     this.content.appendChild(el);
   };
 
@@ -63,7 +63,7 @@ TextView.Prototype = function() {
     range.setStart(this.content.childNodes[0], 0);
     range.setEnd(el, offset);
     var str = range.toString();
-    return str.length;
+    return Math.min(this.node.content.length, str.length);
   };
 
   // Returns the corresponding DOM element position for the given character
@@ -279,7 +279,7 @@ TextView.createAnnotatedFragment = function(text, annotations) {
   }
 
   // Finally append a trailing text node
-  el = document.createTextNode(text.substring(pos));
+  el = document.createTextNode(text.substring(pos)+" ");
   fragment.appendChild(el);
 
   return fragment;
