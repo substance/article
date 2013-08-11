@@ -11,7 +11,7 @@ var Node = function(node) {
 
 // Type definition
 // --------
-// 
+//
 
 Node.type = {
   "parent": "content",
@@ -31,9 +31,19 @@ Node.properties = {
 };
 
 Node.Prototype = function() {
+
   this.toJSON = function() {
     return _.clone(this.properties);
   };
+
+  // Provides how a cursor would change by the given operation
+  // --------
+  //
+
+  this.getUpdatedCharPos = function(op) {
+    throw new Error("Node.getCharPosition() is abstract");
+  }
+
 };
 
 Node.prototype = new Node.Prototype();
