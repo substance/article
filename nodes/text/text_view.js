@@ -84,18 +84,6 @@ TextView.Prototype = function() {
       return range;
     }
 
-    // if the requested charPos is at the end
-    // return the last position immediately
-    // if (charPos === this.node.content.length) {
-    //   var last = _.last(this.content.childNodes);
-    //   if (last.nodeType !== Node.TEXT_NODE) {
-    //     last = document.createTextNode("");
-    //     this.content.appendChild(last);
-    //   }
-    //   range.setStart(last, last.length);
-    //   return range;
-    // }
-
     // otherwise look for the containing node in DFS order
     // TODO: this could be optimized using some indexing or caching?
     var stack = [this.content];
