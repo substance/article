@@ -3,8 +3,8 @@
 var Text = require("../text");
 
 
-var Heading = function(node) {
-  Text.call(this, node);
+var Heading = function(node, document) {
+  Text.call(this, node, document);
 };
 
 Heading.type = {

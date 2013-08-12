@@ -2,8 +2,8 @@
 
 var Text = require("../text");
 
-var Codeblock = function(node) {
-  Text.call(this, node);
+var Codeblock = function(node, document) {
+  Text.call(this, node, document);
 };
 
 // Type definition

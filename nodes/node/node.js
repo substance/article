@@ -5,7 +5,8 @@ var _ = require("underscore");
 // Substance.Node
 // -----------------
 
-var Node = function(node) {
+var Node = function(node, document) {
+  this.document = document;
   this.properties = node;
 };
 

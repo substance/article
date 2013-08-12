@@ -2,8 +2,8 @@
 
 var Text = require("../text");
 
-var Paragraph = function(node) {
-  Text.call(this, node);
+var Paragraph = function(node, document) {
+  Text.call(this, node, document);
 };
 
 Paragraph.type = {

@@ -21,10 +21,12 @@ NodeView.Prototype = function() {
   //
 
   this.render = function() {
-    this.$el.html(html.tpl('node', this.node));
+    this.$el.append($('<div class="content"></div>'));
     this.content = this.el.querySelector(".content");
     return this;
   };
+
+  
 
   this.dispose = function() {
     this.stopListening();

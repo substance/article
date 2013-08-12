@@ -7,8 +7,8 @@ var Operator = require('substance-operator');
 // -----------------
 //
 
-var Text = function(node) {
-  Node.call(this, node);
+var Text = function(node, document) {
+  Node.call(this, node, document);
 };
 
 Text.Prototype = function() {
