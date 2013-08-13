@@ -50,7 +50,7 @@ ImageView.Prototype = function() {
 
     // Add caption
     var caption = new ParagraphView(this.node.caption);
-    content.appendChild(caption.el);
+    content.appendChild(caption.render().el);
 
     // Add content
     this.el.appendChild(content);
