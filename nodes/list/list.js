@@ -1,6 +1,7 @@
 "use strict";
 
 var Node = require("../node");
+var _ = require("underscore");
 
 var List = function(node, document) {
   Node.call(this, node, document);
@@ -44,7 +45,7 @@ Object.defineProperties(List.prototype, {
   },
   content: {
     get: function () {
-      return "just to prevent stuff from breaking"
+      return "just to prevent stuff from breaking";
     }
   },
   length: {
