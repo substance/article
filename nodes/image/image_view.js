@@ -4,6 +4,7 @@ var _ = require('underscore');
 var util = require('substance-util');
 var html = util.html;
 var Node = require("../node");
+var ParagraphView = require("../paragraph").View;
 
 // Substance.Image.View
 // ==========================================================================
@@ -41,13 +42,19 @@ ImageView.Prototype = function() {
 
     var img = document.createElement('img');
     img.src = this.node.url || this.node.medium;
-    img.alt = this.node.title;
-    img.title = this.node.title;
+    img.alt = "alt text";
+    img.title = "alt text";
     imgChar.appendChild(img);
 
     content.appendChild(imgChar);
-    this.el.appendChild(content);
 
+    // Add caption
+    var caption = new ParagraphView(this.node.caption);
+    content.appendChild(caption.el);
+
+    // Add content
+    this.el.appendChild(content);
+    
     this._imgPos = _indexOf.call(imgChar.childNodes, img);
 
     return this;
