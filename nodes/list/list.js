@@ -23,12 +23,11 @@ List.properties = {
 };
 
 
-List.Prototype = function() {
-
-};
+List.Prototype = function() {};
 
 List.Prototype.prototype = Node.prototype;
 List.prototype = new List.Prototype();
+List.prototype.constructor = List;
 
 Object.defineProperties(List.prototype, {
   level: {

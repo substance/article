@@ -28,7 +28,7 @@ Image.Prototype = function() {
 
 Image.Prototype.prototype = Node.prototype;
 Image.prototype = new Image.Prototype();
-
+Image.prototype.constructor = Image;
 
 Object.defineProperties(Image.prototype, {
   content: {
