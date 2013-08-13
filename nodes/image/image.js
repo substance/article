@@ -48,7 +48,11 @@ Object.defineProperties(Image.prototype, {
   },
   caption: {
     get: function() {
-      return this.document.get(this.properties.caption);
+      if (this.properties.caption) {
+        return this.document.get(this.properties.caption);
+      } else {
+        return "";
+      }
     }
   }
 });
