@@ -24,12 +24,30 @@ ImageView.Prototype = function() {
 
   var _indexOf = Array.prototype.indexOf;
 
-  this.render = function() {
-    this.$el.html(html.tpl('image', this.node));
+  // Render Markup
+  // --------
+  // 
+  // div.content
+  //   div.img-char
+  //     .img
 
-    // Keep the position of the
-    var imgChar = this.el.querySelector(".image-char");
-    var img = this.el.querySelector("img");
+  this.render = function() {
+
+    var content = document.createElement('div');
+    content.className = 'content';
+
+    var imgChar = document.createElement('div');
+    imgChar.className = 'image-char';
+
+    var img = document.createElement('img');
+    img.src = this.node.url || this.node.medium;
+    img.alt = this.node.title;
+    img.title = this.node.title;
+    imgChar.appendChild(img);
+
+    content.appendChild(imgChar);
+    this.el.appendChild(content);
+
     this._imgPos = _indexOf.call(imgChar.childNodes, img);
 
     return this;
