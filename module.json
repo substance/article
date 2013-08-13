@@ -9,7 +9,8 @@
     "underscore":"",
     "substance-document":"",
     "substance-util":"",
-    "substance-application":""
+    "substance-application":"",
+    "substance-operator":""
   },
   "version":"0.1.0"
 }
