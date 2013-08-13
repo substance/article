@@ -9,7 +9,7 @@ var List = function(node, document) {
 List.type = {
   "parent": "content",
   "properties": {
-    "items": ["array", "listitem"],
+    "items": ["array", "paragraph"],
     "ordered": "boolean"
   }
 };
