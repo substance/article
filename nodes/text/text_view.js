@@ -128,8 +128,10 @@ TextView.Prototype = function() {
       context.appendChild(document.createTextNode(text));
     };
 
-    fragmenter.onEnter = function(context, entry) {
-      context.appendChild(createAnnotationElement(entry));
+    fragmenter.onEnter = function(entry, parentContext) {
+      var el = createAnnotationElement(entry);
+      parentContext.appendChild(el);
+      return el;
     };
 
     // this calls onText and onEnter in turns...
