@@ -133,7 +133,7 @@ TextView.Prototype = function() {
     };
 
     // this calls onText and onEnter in turns...
-    fragmenter.start();
+    fragmenter.start(fragment, text, annotations);
 
     // append a trailing white-space to improve the browser's behaviour with softbreaks at the end
     // of a node.
