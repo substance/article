@@ -119,7 +119,7 @@ TextView.Prototype = function() {
 
   this.renderAnnotations = function(annotations) {
     var text = this.node.content;
-    var fragment = document.createFragment();
+    var fragment = document.createDocumentFragment();
 
 
     var fragmenter = new Annotator.Fragmenter(fragment, text, annotations);
