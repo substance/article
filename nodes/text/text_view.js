@@ -1,5 +1,6 @@
-var _ = require('underscore');
 var DocumentNode = require('../node');
+var Document = require("substance-document");
+var Annotator = Document.Annotator;
 
 // Substance.Text.View
 // -----------------
@@ -108,169 +109,43 @@ TextView.Prototype = function() {
     throw new Error("should not reach here");
   };
 
-  this.renderAnnotations = function(annotations) {
-    var text = this.node.content;
-    var fragment = TextView.createAnnotatedFragment(text, annotations);
-    this.content.innerHTML = "";
-    this.content.appendChild(fragment);
+  var createAnnotationElement = function(entry) {
+    var el = document.createElement("SPAN");
+    el.classList.add("annotation");
+    el.classList.add(entry.type);
+    el.setAttribute("id", entry.id);
+    return el;
   };
 
-  this.updateAnnotation = function(annotation) {
+  this.renderAnnotations = function(annotations) {
+    var text = this.node.content;
+    var fragment = document.createFragment();
+
+
+    var fragmenter = new Annotator.Fragmenter(fragment, text, annotations);
+
+    fragmenter.onText = function(context, text) {
+      context.appendChild(document.createTextNode(text));
+    };
+
+    fragmenter.onEnter = function(context, entry) {
+      context.appendChild(createAnnotationElement(entry));
+    };
+
+    // this calls onText and onEnter in turns...
+    fragmenter.start();
+
+    // append a trailing white-space to improve the browser's behaviour with softbreaks at the end
+    // of a node.
+    fragment.appendChild(document.createTextNode(" "));
+
+    // set the content
+    this.content.innerHTML = "";
+    this.content.appendChild(fragment);
   };
 };
 
 TextView.Prototype.prototype = DocumentNode.View.prototype;
 TextView.prototype = new TextView.Prototype();
-
-// This is a sweep algorithm wich uses a set of ENTER/EXIT entries
-// to manage a stack of active elements.
-// Whenever a new element is entered it will be appended to its parent element.
-// The stack is ordered by the annotation types.
-//
-// Examples:
-//
-// - simple case:
-//
-//       [top] -> ENTER(idea1) -> [top, idea1]
-//
-//   Creates a new 'idea' element and appends it to 'top'
-//
-// - stacked ENTER:
-//
-//       [top, idea1] -> ENTER(bold1) -> [top, idea1, bold1]
-//
-//   Creates a new 'bold' element and appends it to 'idea1'
-//
-// - simple EXIT:
-//
-//       [top, idea1] -> EXIT(idea1) -> [top]
-//
-//   Removes 'idea1' from stack.
-//
-// - reordering ENTER:
-//
-//       [top, bold1] -> ENTER(idea1) -> [top, idea1, bold1]
-//
-//   Inserts 'idea1' at 2nd position, creates a new 'bold1', and appends itself to 'top'
-//
-// - reordering EXIT
-//
-//       [top, idea1, bold1] -> EXIT(idea1)) -> [top, bold1]
-//
-//   Removes 'idea1' from stack and creates a new 'bold1'
-//
-
-// provisionally hard coded
-var _levels = {
-  idea: 1,
-  question: 1,
-  error: 1,
-  link: 1,
-  strong: 2,
-  emphasis: 2,
-  code: 2
-};
-
-var ENTER = 1;
-var EXIT = -1;
-
-// Orders sweep events according to following precedences:
-//
-// 1. pos
-// 2. EXIT < ENTER
-// 3. if both ENTER: ascending level
-// 4. if both EXIT: descending level
-
-var _compare = function(a, b) {
-  if (a.pos < b.pos) return -1;
-  if (a.pos > b.pos) return 1;
-
-  if (a.mode < b.mode) return -1;
-  if (a.mode > b.mode) return 1;
-
-  if (a.mode === ENTER) {
-    if (a.level < b.level) return -1;
-    if (a.level > b.level) return 1;
-  }
-
-  if (a.mode === EXIT) {
-    if (a.level > b.level) return -1;
-    if (a.level < b.level) return 1;
-  }
-
-  return 0;
-};
-
-var extractEntries = function(annotations) {
-  var entries = [];
-  _.each(annotations, function(a) {
-    var l = _levels[a.type];
-    entries.push({ pos : a.range[0], mode: ENTER, level: l, id: a.id, type: a.type });
-    entries.push({ pos : a.range[1], mode: EXIT, level: l, id: a.id, type: a.type });
-  });
-  return entries;
-};
-
-var createAnnotationElement = function(entry) {
-  var el = document.createElement("SPAN");
-  el.classList.add("annotation");
-  el.classList.add(entry.type);
-  el.setAttribute("id", entry.id);
-  return el;
-};
-
-TextView.createAnnotatedFragment = function(text, annotations) {
-
-  // sort annotations by range[0] and level
-  var entries = extractEntries(annotations);
-  entries.sort(_compare);
-
-  var fragment = document.createDocumentFragment();
-  var stack = [{entry: null, el: fragment }];
-
-  var pos = 0;
-  var el, level;
-
-  for (var i = 0; i < entries.length; i++) {
-    var entry = entries[i];
-
-    // in any case we add the last text to the current element
-    el = document.createTextNode(text.substring(pos, entry.pos));
-    stack[stack.length-1].el.appendChild(el);
-    pos = entry.pos;
-
-    level = 1;
-    if (entry.mode === ENTER) {
-      // find the correct position and insert an entry
-      for (; level < stack.length; level++) {
-        if (entry.level < stack[level].entry.level) {
-          break;
-        }
-      }
-      stack.splice(level, 0, {entry: entry,  el: null});
-    } else if (entry.mode === EXIT) {
-      // find the according entry and remove it from the stack
-      for (; level < stack.length; level++) {
-        if (stack[level].entry.id === entry.id) {
-          break;
-        }
-      }
-      stack.splice(level, 1);
-    }
-
-    // create new elements for all lower entries
-    for (; level < stack.length; level++) {
-      el = createAnnotationElement(stack[level].entry);
-      stack[level-1].el.appendChild(el);
-      stack[level].el = el;
-    }
-  }
-
-  // Finally append a trailing text node
-  el = document.createTextNode(text.substring(pos)+" ");
-  fragment.appendChild(el);
-
-  return fragment;
-};
 
 module.exports = TextView;
