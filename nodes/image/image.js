@@ -46,7 +46,11 @@ Object.defineProperties(Image.prototype, {
   url: {
     get: function() { return this.properties.url; }
   },
-
+  caption: {
+    get: function() {
+      return this.document.get(this.properties.caption);
+    }
+  }
 });
 
 module.exports = Image;
