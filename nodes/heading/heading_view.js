@@ -1,8 +1,5 @@
 "use strict";
 
-var _ = require('underscore');
-var util = require('substance-util');
-var html = util.html;
 var TextView = require('../text').View;
 
 // Substance.Heading.View
@@ -14,12 +11,7 @@ var HeadingView = function(node) {
   this.$el.addClass('heading');
 };
 
-HeadingView.Prototype = function() {
-  
-  // Rendering
-  // =============================
-  //
-};
+HeadingView.Prototype = function() {};
 
 HeadingView.Prototype.prototype = TextView.prototype;
 HeadingView.prototype = new HeadingView.Prototype();

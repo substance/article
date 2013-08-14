@@ -1,17 +1,12 @@
 "use strict";
 
-var _ = require('underscore');
-var util = require('substance-util');
-var html = util.html;
-var Node = require("../node");
-var ParagraphView = require("../paragraph").View;
+var NodeView = require("../node").View;
 
 // Substance.Image.View
 // ==========================================================================
 
-var ImageView = function(node) {
-  Node.View.call(this, node);
-
+var ImageView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
 
   this.$el.addClass('image');
   this.$el.attr('id', this.node.id);
@@ -34,6 +29,10 @@ ImageView.Prototype = function() {
 
   this.render = function() {
 
+    if (this.captionView) {
+      this.captionView.dispose();
+    }
+
     var content = document.createElement('div');
     content.className = 'content';
 
@@ -51,9 +50,9 @@ ImageView.Prototype = function() {
 
     // Add caption if there is any
     if (this.node.caption) {
-      var caption = new ParagraphView(this.node.caption);
+      var caption = this.viewFactory.createView(this.node.caption);
       content.appendChild(caption.render().el);
-      this._caption = caption;
+      this.captionView = caption;
     }
 
     // Add content
@@ -65,8 +64,12 @@ ImageView.Prototype = function() {
   };
 
   this.dispose = function() {
+    NodeView.prototype.dispose.call(this);
+
     console.log('disposing image view');
-    this.stopListening();
+    if (this.captionView) {
+      this.captionView.dispose();
+    }
   };
 
   this.delete = function(pos, length) {
@@ -83,7 +86,7 @@ ImageView.Prototype = function() {
     if (el === this._imgChar) {
       return (offset > this._imgPos) ? 1 : 0;
     } else {
-      var charPos = this._caption.getCharPosition(el, offset);
+      var charPos = this.captionView.getCharPosition(el, offset);
       if (charPos < 0) {
         return charPos;
       } else {
@@ -96,17 +99,16 @@ ImageView.Prototype = function() {
   this.getDOMPosition = function(charPos) {
     if (charPos === 0) {
       var content = this.$('.content')[0];
-      var img = content.querySelector("img");
       var range = document.createRange();
       range.setStartBefore(content.childNodes[0]);
       return range;
     } else {
-      return this._caption.getDOMPosition(charPos-1);
+      return this.captionView.getDOMPosition(charPos-1);
     }
   };
 };
 
-ImageView.Prototype.prototype = Node.View.prototype;
+ImageView.Prototype.prototype = NodeView.prototype;
 ImageView.prototype = new ImageView.Prototype();
 
 module.exports = ImageView;

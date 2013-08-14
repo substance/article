@@ -1,4 +1,4 @@
-var DocumentNode = require('../node');
+var NodeView = require('../node').View;
 var Document = require("substance-document");
 var Annotator = Document.Annotator;
 
@@ -9,7 +9,7 @@ var Annotator = Document.Annotator;
 // This behavior can overriden by the concrete node types
 
 var TextView = function(node) {
-  DocumentNode.View.call(this, node);
+  NodeView.call(this, node);
 
   this.$el.addClass('content-node text');
   this.$el.attr('id', this.node.id);
@@ -22,18 +22,18 @@ TextView.Prototype = function() {
   //
 
   this.render = function() {
-    this.content = $('<div class="content">')[0];
-    this.$el.append(this.content);
+    NodeView.prototype.render.call(this);
     this.renderContent();
     return this;
   };
 
   this.dispose = function() {
+    NodeView.prototype.dispose.call(this);
     console.log('disposing paragraph view');
-    this.stopListening();
   };
 
   this.renderContent = function() {
+    // EXPERIMENTAL HACK: adding an extra space for better soft-break behavior
     var el = document.createTextNode(this.node.content+" ");
     this.content.appendChild(el);
   };
@@ -54,6 +54,20 @@ TextView.Prototype = function() {
     var text = textNode.textContent;
     text = text.substring(0, offset) + text.substring(offset+length);
     textNode.textContent = text;
+  };
+
+  this.onNodeUpdate = function(op) {
+    if (op.path[1] !== "content") {
+      return;
+    }
+    if (op.type === "update") {
+      var update = op.diff;
+      if (update.isInsert()) {
+        this.insert(update.pos, update.str);
+      } else if (update.isDelete()) {
+        this.delete(update.pos, update.str.length);
+      }
+    }
   };
 
   this.getCharPosition = function(el, offset) {
@@ -141,6 +155,7 @@ TextView.Prototype = function() {
     // this calls onText and onEnter in turns...
     fragmenter.start(fragment, text, annotations);
 
+    // EXPERIMENTAL HACK:
     // append a trailing white-space to improve the browser's behaviour with softbreaks at the end
     // of a node.
     fragment.appendChild(document.createTextNode(" "));
@@ -151,7 +166,7 @@ TextView.Prototype = function() {
   };
 };
 
-TextView.Prototype.prototype = DocumentNode.View.prototype;
+TextView.Prototype.prototype = NodeView.prototype;
 TextView.prototype = new TextView.Prototype();
 
 module.exports = TextView;

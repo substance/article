@@ -1,17 +1,26 @@
 "use strict";
 
-var _ = require('underscore');
 var NodeView = require('../node').View;
 
 // Substance.Heading.View
 // ==========================================================================
 
-var ListView = function(node) {
-  NodeView.call(this, node);
+var ListView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
   this.$el.addClass('list');
+
+  this.itemViews = [];
 };
 
 ListView.Prototype = function() {
+
+  this.dispose = function() {
+    NodeView.prototype.dispose.call(this);
+
+    for (var i = 0; i < this.itemViews.length; i++) {
+      this.itemViews[i].dispose();
+    }
+  };
 
   // Rendering
   // =============================
@@ -20,11 +29,33 @@ ListView.Prototype = function() {
   this.render = function() {
     NodeView.prototype.render.call(this);
 
-    _.each(this.node.items, function(item) {
-      var $listitem = $('<div class="listitem"></div>').html(item.content);
-      $listitem.append('<div class="bullet"></div>');
-      this.$('.content').append($listitem);
-    }, this);
+    var i;
+    for (i = 0; i < this.itemViews.length; i++) {
+      this.itemViews[i].dispose();
+    }
+
+    this.itemViews = [];
+    this.content.innerHTML = "";
+
+    var items = this.node.items;
+
+    for (i = 0; i < items.length; i++) {
+      var item = items[i];
+
+      var listItem = document.createElement("DIV");
+      listItem.classList.add("listitem");
+
+      var itemView = this.viewFactory.createView(item);
+      listItem.appendChild(itemView.render().el);
+      this.itemViews.push(itemView);
+
+      var bullet = document.createElement("DIV");
+      bullet.classList.add("bullet");
+
+      this.content.appendChild(listItem);
+      this.content.appendChild(bullet);
+    }
+
     return this;
   };
 

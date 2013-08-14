@@ -11,9 +11,7 @@ var CodeblockView = function(node) {
   this.$el.addClass('content-node codeblock');
 };
 
-CodeblockView.Prototype = function() {
-  
-};
+CodeblockView.Prototype = function() {};
 
 CodeblockView.Prototype.prototype = TextView.prototype;
 CodeblockView.prototype = new CodeblockView.Prototype();
