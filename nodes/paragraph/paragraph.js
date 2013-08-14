@@ -11,7 +11,7 @@ Paragraph.type = {
   "properties": {
     "content": "string"
   }
-}
+};
 
 Paragraph.properties = {
   mergeableWith: ["paragraph", "heading"], // maybe remove heading here
@@ -20,14 +20,10 @@ Paragraph.properties = {
   allowedAnnotations: ["emphasis", "strong", "link", "code", "idea", "question", "error"]
 };
 
-
-Paragraph.Prototype = function() {
-
-};
+Paragraph.Prototype = function() {};
 
 Paragraph.Prototype.prototype = Text.prototype;
 Paragraph.prototype = new Paragraph.Prototype();
 Paragraph.prototype.constructor = Paragraph;
-
 
 module.exports = Paragraph;

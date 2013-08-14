@@ -22,8 +22,40 @@ List.properties = {
   allowedAnnotations: ["emphasis", "strong", "idea", "question", "error"]
 };
 
+List.Prototype = function() {
 
-List.Prototype = function() {};
+  this.getLength = function() {
+    var l = 0;
+    var items = this.items;
+    for (var i = 0; i < items.length; i++) {
+      l += items[i].length;
+    }
+    return l;
+  };
+
+  this.mapRange = function(startChar, endChar) {
+    var result = [];
+    var pos = 0;
+    var l;
+    var items = this.items;
+    for (var i = 0; i < items.length; i++) {
+      l = items[i].length;
+
+      if (startChar < pos + l) {
+        var res = items[i].mapRange(startChar-pos, endChar-pos);
+        if (_.isArray(res)) {
+          result.push.apply(result, res);
+        } else if (res) {
+          result.push(res);
+        }
+      }
+      pos += l;
+    }
+
+    return result;
+  };
+
+};
 
 List.Prototype.prototype = Node.prototype;
 List.prototype = new List.Prototype();

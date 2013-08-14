@@ -27,7 +27,7 @@ ImageView.Prototype = function() {
 
   // Render Markup
   // --------
-  // 
+  //
   // div.content
   //   div.img-char
   //     .img
@@ -39,6 +39,7 @@ ImageView.Prototype = function() {
 
     var imgChar = document.createElement('div');
     imgChar.className = 'image-char';
+    this._imgChar = imgChar;
 
     var img = document.createElement('img');
     img.src = this.node.url || this.node.medium;
@@ -51,10 +52,11 @@ ImageView.Prototype = function() {
     // Add caption
     var caption = new ParagraphView(this.node.caption);
     content.appendChild(caption.render().el);
+    this._caption = caption;
 
     // Add content
     this.el.appendChild(content);
-    
+
     this._imgPos = _indexOf.call(imgChar.childNodes, img);
 
     return this;
@@ -75,24 +77,30 @@ ImageView.Prototype = function() {
 
   this.getCharPosition = function(el, offset) {
     // TODO: is there a more general approach? this is kind of manually coded.
-    if (!$(el).is("div.image-char")) {
-      throw new Error("Ooops. Expecting div.image-char as source element for looking up the char pos");
+
+    if (el === this._imgChar) {
+      return (offset > this._imgPos) ? 1 : 0;
+    } else {
+      var charPos = this._caption.getCharPosition(el, offset);
+      if (charPos < 0) {
+        return charPos;
+      } else {
+        return charPos + 1;
+      }
     }
-    return (offset > this._imgPos) ? 1 : 0;
+
   };
 
   this.getDOMPosition = function(charPos) {
-    var content = this.$('.content')[0];
-    var img = content.querySelector("img");
-    var range = document.createRange();
-
     if (charPos === 0) {
+      var content = this.$('.content')[0];
+      var img = content.querySelector("img");
+      var range = document.createRange();
       range.setStartBefore(content.childNodes[0]);
+      return range;
     } else {
-      range.setStartAfter(content);
+      return this._caption.getDOMPosition(charPos-1);
     }
-
-    return range;
   };
 };
 
