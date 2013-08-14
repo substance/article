@@ -48,9 +48,11 @@ ImageView.Prototype = function() {
 
     content.appendChild(imgChar);
 
-    // Add caption
-    var caption = new ParagraphView(this.node.caption);
-    content.appendChild(caption.render().el);
+    // Add caption if there is any
+    if (this.node.caption) {
+      var caption = new ParagraphView(this.node.caption);
+      content.appendChild(caption.render().el);
+    }
 
     // Add content
     this.el.appendChild(content);
