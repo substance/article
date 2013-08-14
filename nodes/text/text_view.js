@@ -8,6 +8,8 @@ var Annotator = Document.Annotator;
 // Manipulation interface shared by all textish types (paragraphs, headings)
 // This behavior can overriden by the concrete node types
 
+var LAST_CHAR_HACK = false;
+
 var TextView = function(node) {
   NodeView.call(this, node);
 
@@ -33,9 +35,13 @@ TextView.Prototype = function() {
   };
 
   this.renderContent = function() {
-    // EXPERIMENTAL HACK: adding an extra space for better soft-break behavior
-    var el = document.createTextNode(this.node.content+" ");
+    var el = document.createTextNode(this.node.content)
     this.content.appendChild(el);
+
+    // EXPERIMENTAL HACK: adding an extra space for better soft-break behavior
+    if (LAST_CHAR_HACK) {
+      this.content.appendChild(document.createTextNode(" "));
+    }
   };
 
   this.insert = function(pos, str) {
@@ -80,7 +86,7 @@ TextView.Prototype = function() {
     var str = range.toString();
     var charPos = Math.min(this.node.content.length, str.length);
 
-    console.log("Requested char pos: ", charPos, this.node.content[charPos]);
+    // console.log("Requested char pos: ", charPos, this.node.content[charPos]);
 
     return charPos;
   };
@@ -166,7 +172,9 @@ TextView.Prototype = function() {
     // EXPERIMENTAL HACK:
     // append a trailing white-space to improve the browser's behaviour with softbreaks at the end
     // of a node.
-    fragment.appendChild(document.createTextNode(" "));
+    if (LAST_CHAR_HACK) {
+      fragment.appendChild(document.createTextNode(" "));
+    }
 
     // set the content
     this.content.innerHTML = "";
