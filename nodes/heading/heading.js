@@ -2,7 +2,6 @@
 
 var Text = require("../text");
 
-
 var Heading = function(node, document) {
   Text.call(this, node, document);
 };
@@ -22,13 +21,11 @@ Heading.properties = {
   allowedAnnotations: ["emphasis", "strong", "idea", "question", "error"]
 };
 
-Heading.Prototype = function() {
-};
+Heading.Prototype = function() {};
 
 Heading.Prototype.prototype = Text.prototype;
 Heading.prototype = new Heading.Prototype();
 Heading.prototype.constructor = Heading;
-
 
 Object.defineProperties(Heading.prototype, {
   level: {
