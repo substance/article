@@ -48,7 +48,8 @@ Image.Prototype = function() {
 
   this.deleteOperation = function(startChar, endChar) {
     if (startChar === 0) {
-      throw new Error("The image char is not addressable.");
+      console.log("Tried to delete the image char. Don't do that, hmmmkay?");
+      return;
     }
 
     if (this.hasCaption()) {

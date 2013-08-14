@@ -124,7 +124,15 @@ TextView.Prototype = function() {
       }
     }
 
-    throw new Error("should not reach here");
+    console.log("Bug-Alarm: the model and the view are out of sync.")
+    console.log("The model as "+charPos+" more characters");
+    console.log("Returning the last available position... but please fix me. Anyone?");
+
+    var children = this.content.childNodes;
+    var last = children[children.length-1];
+    range.setStart(last, last.length);
+
+    return range;
   };
 
   var createAnnotationElement = function(entry) {
