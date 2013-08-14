@@ -2,6 +2,9 @@
 
 var Node = require("../node");
 var _ = require("underscore");
+var Operator = require("substance-operator");
+var ObjectOperation = Operator.ObjectOperation;
+var ArrayOperation = Operator.ArrayOperation;
 
 var List = function(node, document) {
   Node.call(this, node, document);
@@ -33,26 +36,62 @@ List.Prototype = function() {
     return l;
   };
 
-  this.mapRange = function(startChar, endChar) {
-    var result = [];
-    var pos = 0;
-    var l;
+  this.insertOperation = function(charPos, text) {
+    var ops = [];
+
     var items = this.items;
-    for (var i = 0; i < items.length; i++) {
+    var pos = 0;
+    var l, i;
+    for (i = 0; i < items.length; i++) {
+      var item = items[i];
       l = items[i].length;
 
       if (startChar < pos + l) {
-        var res = items[i].mapRange(startChar-pos, endChar-pos);
-        if (_.isArray(res)) {
-          result.push.apply(result, res);
-        } else if (res) {
-          result.push(res);
+        return item.insertOperation(charPos-pos, text);
+      }
+
+      pos += l;
+    }
+
+    throw new Error("should not reach here");
+  };
+
+  // TODO: this should be generalized some how
+  // Would be greate if we could reuse the transformer implementation somehow
+  this.deleteOperation = function(startChar, endChar) {
+    var ops = [];
+    var deletedItems = [];
+
+    var pos = 0;
+    var l;
+    var items = this.items;
+    var i;
+    for (i = 0; i < items.length; i++) {
+      var item = items[i];
+      l = items[i].length;
+
+      if (startChar < pos + l) {
+        if (endChar >= pos + l) {
+          ops.push(ObjectOperation.Delete([item.id], item));
+          deletedItems.push({
+            id: item.id,
+            pos: i
+          });
+        } else {
+          var s = startChar-pos;
+          var e = endChar-pos;
+          ops.push(item.deleteOperation(s, e));
         }
       }
       pos += l;
     }
 
-    return result;
+    for (i = deletedItems.length - 1; i >= 0; i--) {
+      var diff = ArrayOperation.Delete(deletedItems[i].pos, deletedItems.id);
+      ops.push(ObjectOperation.Update([this.id, "items"], diff));
+    }
+
+    return ObjectOperation.Compound(ops);
   };
 
 };

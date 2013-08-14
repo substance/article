@@ -1,22 +1,18 @@
 "use strict";
 
 var _ = require('underscore');
-var util = require('substance-util');
-var html = util.html;
 var NodeView = require('../node').View;
-var TextView = require('../text').View;
 
 // Substance.Heading.View
 // ==========================================================================
 
 var ListView = function(node) {
   NodeView.call(this, node);
-
   this.$el.addClass('list');
 };
 
 ListView.Prototype = function() {
-  
+
   // Rendering
   // =============================
   //
@@ -30,7 +26,24 @@ ListView.Prototype = function() {
       this.$('.content').append($listitem);
     }, this);
     return this;
-  }
+  };
+
+  this.getCharPosition = function(el, offset) {
+    console.log("ListView.getCharPosition()", el, offset);
+    return 0;
+  };
+
+  // Returns the corresponding DOM element position for the given character
+  // --------
+  //
+  // A DOM position is specified by a tuple of element and offset.
+  // In the case of text nodes it is a TEXT element.
+
+  this.getDOMPosition = function(charPos) {
+    console.log("ListView.getDOMPosition()", charPos);
+    return [null, 0];
+  };
+
 };
 
 ListView.Prototype.prototype = NodeView.prototype;

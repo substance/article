@@ -34,6 +34,18 @@ Image.Prototype = function() {
     }
   };
 
+  this.insertOperation = function(startChar, text) {
+    if (startChar === 0) {
+      throw new Error("The image char is not addressable.");
+    }
+
+    if (this.hasCaption()) {
+      return this.caption.insertOperation(startChar-1, text);
+    }
+
+    return null;
+  };
+
   this.deleteOperation = function(startChar, endChar) {
     if (startChar === 0) {
       throw new Error("The image char is not addressable.");

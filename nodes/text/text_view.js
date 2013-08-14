@@ -57,14 +57,18 @@ TextView.Prototype = function() {
   };
 
   this.getCharPosition = function(el, offset) {
+    // TODO: this is maybe too naive
     // lookup the given element and compute a
     // the corresponding char position in the plain document
     var range = document.createRange();
-
     range.setStart(this.content.childNodes[0], 0);
     range.setEnd(el, offset);
     var str = range.toString();
-    return Math.min(this.node.content.length, str.length);
+    var charPos = Math.min(this.node.content.length, str.length);
+
+    console.log("Requested char pos: ", charPos, this.node.content[charPos]);
+
+    return charPos;
   };
 
   // Returns the corresponding DOM element position for the given character
