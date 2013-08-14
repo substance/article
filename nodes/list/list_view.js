@@ -52,16 +52,41 @@ ListView.Prototype = function() {
       var bullet = document.createElement("DIV");
       bullet.classList.add("bullet");
 
+      listItem.appendChild(bullet);
       this.content.appendChild(listItem);
-      this.content.appendChild(bullet);
     }
 
     return this;
   };
 
   this.getCharPosition = function(el, offset) {
-    console.log("ListView.getCharPosition()", el, offset);
-    return 0;
+    // find the list item element which is a parent of the given el
+    // and then compute the list global character position.
+    var current = el;
+
+    var itemPos = -1;
+    while(current && current !== this.content) {
+      if ($(current).is(".listitem")) {
+        itemPos = Array.prototype.indexOf.call(this.content.childNodes, current);
+        break;
+      }
+      current = current.parentElement;
+    }
+
+    // TODO: handle bullet items
+
+    if (itemPos < 0) {
+      console.error("Could not find appropriate list item");
+      return -1;
+    }
+
+    var items = this.node.items;
+    var charPos = this.itemViews[itemPos].getCharPosition(el, offset);
+    for (var i = itemPos-1; i >= 0; i--) {
+      charPos += items[i].length;
+    }
+
+    return charPos;
   };
 
   // Returns the corresponding DOM element position for the given character
@@ -71,8 +96,24 @@ ListView.Prototype = function() {
   // In the case of text nodes it is a TEXT element.
 
   this.getDOMPosition = function(charPos) {
-    console.log("ListView.getDOMPosition()", charPos);
-    return [null, 0];
+
+    var items = this.node.items;
+    var total = 0;
+    for (var i = 0; i < items.length; i++) {
+      var l = items[i].length;
+      if (charPos < l) {
+        return this.itemViews[i].getDOMPosition(charPos);
+      }
+      charPos -= l;
+      total += l;
+    };
+
+    console.error("Bug in ListView.getDOMPosition(). Returning last valid position.")
+
+    var last = _.last(items);
+    var lastView = _.last(this.itemViews);
+
+    return lastView.getDOMPosition(last.length);
   };
 
 };

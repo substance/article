@@ -37,7 +37,6 @@ List.Prototype = function() {
   };
 
   this.insertOperation = function(charPos, text) {
-    var ops = [];
 
     var items = this.items;
     var pos = 0;
@@ -46,14 +45,15 @@ List.Prototype = function() {
       var item = items[i];
       l = items[i].length;
 
-      if (startChar < pos + l) {
+      if (charPos < pos + l) {
         return item.insertOperation(charPos-pos, text);
       }
 
       pos += l;
     }
 
-    throw new Error("should not reach here");
+    console.error("There is a bug in List.insertOperation(). Fix me, would you?");
+    return null;
   };
 
   // TODO: this should be generalized some how
