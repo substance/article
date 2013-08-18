@@ -105,7 +105,7 @@ Article.views = ["content"];
 // --------
 
 
-Article.nodeTypes = require("./nodes");
+Article.nodeTypes = require("../nodes");
 
 // Define annotation types
 // --------
@@ -219,7 +219,7 @@ Article.indexes = {
 
 Article.Prototype.prototype = Document.prototype;
 Article.prototype = new Article.Prototype();
-
+Article.prototype.constructor = Article;
 
 // Add convenience accessors for builtin document attributes
 Object.defineProperties(Document.prototype, {

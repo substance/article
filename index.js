@@ -1,5 +1,6 @@
 "use strict";
 
-var Article = require("./article");
+var Article = require("./src/article");
+Article.Renderer = require("./src/renderer");
 
 module.exports = Article;
