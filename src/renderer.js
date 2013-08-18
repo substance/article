@@ -1,4 +1,5 @@
 var Article = require('./article');
+var _ = require("underscore");
 
 // Renders an article
 // --------
@@ -24,7 +25,7 @@ Renderer.Prototype = function() {
 
   // Create a node view
   // --------
-  // 
+  //
   // Experimental: using a factory which creates a view for a given node type
   // As we want to be able to reuse views
   // However, as the matter is still under discussion consider the solution here only as provisional.
@@ -49,11 +50,11 @@ Renderer.Prototype = function() {
 
   // Render it
   // --------
-  // 
+  //
 
   this.render = function() {
     var frag = document.createDocumentFragment();
-    
+
     var docNodes = this.doc.getNodes();
     _.each(docNodes, function(n) {
       frag.appendChild(this.nodes[n.id].render().el);
@@ -61,7 +62,7 @@ Renderer.Prototype = function() {
     return frag;
   };
 
-}
+};
 
 Renderer.prototype = new Renderer.Prototype();
 
