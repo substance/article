@@ -1,6 +1,7 @@
 var NodeView = require('../node').View;
 var Document = require("substance-document");
 var Annotator = Document.Annotator;
+var $$ = require("substance-application").$$;
 
 // Substance.Text.View
 // -----------------
@@ -23,11 +24,20 @@ TextView.Prototype = function() {
   // =============================
   //
 
-  this.render = function() {
-    NodeView.prototype.render.call(this);
+  this.render = function(enhancer) {
+    // Initial node render
+    // DocumentNode.View.prototype.render.call(this);
+
+    // var $content = $('<div class="content"></div>');
+    // this.content = $content[0];
+    // this.$el.append($content);    
+
+    NodeView.prototype.render.call(this, enhancer);
+
     this.renderContent();
     return this;
   };
+
 
   this.dispose = function() {
     NodeView.prototype.dispose.call(this);
@@ -141,15 +151,24 @@ TextView.Prototype = function() {
     return range;
   };
 
-  var createAnnotationElement = function(entry) {
-    var el = document.createElement("SPAN");
-    el.classList.add("annotation");
-    el.classList.add(entry.type);
-    el.setAttribute("id", entry.id);
+  this.createAnnotationElement = function(entry) {
+    var el;
+    if (entry.type === "link") {
+      el = $$('a.annotation.'+entry.type, {
+        id: entry.id,
+        href: this.node.document.get(entry.id).url // "http://zive.at"
+      });
+    } else {
+      el = $$('span.annotation.'+entry.type, {
+        id: entry.id
+      });
+    }
+
     return el;
   };
 
   this.renderAnnotations = function(annotations) {
+    var that = this;
     var text = this.node.content;
     var fragment = document.createDocumentFragment();
 
@@ -161,7 +180,7 @@ TextView.Prototype = function() {
     };
 
     fragmenter.onEnter = function(entry, parentContext) {
-      var el = createAnnotationElement(entry);
+      var el = that.createAnnotationElement(entry);
       parentContext.appendChild(el);
       return el;
     };
@@ -179,6 +198,13 @@ TextView.Prototype = function() {
     // set the content
     this.content.innerHTML = "";
     this.content.appendChild(fragment);
+  };
+
+  // Free the memory
+  // --------
+
+  this.dispose = function() {
+    this.stopListening();
   };
 };
 
