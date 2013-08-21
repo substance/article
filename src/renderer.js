@@ -14,11 +14,6 @@ var Renderer = function(doc) {
 
   // Collect all node views
   this.nodes = {};
-
-  // Build views
-  _.each(this.doc.getNodes(), function(node) {
-    this.nodes[node.id] = this.createView(node);
-  }, this);
 };
 
 Renderer.Prototype = function() {
@@ -45,6 +40,10 @@ Renderer.Prototype = function() {
 
     // we connect the listener here to avoid to pass the document itself into the nodeView
     nodeView.listenTo(this.doc, "operation:applied", nodeView.onGraphUpdate);
+
+    // register node view to be able to look up nested views later
+    this.nodes[node.id] = nodeView;
+
     return nodeView;
   };
 
@@ -53,12 +52,17 @@ Renderer.Prototype = function() {
   //
 
   this.render = function() {
+    _.each(this.doc.getNodes(), function(n) {
+      if(this.nodes[n.id]) this.nodes[n.id].dispose();
+    }, this);
+
     var frag = document.createDocumentFragment();
 
     var docNodes = this.doc.getNodes();
     _.each(docNodes, function(n) {
-      frag.appendChild(this.nodes[n.id].render().el);
+      frag.appendChild(this.createView(n).render().el);
     }, this);
+
     return frag;
   };
 
