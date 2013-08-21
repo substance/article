@@ -29,10 +29,6 @@ ImageView.Prototype = function() {
 
   this.render = function() {
 
-    if (this.captionView) {
-      this.captionView.dispose();
-    }
-
     var content = document.createElement('div');
     content.className = 'content';
 
@@ -48,28 +44,12 @@ ImageView.Prototype = function() {
 
     content.appendChild(imgChar);
 
-    // Add caption if there is any
-    if (this.node.caption) {
-      var caption = this.viewFactory.createView(this.node.caption);
-      content.appendChild(caption.render().el);
-      this.captionView = caption;
-    }
-
     // Add content
     this.el.appendChild(content);
 
     this._imgPos = _indexOf.call(imgChar.childNodes, img);
 
     return this;
-  };
-
-  this.dispose = function() {
-    NodeView.prototype.dispose.call(this);
-
-    console.log('disposing image view');
-    if (this.captionView) {
-      this.captionView.dispose();
-    }
   };
 
   this.delete = function(pos, length) {
@@ -85,14 +65,9 @@ ImageView.Prototype = function() {
 
     if (el === this._imgChar) {
       return (offset > this._imgPos) ? 1 : 0;
-    } else {
-      var charPos = this.captionView.getCharPosition(el, offset);
-      if (charPos < 0) {
-        return charPos;
-      } else {
-        return charPos + 1;
-      }
     }
+
+    console.log("Errhhh..");
 
   };
 
@@ -102,9 +77,9 @@ ImageView.Prototype = function() {
       var range = document.createRange();
       range.setStartBefore(content.childNodes[0]);
       return range;
-    } else {
-      return this.captionView.getDOMPosition(charPos-1);
     }
+
+    console.log("Errhhh..");
   };
 };
 

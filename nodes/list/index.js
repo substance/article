@@ -1,6 +1,6 @@
 "use strict";
 
 var List = require('./list');
-List.View = require('./list_view');
+List.View = require('../composite/composite_view');
 
 module.exports = List;

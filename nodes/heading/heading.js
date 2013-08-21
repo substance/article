@@ -1,5 +1,6 @@
 "use strict";
 
+var Document = require("substance-document");
 var Text = require("../text");
 
 var Heading = function(node, document) {
@@ -27,12 +28,6 @@ Heading.Prototype.prototype = Text.prototype;
 Heading.prototype = new Heading.Prototype();
 Heading.prototype.constructor = Heading;
 
-Object.defineProperties(Heading.prototype, {
-  level: {
-    get: function () {
-      return this.properties.level;
-    }
-  }
-});
+Document.Node.defineProperties(Heading.prototype, ["level"]);
 
 module.exports = Heading;
