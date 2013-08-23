@@ -52,13 +52,13 @@ Renderer.Prototype = function() {
   //
 
   this.render = function() {
-    _.each(this.doc.getNodes(), function(n) {
-      if(this.nodes[n.id]) this.nodes[n.id].dispose();
-    }, this);
+    _.each(this.nodes, function(nodeView) {
+      nodeView.dispose();
+    });
 
     var frag = document.createDocumentFragment();
 
-    var docNodes = this.doc.getNodes();
+    var docNodes = this.doc.container.getTopLevelNodes();
     _.each(docNodes, function(n) {
       frag.appendChild(this.createView(n).render().el);
     }, this);
