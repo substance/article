@@ -24,6 +24,10 @@ List.properties = {
 
 List.Prototype = function() {
 
+  this.getLength = function() {
+    return this.properties.items.length;
+  };
+
   this.getNodes = function() {
     return _.clone(this.items);
   };
@@ -40,6 +44,24 @@ List.Prototype = function() {
     return _.map(this.properties.items, function(id) {
       return this.document.get(id);
     }, this);
+  };
+
+  this.isMutable = function() {
+    return true;
+  };
+
+  this.insertChild = function(doc, pos, nodeId) {
+    doc.update([this.id, "items"], ["+", pos, nodeId]);
+  };
+
+  this.deleteChild = function(doc, nodeId) {
+    var pos = this.items.indexOf(nodeId);
+    doc.update([this.id, "items"], ["-", pos, nodeId]);
+    doc.delete(nodeId);
+  };
+
+  this.canJoin = function(other) {
+    return (other.type === "list");
   };
 };
 
