@@ -72,14 +72,14 @@ ImageView.Prototype = function() {
   };
 
   this.getDOMPosition = function(charPos) {
+    var content = this.$('.content')[0];
+    var range = document.createRange();
     if (charPos === 0) {
-      var content = this.$('.content')[0];
-      var range = document.createRange();
       range.setStartBefore(content.childNodes[0]);
-      return range;
+    } else {
+      range.setStartAfter(content.childNodes[0]);
     }
-
-    console.log("Errhhh..");
+    return range;
   };
 };
 
