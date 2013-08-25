@@ -23,9 +23,6 @@ CompositeView.Prototype = function() {
   // Render Markup
   // --------
   //
-  // div.content
-  //   div.img-char
-  //     .img
 
   this.render = function() {
     this.content = document.createElement("DIV");
