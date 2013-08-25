@@ -5,8 +5,8 @@ var _ = require("underscore");
 // --------
 //
 
-var Renderer = function(doc) {
-  this.doc = doc;
+var Renderer = function(docController) {
+  this.docController = docController;
   // var that = this;
 
   // TODO: use reflection
@@ -17,7 +17,6 @@ var Renderer = function(doc) {
 };
 
 Renderer.Prototype = function() {
-
   // Create a node view
   // --------
   //
@@ -39,7 +38,7 @@ Renderer.Prototype = function() {
     var nodeView = new NodeView(node, this);
 
     // we connect the listener here to avoid to pass the document itself into the nodeView
-    nodeView.listenTo(this.doc, "operation:applied", nodeView.onGraphUpdate);
+    nodeView.listenTo(this.docController, "operation:applied", nodeView.onGraphUpdate);
 
     // register node view to be able to look up nested views later
     this.nodes[node.id] = nodeView;
@@ -58,7 +57,7 @@ Renderer.Prototype = function() {
 
     var frag = document.createDocumentFragment();
 
-    var docNodes = this.doc.container.getTopLevelNodes();
+    var docNodes = this.docController.container.getTopLevelNodes();
     _.each(docNodes, function(n) {
       frag.appendChild(this.createView(n).render().el);
     }, this);
