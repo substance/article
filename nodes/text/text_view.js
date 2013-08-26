@@ -25,13 +25,6 @@ TextView.Prototype = function() {
   //
 
   this.render = function(enhancer) {
-    // Initial node render
-    // DocumentNode.View.prototype.render.call(this);
-
-    // var $content = $('<div class="content"></div>');
-    // this.content = $content[0];
-    // this.$el.append($content);    
-
     NodeView.prototype.render.call(this, enhancer);
 
     this.renderContent();
@@ -45,6 +38,8 @@ TextView.Prototype = function() {
   };
 
   this.renderContent = function() {
+    this.content.innerHTML = "";
+
     var el = document.createTextNode(this.node.content)
     this.content.appendChild(el);
 
@@ -73,15 +68,16 @@ TextView.Prototype = function() {
   };
 
   this.onNodeUpdate = function(op) {
-    if (op.path[1] !== "content") {
-      return;
-    }
-    if (op.type === "update") {
-      var update = op.diff;
-      if (update.isInsert()) {
-        this.insert(update.pos, update.str);
-      } else if (update.isDelete()) {
-        this.delete(update.pos, update.str.length);
+    if (op.path[1] === "content") {
+      if (op.type === "update") {
+        var update = op.diff;
+        if (update.isInsert()) {
+          this.insert(update.pos, update.str);
+        } else if (update.isDelete()) {
+          this.delete(update.pos, update.str.length);
+        }
+      } else if (op.type === "set") {
+        this.renderContent();
       }
     }
   };
@@ -172,7 +168,8 @@ TextView.Prototype = function() {
     var text = this.node.content;
     var fragment = document.createDocumentFragment();
 
-
+    // this splits the text and annotations into smaller pieces
+    // which is necessary to generate proper HTML.
     var fragmenter = new Annotator.Fragmenter(fragment, text, annotations);
 
     fragmenter.onText = function(context, text) {
