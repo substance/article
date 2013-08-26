@@ -46,6 +46,29 @@ List.Prototype = function() {
     }, this);
   };
 
+  this.getChangePosition = function(op) {
+    if (op.path[1] === "items") {
+
+      if (op.type === "update") {
+        var diff = op.diff;
+        if (diff.isInsert()) {
+          return op.diff.pos+1;
+        }
+        else if (diff.isDelete()) {
+          return op.diff.pos;
+        }
+        else if (diff.isMove()) {
+          return op.diff.target;
+        }
+      }
+      else if (op.type === "set") {
+        return this.properties.items.length-1;
+      }
+    }
+
+    return -1;
+  };
+
   this.isMutable = function() {
     return true;
   };
