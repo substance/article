@@ -226,28 +226,40 @@ Object.defineProperties(Article.prototype, {
     get: function () {
       return this.get("document").guid;
     },
-    set: function() {
-      throw "doc.id is immutable";
+    set: function(id) {
+      this.get("document").guid = id;
     }
   },
   creator: {
     get: function () {
       return this.get("document").creator;
+    },
+    set: function(creator) {
+      this.get("document").creator = creator;
     }
   },
   created_at: {
     get: function () {
       return this.get("document").created_at;
+    },
+    set: function(created_at) {
+      this.get("document").created_at = created_at;
     }
   },
   title: {
     get: function () {
       return this.get("document").title;
+    },
+    set: function(title) {
+      this.get("document").title = title;
     }
   },
   abstract: {
     get: function () {
       return this.get("document").abstract;
+    },
+    set: function(abstract) {
+      this.get("document").abstract = abstract;
     }
   },
   views: {
