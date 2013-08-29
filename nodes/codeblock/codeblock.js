@@ -19,13 +19,6 @@ Codeblock.type = {
 // Define behavior
 // --------
 
-Codeblock.properties = {
-  mergeableWith: ["codeblock"],
-  preventEmpty: false,
-  splitInto: 'codeblock',
-  allowedAnnotations: ["idea", "question", "error"]
-};
-
 Codeblock.Prototype = function() {};
 
 Codeblock.Prototype.prototype = Text.prototype;

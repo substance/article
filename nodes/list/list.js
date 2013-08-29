@@ -15,13 +15,6 @@ List.type = {
   }
 };
 
-List.properties = {
-  mergeableWith: ["paragraph", "heading"],
-  preventEmpty: false,
-  splitInto: 'paragraph',
-  allowedAnnotations: ["emphasis", "strong", "idea", "question", "error"]
-};
-
 List.Prototype = function() {
 
   this.getLength = function() {

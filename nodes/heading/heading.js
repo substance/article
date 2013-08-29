@@ -15,14 +15,9 @@ Heading.type = {
   }
 };
 
-Heading.properties = {
-  mergeableWith: ["paragraph", "heading"],
-  preventEmpty: false,
-  splitInto: 'paragraph',
-  allowedAnnotations: ["emphasis", "strong", "idea", "question", "error"]
+Heading.Prototype = function() {
+  this.splitInto = 'paragraph';
 };
-
-Heading.Prototype = function() {};
 
 Heading.Prototype.prototype = Text.prototype;
 Heading.prototype = new Heading.Prototype();

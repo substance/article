@@ -13,13 +13,6 @@ Paragraph.type = {
   }
 };
 
-Paragraph.properties = {
-  mergeableWith: ["paragraph", "heading"], // maybe remove heading here
-  preventEmpty: false,
-  splitInto: 'paragraph',
-  allowedAnnotations: ["emphasis", "strong", "link", "code", "idea", "question", "error"]
-};
-
 Paragraph.Prototype = function() {};
 
 Paragraph.Prototype.prototype = Text.prototype;

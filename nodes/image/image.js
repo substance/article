@@ -16,12 +16,6 @@ Image.type = {
   }
 };
 
-Image.properties = {
-  mergeableWith: [],
-  preventEmpty: true,
-  allowedAnnotations: ["idea", "question", "error"]
-};
-
 Image.Prototype = function() {
 
   // An image is a single element
