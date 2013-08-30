@@ -1,6 +1,6 @@
 "use strict";
 
-var Image = require('./image');
-Image.View = require('./image_view');
+var ImageNode = require('substance-document').ImageNode;
+ImageNode.View = require('./image_view');
 
-module.exports = Image;
+module.exports = ImageNode;

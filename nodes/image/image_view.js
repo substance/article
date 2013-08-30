@@ -37,7 +37,7 @@ ImageView.Prototype = function() {
     this._imgChar = imgChar;
 
     var img = document.createElement('img');
-    img.src = this.node.url || this.node.medium;
+    img.src = this.node.url;
     img.alt = "alt text";
     img.title = "alt text";
     imgChar.appendChild(img);
