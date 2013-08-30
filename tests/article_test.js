@@ -251,4 +251,4 @@ var ArticleTest = function () {
   ];
 };
 
-registerTest(['Article', 'Article Nodes'], new ArticleTest());
+registerTest(['Substance.Article', 'Article Nodes'], new ArticleTest());
