@@ -10,6 +10,9 @@ var ListView = function(node, viewFactory) {
   CompositeView.call(this, node, viewFactory);
 };
 
+ListView.whoami = "SubstanceListView";
+
+
 ListView.Prototype = function() {
 
   // Rendering
@@ -56,7 +59,6 @@ ListView.Prototype = function() {
       this.render();
     }
   };
-
 };
 
 ListView.Prototype.prototype = CompositeView.prototype;
