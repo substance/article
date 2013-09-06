@@ -1,7 +1,6 @@
 "use strict";
 
-var Codeblock = require('substance-document').Codeblock;
-Codeblock.View = require('./codeblock_view');
-
-module.exports = Codeblock;
-
+module.exports = {
+  Model: require('substance-document').Codeblock,
+  View: require('./codeblock_view')
+};

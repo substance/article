@@ -1,8 +1,6 @@
 "use strict";
 
-var Document = require('substance-document');
-
-var Composite = Document.Composite;
-Composite.View = require('./composite_view');
-
-module.exports = Composite;
+module.exports = {
+  Model: require('substance-document').Composite,
+  View: require('./composite_view')
+};

@@ -1,6 +1,6 @@
 "use strict";
 
-var Text = require('substance-document').Text;
-Text.View = require('./text_view');
-
-module.exports = Text;
+module.exports = {
+  Model: require('substance-document').Text,
+  View: require('./text_view')
+};

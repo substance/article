@@ -33,7 +33,7 @@ var Article = function(options) {
 
   // Merge in node types
   _.each(Article.nodeTypes, function(node, key) {
-    options.schema.types[key] = node.type;
+    options.schema.types[key] = node.Model.type;
   });
 
   // Merge in custom indexes
