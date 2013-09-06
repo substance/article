@@ -1,4 +1,4 @@
-var NodeView = require('../node').View;
+var NodeView = require('../node/node_view');
 var Document = require("substance-document");
 var Annotator = Document.Annotator;
 var $$ = require("substance-application").$$;
