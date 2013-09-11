@@ -9,7 +9,7 @@
 }
 
 .content-node.image div.image-char {
-  /*width: 100%;*/
+  width: 100%;
 }
 
 .content-node.image div.selected .overlay {
