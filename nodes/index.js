@@ -1,11 +1,16 @@
 "use strict";
 
-module.exports = {
-  "paragraph": require("./paragraph"),
-  "heading": require("./heading"),
-  "webresource": { Model: require("substance-document").WebResource },
-  "image": require("./image"),
-  "codeblock": require("./codeblock"),
-  "list": require("./list"),
-  "figure": require("./figure")
+var _ = require("underscore");
+
+var nodes = {};
+
+_.each(require("substance-nodes"), function(spec, name) {
+  nodes[name] = _.clone(spec);
+});
+
+nodes["figure"] = {
+  Model: require("./figure/figure"),
+  View: nodes["composite"].View
 };
+
+module.exports = nodes;
