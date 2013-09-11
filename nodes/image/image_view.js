@@ -35,7 +35,6 @@ ImageView.Prototype = function() {
     var imgChar = document.createElement('div');
     imgChar.className = 'image-char';
     this._imgChar = imgChar;
-
     var img = document.createElement('img');
     img.src = this.node.url;
     img.alt = "alt text";

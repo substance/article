@@ -81,6 +81,7 @@ Article.Prototype = function() {
     return Article.fromSnapshot(data, options);
   };
 
+
 };
 
 // Factory method
