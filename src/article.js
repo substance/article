@@ -60,7 +60,7 @@ var Article = function(options) {
       created_at: options.created_at,
       views: ["content"], // is views really needed on the instance level
       title: "",
-      abstract: ""
+      abstract: "",
     });
 
     // Create views on the doc
@@ -183,7 +183,8 @@ Article.types = {
       "guid": "string",
       "creator": "string",
       "title": "string",
-      "abstract": "string"
+      "abstract": "string",
+      "meta": "object"
     }
   },
 
