@@ -1,0 +1,43 @@
+/* Table */
+
+.content-node.table > .content {
+  padding: 20px;
+  width: 100%;
+  overflow: auto;
+  text-align: center;
+}
+
+.content-node.table .caption {
+  padding-top: 20px;
+}
+
+.content-node.table table {
+  position: relative;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
+
+.content-node.table table thead tr {
+  background: #eee;
+  border: 1px solid lightgrey;
+}
+
+.content-node.table table thead th {
+  padding: 5px;
+  font-weight: bold;
+}
+
+.content-node.table table tbody td {
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid lightgrey;
+}
+
+.content-node.table .footers {
+  padding: 0 20px;
+  padding-top: 10px;
+  font-size: 12px;
+  background: #fff;
+}
