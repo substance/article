@@ -9,7 +9,7 @@ var Figure = function(node, document) {
 Figure.type = {
   "parent": "content",
   "properties": {
-    "image": "image",
+    "url": "string",
     "caption": "paragraph"
   }
 };
@@ -29,13 +29,9 @@ Figure.Prototype = function() {
   };
 
   this.getNodes = function() {
-    var nodes = [this.properties.image];
+    var nodes = [];
     if (this.properties.caption) nodes.push(this.properties.caption);
     return nodes;
-  };
-
-  this.getImage = function() {
-    if (this.properties.image) return this.document.get(this.properties.image);
   };
 
   this.getCaption = function() {
@@ -47,6 +43,37 @@ Figure.Prototype.prototype = Document.Composite.prototype;
 Figure.prototype = new Figure.Prototype();
 Figure.prototype.constructor = Figure;
 
-Document.Node.defineProperties(Figure.prototype, ["image", "caption"]);
+// a factory method to create nodes more conveniently
+// Supported
+//  - id: unique id
+//  - url: a relative path or a web URL
+//  - caption: a string used as caption
+Figure.create = function(data) {
+
+  var result = {};
+
+  var figId = data.id;
+  var figure = {
+    id: figId,
+    type: "text",
+    url: data.url
+  };
+
+  if (data.caption) {
+    var captionId = "caption_" + data.id;
+    var caption = {
+      id: captionId,
+      type: "text",
+      content: data.caption
+    };
+    result[captionId] = caption;
+    figure.caption = captionId;
+  }
+
+  result[figId] = figure;
+  return result;
+};
+
+Document.Node.defineProperties(Figure.prototype, ["url", "caption"]);
 
 module.exports = Figure;
