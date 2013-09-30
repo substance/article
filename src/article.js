@@ -154,7 +154,39 @@ Article.annotations = {
     "parent": "annotation",
     "properties": {
     }
+  },
+
+  "person_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "person"
+    }
+  },
+  "figure_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "figure"
+    }
+  },
+  "citation_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  },
+  "cross_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  },
+  "formula_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
   }
+
 };
 
 // Custom type definitions
