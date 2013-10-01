@@ -11,7 +11,7 @@
     "substance-util": "git+https://github.com/substance/util.git#0.2.x",
     "substance-application": "git+https://github.com/substance/application.git#0.1.x",
     "substance-operator": "git+https://github.com/substance/operator.git#0.2.x",
-    "substance-nodes": "git+https://github.com/substance/nodes.git#0.1.x"
+    "substance-nodes": "git+https://github.com/substance/nodes.git#extended_nodeset"
   },
   "version": "0.1.0",
   "engines": {
