@@ -185,7 +185,25 @@ Article.annotations = {
     "properties": {
       "target": "content"
     }
-  }
+  },
+
+  "subscript": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "superscript": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "underline": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
 
 };
 
