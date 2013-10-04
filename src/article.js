@@ -216,6 +216,7 @@ Article.types = {
       "creator": "string",
       "title": "string",
       "abstract": "string",
+      "published_on": "date", // should be part of the main type?
       "meta": "object"
     }
   },

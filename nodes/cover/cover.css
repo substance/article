@@ -11,24 +11,16 @@
 .content-node.cover .title {
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   line-height: 1.3em;
+  margin-bottom: 50px;
   font-size: 40px;
-  padding: 50px 60px;
-  padding-left: 100px;
+  color: rgba(255,255,255, 0.9);
 }
 
 .content-node.cover .content .authors {
-  /*padding: 10px 60px;*/
-  /*padding-left: 100px;*/
-  padding: 10px 60px;
-  padding-left: 100px;
-
   color: rgba(255,255,255, 0.7);
-  padding-bottom: 30px;
   overflow: auto;
-  /*background: blue;*/
 }
 
-/* One para per author */
 .content-node.cover .authors .text {
   float: left;
   padding: 0px;
@@ -36,47 +28,5 @@
   font-size: 20px;
   margin-right: 10px;
   margin-bottom: 8px;
-  /*background: blue;*/
   color: rgba(255,255,255, 0.7);
-}
-
-/* One para per author */
-.content-node.cover .authors .text:hover {
-  background: rgba(0,0,0,0.1);
-  color: #fff;
-}
-
-
-
-/*.content-node.cover .authors {
-  padding: 10px 60px;
-  padding-left: 100px;
-  color: rgba(255,255,255, 0.7);
-  padding-bottom: 30px;
-  overflow: auto;
-}
-
-.content-node.cover .authors .author {
-  color: rgba(255,255,255, 0.7);
-  display: block;
-  float: left;
-  padding: 0 5px;
-  margin-right: 10px;
-  font-size: 20px;
-  line-height: 30px;
-}
-
-
-
-.content-node.cover .authors .author.active {
-  color: #fff;
-  background: rgba(0,0,0,0.5);
-}
-
-.content-node.cover .abstract {
-  color: #777;
-  font-size: 20px;
-  padding: 30px 60px;
-  padding-left: 100px;
-  padding-top: 80px;
 }
