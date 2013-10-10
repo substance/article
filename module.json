@@ -1,6 +1,5 @@
 {
   "name":"substance-article",
-  "private":true,
   "repository": {
     "type": "git",
     "url": "https://github.com/substance/article.git"
