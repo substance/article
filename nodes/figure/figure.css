@@ -1,0 +1,14 @@
+/* Figure Node
+-------------------------------------------------------------------------------*/
+
+.substance-article .content-node.figure { 
+}
+
+.substance-article .content-node.figure div.image-wrapper {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.substance-article .content-node.figure div .image-wrapper img {
+  width: 100%;
+}

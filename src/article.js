@@ -10,10 +10,15 @@ var Document = require("substance-document");
 var Article = function(options) {
   options = options || {};
 
+  // Check if format is compatible
+
   // Extend Schema
   // --------
 
   options.schema = util.deepclone(Document.schema);
+
+  options.schema.id = "substance-article";
+  options.schema.version = "0.1.0";
 
   // Merge in custom types
   _.each(Article.types, function(type, key) {
@@ -28,14 +33,13 @@ var Article = function(options) {
 
   // Merge in node types
   _.each(Article.nodeTypes, function(node, key) {
-    options.schema.types[key] = node.type;
+    options.schema.types[key] = node.Model.type;
   });
 
   // Merge in custom indexes
   _.each(Article.indexes, function(index, key) {
     options.schema.indexes[key] = index;
   });
-
 
   // Call parent constructor
   // --------
@@ -47,28 +51,27 @@ var Article = function(options) {
   // Seed the doc
   // --------
 
-  // Create the document node
-
-  this.create({
-    id: "document",
-    type: "document",
-    guid: options.id, // external global document id
-    creator: options.creator,
-    created_at: options.created_at,
-    views: ["content"], // is views really needed on the instance level
-    title: "",
-    abstract: ""
-  });
-
-  // Create views on the doc
-  _.each(Article.views, function(view) {
+  if (options.seed === undefined) {
     this.create({
-      id: view,
-      "type": "view",
-      nodes: []
+      id: "document",
+      type: "document",
+      guid: options.id, // external global document id
+      creator: options.creator,
+      created_at: options.created_at,
+      views: ["content"], // is views really needed on the instance level
+      title: "",
+      abstract: "",
     });
-  }, this);
 
+    // Create views on the doc
+    _.each(Article.views, function(view) {
+      this.create({
+        id: view,
+        "type": "view",
+        nodes: []
+      });
+    }, this);
+  }
 };
 
 
@@ -78,9 +81,8 @@ Article.Prototype = function() {
     return Article.fromSnapshot(data, options);
   };
 
+
 };
-
-
 
 // Factory method
 // --------
@@ -89,17 +91,8 @@ Article.Prototype = function() {
 
 Article.fromSnapshot = function(data, options) {
   options = options || {};
-  // options.seed = [];
-  var doc = new Article(options);
-
-  _.each(data.nodes, function(n) {
-    if (doc.get(n.id)) {
-      doc.delete(n.id); // skip existing nodes
-    }
-    doc.create(n);
-  });
-
-  return doc;
+  options.seed = data;
+  return new Article(options);
 };
 
 
@@ -112,14 +105,8 @@ Article.views = ["content"];
 // Register node types
 // --------
 
-Article.nodeTypes = {
-  "node": require("./nodes/node"),
-  "constructor": require("./nodes/constructor"),
-  "paragraph": require("./nodes/paragraph"),
-  "heading": require("./nodes/heading"),
-  "image": require("./nodes/image"),
-  "codeblock": require("./nodes/codeblock")
-};
+
+Article.nodeTypes = require("../nodes");
 
 // Define annotation types
 // --------
@@ -167,12 +154,44 @@ Article.annotations = {
     "parent": "annotation",
     "properties": {
     }
+  },
+
+  "person_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "person"
+    }
+  },
+  "figure_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "figure"
+    }
+  },
+  "citation_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  },
+  "cross_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  },
+  "formula_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
   }
+
 };
 
 // Custom type definitions
 // --------
-// 
+//
 // Holds comments
 
 Article.types = {
@@ -196,7 +215,9 @@ Article.types = {
       "guid": "string",
       "creator": "string",
       "title": "string",
-      "abstract": "string"
+      "abstract": "string",
+      "published_on": "date", // should be part of the main type?
+      "meta": "object"
     }
   },
 
@@ -215,7 +236,7 @@ Article.types = {
 
 // Custom indexes
 // --------
-// 
+//
 
 Article.indexes = {
   // All annotations are now indexed by node
@@ -230,39 +251,50 @@ Article.indexes = {
   }
 };
 
-
 Article.Prototype.prototype = Document.prototype;
 Article.prototype = new Article.Prototype();
-
+Article.prototype.constructor = Article;
 
 // Add convenience accessors for builtin document attributes
-Object.defineProperties(Document.prototype, {
+Object.defineProperties(Article.prototype, {
   id: {
     get: function () {
       return this.get("document").guid;
     },
-    set: function() {
-      throw "doc.id is immutable";
+    set: function(id) {
+      this.get("document").guid = id;
     }
   },
   creator: {
     get: function () {
       return this.get("document").creator;
+    },
+    set: function(creator) {
+      this.get("document").creator = creator;
     }
   },
   created_at: {
     get: function () {
       return this.get("document").created_at;
+    },
+    set: function(created_at) {
+      this.get("document").created_at = created_at;
     }
   },
   title: {
     get: function () {
       return this.get("document").title;
+    },
+    set: function(title) {
+      this.get("document").title = title;
     }
   },
   abstract: {
     get: function () {
       return this.get("document").abstract;
+    },
+    set: function(abstract) {
+      this.get("document").abstract = abstract;
     }
   },
   views: {

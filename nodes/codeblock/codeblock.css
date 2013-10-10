@@ -1,15 +1,14 @@
 /* Codeblock Node
 -------------------------------------------------------------------------------*/
 
-.content-node.codeblock {
-  /*background: #f5f5f5;*/
+.content-node.codeblock > .content {
   border: 1px dashed #ddd;
   margin-bottom: 20px;
   line-height: 20px;
   padding: 10px 10px;
 }
 
-.content-node.codeblock .content {
+.content-node.codeblock > .content {
   font-family: 'Source Code Pro', 'Menlo', monospace;
   font-size: 14px;
   color: #777;

@@ -1,16 +1,10 @@
 // Document Tests
 // ---------------
 
-require("./document");
-
-// Selection Tests
-// ---------------
-
-// require("./selection");
+require("./article_test");
 
 // Writer Tests
 // ---------------
-
 
 // Actual tests
 // require("./writer/content_deletion");

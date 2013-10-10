@@ -1,0 +1,32 @@
+.substance-article .content-node.cover {
+  background: #5c6570;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.substance-article .content-node.cover .content {
+  background: none;
+}
+
+.substance-article .content-node.cover .title {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  line-height: 1.3em;
+  margin-bottom: 50px;
+  font-size: 40px;
+  color: rgba(255,255,255, 0.9);
+}
+
+.substance-article .content-node.cover .content .authors {
+  color: rgba(255,255,255, 0.7);
+  overflow: auto;
+}
+
+.substance-article .content-node.cover .authors .text {
+  float: left;
+  padding: 0px;
+  margin: 0px;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-bottom: 8px;
+  color: rgba(255,255,255, 0.7);
+}

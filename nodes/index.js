@@ -1,9 +1,11 @@
 "use strict";
 
-module.exports = {
-  Constructor: require('./constructor'),
-  Paragraph: require('./paragraph'),
-  Heading: require('./heading'),
-  Image: require('./image'),
-  Codeblock: require('./codeblock')
-};
+var _ = require("underscore");
+
+var nodes = {};
+
+_.each(require("substance-nodes"), function(spec, name) {
+  nodes[name] = _.clone(spec);
+});
+
+module.exports = nodes;
