@@ -3,7 +3,6 @@
 
 .content-node.codeblock > .content {
   border: 1px dashed #ddd;
-  margin-bottom: 20px;
   line-height: 20px;
   padding: 10px 10px;
 }
