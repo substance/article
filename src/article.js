@@ -18,7 +18,7 @@ var Article = function(options) {
   options.schema = util.deepclone(Document.schema);
 
   options.schema.id = "substance-article";
-  options.schema.version = "0.1.0";
+  options.schema.version = "0.2.0";
 
   // Merge in custom types
   _.each(Article.types, function(type, key) {
@@ -101,7 +101,6 @@ Article.fromSnapshot = function(data, options) {
 
 Article.views = ["content"];
 
-
 // Register node types
 // --------
 
@@ -112,7 +111,6 @@ Article.nodeTypes = require("../nodes");
 // --------
 
 Article.annotations = {
-
   "strong": {
     "parent": "annotation",
     "properties": {
@@ -186,7 +184,6 @@ Article.annotations = {
       "target": "content"
     }
   }
-
 };
 
 // Custom type definitions
@@ -279,6 +276,14 @@ Object.defineProperties(Article.prototype, {
     },
     set: function(created_at) {
       this.get("document").created_at = created_at;
+    }
+  },
+  published_on: {
+    get: function () {
+      return this.get("document").published_on;
+    },
+    set: function(published_on) {
+      this.get("document").published_on = published_on;
     }
   },
   title: {
