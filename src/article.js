@@ -3,6 +3,7 @@
 var _ = require("underscore");
 var util = require("substance-util");
 var Document = require("substance-document");
+var Annotator = Document.Annotator;
 
 // Substance.Article
 // -----------------
@@ -190,6 +191,44 @@ Article.annotations = {
     "properties": {
       "target": "content"
     }
+  }
+};
+
+Article.annotationBehavior = {
+  groups: {
+    "emphasis": "style",
+    "strong": "style",
+    "link": "style",
+    "question": "marker",
+    "idea": "marker",
+    "error": "marker",
+    "comment": "marker"
+  },
+  expansion: {
+    "emphasis": {
+      left: Annotator.isOnNodeStart,
+    },
+    "strong": {
+      left: Annotator.isOnNodeStart,
+    }
+  },
+  split: ["emphasis", "strong"],
+  levels: {
+    idea: 1,
+    question: 1,
+    error: 1,
+    comment: 1,
+    link: 1,
+    strong: 2,
+    emphasis: 2,
+    code: 2,
+    subscript: 2,
+    superscript: 2,
+    underline: 2,
+    cross_reference: 1,
+    figure_reference: 1,
+    person_reference: 1,
+    citation_reference: 1
   }
 };
 
@@ -456,8 +495,8 @@ Object.defineProperties(Article.prototype, {
     get: function () {
       return this.get("document").abstract;
     },
-    set: function(abstract) {
-      this.get("document").abstract = abstract;
+    set: function(value) {
+      this.get("document").abstract = value;
     }
   },
   views: {
