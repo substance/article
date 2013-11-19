@@ -152,6 +152,15 @@ Article.annotations = {
     }
   },
 
+  "comment": {
+    "parent": "annotation",
+    "properties": {
+      "content": "string",
+      "created_at": "string", // should be date
+      "creator": "string" // should be date
+    }
+  },
+
   "person_reference": {
     "parent": "annotation",
     "properties": {
