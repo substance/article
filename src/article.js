@@ -153,12 +153,18 @@ Article.annotations = {
     }
   },
 
-  "comment": {
+  "issue": {
     "parent": "annotation",
     "properties": {
+    }
+  },
+
+  "comment": {
+    "properties": {
+      "issue": "issue",
       "content": "string",
       "created_at": "string", // should be date
-      "creator": "string" // should be date
+      "creator": "string"
     }
   },
 
@@ -202,7 +208,7 @@ Article.annotationBehavior = {
     "question": "marker",
     "idea": "marker",
     "error": "marker",
-    "comment": "marker"
+    "issue": "marker"
   },
   expansion: {
     "emphasis": {
@@ -217,7 +223,7 @@ Article.annotationBehavior = {
     idea: 1,
     question: 1,
     error: 1,
-    comment: 1,
+    issue: 1,
     link: 1,
     strong: 2,
     emphasis: 2,
