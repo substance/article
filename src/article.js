@@ -135,6 +135,12 @@ Article.annotations = {
     }
   },
 
+  "math": {
+    "parent": "annotation",
+    "properties": {
+    }
+  },
+
   "idea": {
     "parent": "annotation",
     "properties": {
@@ -205,6 +211,7 @@ Article.annotationBehavior = {
     "emphasis": "style",
     "strong": "style",
     "link": "style",
+    "math": "style",
     "question": "marker",
     "idea": "marker",
     "error": "marker",
@@ -225,6 +232,7 @@ Article.annotationBehavior = {
     error: 1,
     issue: 1,
     link: 1,
+    math: 1,
     strong: 2,
     emphasis: 2,
     code: 2,

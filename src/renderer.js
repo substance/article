@@ -1,4 +1,6 @@
-var Article = require('./article');
+"use strict";
+
+var ViewFactory = require("./view_factory");
 var _ = require("underscore");
 
 // Renders an article
@@ -6,44 +8,23 @@ var _ = require("underscore");
 //
 
 var Renderer = function(docController, options) {
+  ViewFactory.call(this, docController.__document);
+
   this.docController = docController;
-  // var that = this;
   this.options = options || {};
 
-  // TODO: use reflection
-  this.nodeTypes = Article.nodeTypes;
-
-  // Collect all node views
+  // to collect all node views
   this.nodes = {};
 };
 
 Renderer.Prototype = function() {
-  // Create a node view
-  // --------
-  //
-  // Experimental: using a factory which creates a view for a given node type
-  // As we want to be able to reuse views
-  // However, as the matter is still under discussion consider the solution here only as provisional.
-  // We should create views, not only elements, as we need more, e.g., event listening stuff
-  // which needs to be disposed later.
+
+  var __super__ = ViewFactory.prototype;
 
   this.createView = function(node) {
-    var NodeView = this.nodeTypes[node.type].View;
-
-    if (!NodeView) {
-      throw new Error('Node type "'+node.type+'" not supported');
-    }
-
-    // Note: passing the renderer to the node views
-    // to allow creation of nested views
-    var nodeView = new NodeView(node, this);
-
-    // we connect the listener here to avoid to pass the document itself into the nodeView
-    nodeView.listenTo(this.docController, "operation:applied", nodeView.onGraphUpdate);
-
+    var nodeView = __super__.createView.call(this, node);
     // register node view to be able to look up nested views later
     this.nodes[node.id] = nodeView;
-
     return nodeView;
   };
 
@@ -66,12 +47,13 @@ Renderer.Prototype = function() {
       // Example: Lens focus controls
       if (this.options.afterRender) this.options.afterRender(this.docController, view);
     }, this);
-    
+
     return frag;
   };
 
 };
 
+Renderer.Prototype.prototype = ViewFactory.prototype;
 Renderer.prototype = new Renderer.Prototype();
 
 module.exports = Renderer;
