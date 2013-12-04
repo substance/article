@@ -21,7 +21,7 @@
 
 .content-node.paragraph .content-node.image div img {
   display:inline;
-  width: auto;
+  width: 100%;
 }
 
 .content-node.paragraph .content-node.formula.inline {
