@@ -14,6 +14,10 @@
   width: auto;
 }
 
+.content-node.paragraph .content-node.text.heading {
+  display:block;
+}
+
 .content-node.paragraph .content-node.text div {
   display:inline;
   width: auto;
