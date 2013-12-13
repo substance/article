@@ -122,6 +122,18 @@ Article.annotations = {
     "parent": "annotation"
   },
 
+  "superscript": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "subscript": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
   "code": {
     "parent": "annotation",
     "properties": {
