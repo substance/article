@@ -1,0 +1,17 @@
+.content-node .figure_reference {
+  padding: 2px 5px;
+  border: 1px dotted rgba(145, 187, 4, 0.8);
+  color: rgba(145, 187, 4, 1);
+}
+
+
+
+
+.content-node .figure_reference:hover { 
+  border-style: solid;
+}
+
+.content-node .figure_reference.active {
+  color: white;
+  background: rgba(145, 187, 4, 1); 
+}

@@ -1,0 +1,13 @@
+.content-node .person_reference {
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.content-node .person_reference:hover {
+  background-color: rgba(0,0,0, 0.1);
+}
+
+.content-node .person_reference.active {
+  background-color: rgba(0,0,0, 0.8);
+  color: white;
+}

@@ -1,0 +1,14 @@
+/* Issue Reference */
+.content-node .issue {
+  background: rgba(92,101,112, 0.2);
+  color: rgba(92,101,112, 1);
+}
+
+.content-node .issue:hover {
+  background: rgba(92,101,112, 0.3); 
+}
+
+.content-node .issue.active { 
+  color: white;
+  background: rgba(92,101,112, 1);
+}
