@@ -110,23 +110,6 @@ Article.nodeTypes = require("../nodes");
 // --------
 
 Article.annotations = {
-  "strong": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "superscript": {
-    "properties": {
-    },
-    "parent": "annotation"
-  },
-
-  "subscript": {
-    "properties": {
-    },
-    "parent": "annotation"
-  },
 
   "code": {
     "parent": "annotation",
