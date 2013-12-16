@@ -116,12 +116,6 @@ Article.annotations = {
     }
   },
 
-  "emphasis": {
-    "properties": {
-    },
-    "parent": "annotation"
-  },
-
   "superscript": {
     "properties": {
     },
@@ -265,15 +259,15 @@ Article.annotationBehavior = {
 
 Article.types = {
 
-  // Abstarct Annotation Node
+  // Abtract Annotation Node
   // --------
 
-  "annotation": {
-    "properties": {
-      "path": ["array", "string"], // -> e.g. ["text_1", "content"]
-      "range": "object"
-    }
-  },
+  // "annotation": {
+  //   "properties": {
+  //     "path": ["array", "string"], // -> e.g. ["text_1", "content"]
+  //     "range": "object"
+  //   }
+  // },
 
   // Document
   // --------
