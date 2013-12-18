@@ -7,24 +7,22 @@ var _ = require("underscore");
 // --------
 //
 
-var Renderer = function(docController, options) {
-  ViewFactory.call(this, docController.__document);
+var ArticleRenderer = function(document, viewName, options) {
+  ViewFactory.call(this, document);
 
-  this.docController = docController;
+  this.viewName = viewName;
   this.options = options || {};
-
-  // to collect all node views
-  this.nodes = {};
+  this.nodeViews = {};
 };
 
-Renderer.Prototype = function() {
+ArticleRenderer.Prototype = function() {
 
   var __super__ = ViewFactory.prototype;
 
   this.createView = function(node) {
     var nodeView = __super__.createView.call(this, node);
     // register node view to be able to look up nested views later
-    this.nodes[node.id] = nodeView;
+    this.nodeViews[node.id] = nodeView;
     return nodeView;
   };
 
@@ -33,27 +31,35 @@ Renderer.Prototype = function() {
   //
 
   this.render = function() {
-    _.each(this.nodes, function(nodeView) {
+    _.each(this.nodeViews, function(nodeView) {
       nodeView.dispose();
     });
 
     var frag = document.createDocumentFragment();
 
-    var docNodes = this.docController.container.getTopLevelNodes();
-    _.each(docNodes, function(n) {
-      var view = this.createView(n);
+    var nodeIds = this.document.get(this.viewName).nodes;
+    _.each(nodeIds, function(id) {
+      var node = this.document.get(id);
+      var view = this.createView(node);
       frag.appendChild(view.render().el);
+
       // Lets you customize the resulting DOM sticking on the el element
       // Example: Lens focus controls
-      if (this.options.afterRender) this.options.afterRender(this.docController, view);
+      if (this.options.afterRender) {
+        this.options.afterRender(this.document, view);
+      }
     }, this);
 
     return frag;
   };
 
+  this.getView = function(id) {
+    return this.nodeViews[id];
+  };
+
 };
 
-Renderer.Prototype.prototype = ViewFactory.prototype;
-Renderer.prototype = new Renderer.Prototype();
+ArticleRenderer.Prototype.prototype = ViewFactory.prototype;
+ArticleRenderer.prototype = new ArticleRenderer.Prototype();
 
-module.exports = Renderer;
+module.exports = ArticleRenderer;
