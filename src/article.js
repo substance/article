@@ -80,6 +80,19 @@ Article.Prototype = function() {
     return Article.fromSnapshot(data, options);
   };
 
+  this.getAuthorNames = function() {
+    var authorNames = [];
+    var collaboratorsIndex = this.addIndex({types: ["collaborator"]});
+    var collaborators = collaboratorsIndex.get();
+    _.each(collaborators, function(collaborator) {
+      if (collaborator.role !== "author") {
+        return;
+      }
+      authorNames.push(collaborator.name);
+    });
+
+    return authorNames;
+  };
 
 };
 
@@ -455,7 +468,7 @@ Article.prototype.constructor = Article;
 // Add convenience accessors for builtin document attributes
 Object.defineProperties(Article.prototype, {
   id: {
-    get: function () {
+    get: function() {
       return this.get("document").guid;
     },
     set: function(id) {
@@ -463,7 +476,7 @@ Object.defineProperties(Article.prototype, {
     }
   },
   creator: {
-    get: function () {
+    get: function() {
       return this.get("document").creator;
     },
     set: function(creator) {
@@ -471,7 +484,7 @@ Object.defineProperties(Article.prototype, {
     }
   },
   created_at: {
-    get: function () {
+    get: function() {
       return this.get("document").created_at;
     },
     set: function(created_at) {
@@ -479,7 +492,7 @@ Object.defineProperties(Article.prototype, {
     }
   },
   published_on: {
-    get: function () {
+    get: function() {
       return this.get("document").published_on;
     },
     set: function(published_on) {
@@ -487,7 +500,7 @@ Object.defineProperties(Article.prototype, {
     }
   },
   title: {
-    get: function () {
+    get: function() {
       return this.get("document").title;
     },
     set: function(title) {
@@ -495,7 +508,7 @@ Object.defineProperties(Article.prototype, {
     }
   },
   abstract: {
-    get: function () {
+    get: function() {
       return this.get("document").abstract;
     },
     set: function(value) {
@@ -503,11 +516,11 @@ Object.defineProperties(Article.prototype, {
     }
   },
   views: {
-    get: function () {
+    get: function() {
       // Note: returing a copy to avoid inadvertent changes
       return this.get("document").views.slice(0);
     }
-  },
+  }
 });
 
 module.exports = Article;
