@@ -11,14 +11,14 @@ var Annotator = Document.Annotator;
 var Article = function(options) {
   options = options || {};
 
-  // Check if format is compatible
+  // TODO: Check if format is compatible
 
   // Extend Schema
   // --------
 
   options.schema = util.deepclone(Document.schema);
   options.schema.id = "substance-article";
-  options.schema.version = "0.2.0";
+  options.schema.version = "0.3.0";
 
   // Merge in custom types
   _.each(Article.types, function(type, key) {
@@ -124,83 +124,28 @@ Article.nodeTypes = require("../nodes");
 
 Article.annotations = {
 
-  "code": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "link": {
-    "parent": "annotation",
-    "properties": {
-      "url": "string"
-    }
-  },
-
-  "math": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "idea": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "error": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "question": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "issue": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "comment": {
-    "properties": {
-      "issue": "issue",
-      "content": "string",
-      "created_at": "string", // should be date
-      "creator": "string"
-    }
-  },
-
   "person_reference": {
     "parent": "annotation",
     "properties": {
       "target": "person"
     }
   },
+
   "figure_reference": {
     "parent": "annotation",
     "properties": {
       "target": "figure"
     }
   },
+
   "citation_reference": {
     "parent": "annotation",
     "properties": {
       "target": "content"
     }
   },
+
   "cross_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "content"
-    }
-  },
-  "formula_reference": {
     "parent": "annotation",
     "properties": {
       "target": "content"
@@ -255,16 +200,6 @@ Article.annotationBehavior = {
 
 Article.types = {
 
-  // Abtract Annotation Node
-  // --------
-
-  // "annotation": {
-  //   "properties": {
-  //     "path": ["array", "string"], // -> e.g. ["text_1", "content"]
-  //     "range": "object"
-  //   }
-  // },
-
   // Document
   // --------
 
@@ -298,11 +233,6 @@ Article.types = {
 //
 
 Article.indexes = {
-  // All annotations are now indexed by node
-  // "annotations": {
-  //   "type": "annotation",
-  //   "properties": ["node"]
-  // },
   // all comments are now indexed by node association
   "comments": {
     "type": "comment",
@@ -358,6 +288,7 @@ var ARTICLE_DOC_SEED = {
   }
 };
 
+
 Article.describe = function() {
   var doc = new Article({seed: ARTICLE_DOC_SEED});
 
@@ -390,6 +321,7 @@ Article.describe = function() {
 
     // Show it in the content view
     doc.show("content", [headingId, introId], -1);
+
 
     // Include property description
     // --------
