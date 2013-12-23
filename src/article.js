@@ -25,11 +25,6 @@ var Article = function(options) {
     options.schema.types[key] = type;
   });
 
-  // Register annotation types
-  _.each(Article.annotations, function(aType, key) {
-    options.schema.types[key] = aType;
-  });
-
   // Merge in node types
   _.each(Article.nodeTypes, function(node, key) {
     options.schema.types[key] = node.Model.type;
@@ -90,10 +85,8 @@ Article.Prototype = function() {
       }
       authorNames.push(collaborator.name);
     });
-
     return authorNames;
   };
-
 };
 
 // Factory method
@@ -111,7 +104,7 @@ Article.fromSnapshot = function(data, options) {
 // Define available views
 // --------
 
-Article.views = ["content"];
+Article.views = ["content", "figures", "citations", "info"];
 
 // Register node types
 // --------
@@ -119,39 +112,9 @@ Article.views = ["content"];
 
 Article.nodeTypes = require("../nodes");
 
+
 // Define annotation types
 // --------
-
-Article.annotations = {
-
-  "person_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "person"
-    }
-  },
-
-  "figure_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "figure"
-    }
-  },
-
-  "citation_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "content"
-    }
-  },
-
-  "cross_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "content"
-    }
-  }
-};
 
 Article.annotationBehavior = {
   groups: {
@@ -159,9 +122,6 @@ Article.annotationBehavior = {
     "strong": "style",
     "link": "style",
     "math": "style",
-    "question": "marker",
-    "idea": "marker",
-    "error": "marker",
     "issue": "marker"
   },
   expansion: {
@@ -189,6 +149,7 @@ Article.annotationBehavior = {
     cross_reference: 1,
     figure_reference: 1,
     person_reference: 1,
+    collaborator_reference: 1,
     citation_reference: 1
   }
 };
@@ -196,7 +157,6 @@ Article.annotationBehavior = {
 // Custom type definitions
 // --------
 //
-// Holds comments
 
 Article.types = {
 
@@ -212,18 +172,6 @@ Article.types = {
       "abstract": "string",
       "published_on": "date", // should be part of the main type?
       "meta": "object"
-    }
-  },
-
-  // Comments
-  // --------
-
-  "comment": {
-    "properties": {
-      "content": "string",
-      "created_at": "string", // should be date
-      "creator": "string", // should be date
-      "node": "node" // references either a content node or annotation
     }
   }
 };
@@ -389,8 +337,6 @@ Article.describe = function() {
 
   return doc;
 };
-
-
 
 
 Article.Prototype.prototype = Document.prototype;
