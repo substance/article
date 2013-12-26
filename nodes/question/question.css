@@ -1,0 +1,14 @@
+
+.content-node .question {
+  background: rgba(28,163,219, 0.3);
+  /*color: rgba(28,163,219, 1);*/
+}
+
+.content-node .question:hover {
+  background: rgba(28,163,219, 0.3); 
+}
+
+.content-node .question.active { 
+  color: white;
+  background: rgba(28,163,219, 1);
+}
