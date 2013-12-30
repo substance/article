@@ -151,7 +151,9 @@ Article.annotationBehavior = {
     figure_reference: 1,
     person_reference: 1,
     collaborator_reference: 1,
-    citation_reference: 1
+    citation_reference: 1,
+    remark_reference: 1,
+    error_reference: 1
   }
 };
 
