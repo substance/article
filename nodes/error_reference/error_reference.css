@@ -1,14 +1,13 @@
-/* Error edition */
-.content-node .error {
+.content-node .error_reference {
   color: #925346;
   background: rgba(228, 67, 34, 0.17);
 }
 
-.content-node .error:hover {
+.content-node .error_reference:hover {
   background: rgba(228, 67, 34, 0.25); 
 }
 
-.content-node .error.active { 
+.content-node .error_reference.active { 
   color: white;
   background: rgba(228, 67, 34, 1);
 }
