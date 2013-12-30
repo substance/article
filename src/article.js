@@ -136,6 +136,7 @@ Article.annotationBehavior = {
   levels: {
     idea: 1,
     question: 1,
+    remark: 1,
     error: 1,
     issue: 1,
     link: 1,

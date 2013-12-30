@@ -1,0 +1,14 @@
+
+.content-node .remark {
+  background: rgba(46,199,161, 0.2);
+  color: #496F65;
+}
+
+.content-node .remark:hover {
+  background: rgba(46,199,161, 0.3); 
+}
+
+.content-node .remark.active { 
+  color: white;
+  background: rgba(46,199,161, 1);
+}
