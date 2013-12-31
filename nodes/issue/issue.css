@@ -1,0 +1,13 @@
+/*.content-node.issue .description {
+  background: #ccc;
+}*/
+
+.content-node.issue .description .content {
+  font-size: 20px;
+  padding: 20px;
+  background: #fff;
+  
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
