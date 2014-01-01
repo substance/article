@@ -12,7 +12,7 @@
     "substance-operator": "git+https://github.com/substance/operator.git#0.3.x",
     "substance-nodes": "git+https://github.com/substance/nodes.git#refactor"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "engines": {
     "node": ">=0.8.x",
     "npm": ">=1.1.x"
