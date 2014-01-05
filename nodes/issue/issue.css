@@ -12,19 +12,3 @@
 .content-node.issue .title {
   position: relative;
 }
-
-.content-node.issue .title .delete-issue {
-  position: absolute;
-  top: 15px;
-  right: 10px;
-  display: block;
-  text-transform: uppercase;
-  padding: 2px 5px;
-  background: rgba(0,0,0,0.1);
-  color: rgba(255,255,255,0.7);
-}
-
-.content-node.issue .title .delete-issue:hover {
-  background: rgba(0,0,0,0.2);
-  color: #fff;
-}

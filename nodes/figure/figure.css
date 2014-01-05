@@ -12,3 +12,7 @@
 .substance-article .content-node.figure div .image-wrapper img {
   width: 100%;
 }
+
+.substance-article .content-node.figure .label {
+  position: relative;
+}
