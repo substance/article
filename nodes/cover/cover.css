@@ -7,10 +7,11 @@
 }
 
 .substance-article .content-node.cover .title {
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   line-height: 1.3em;
   margin-bottom: 50px;
   font-size: 40px;
+  font-weight: 600;
+  color: #1F1F1F;
 }
 
 .substance-article .content-node.cover .content .authors {
