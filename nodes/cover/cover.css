@@ -20,10 +20,9 @@
   overflow: auto;
 }
 
-.substance-article .content-node.cover .authors .text {
+.substance-article .content-node.cover .content .authors .toggle-author {
+  display: block;
   float: left;
-  padding: 0px;
-  margin: 0px;
   font-size: 20px;
   margin-right: 10px;
   margin-bottom: 8px;

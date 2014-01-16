@@ -35,6 +35,7 @@ var Article = function(options) {
     options.schema.indexes[key] = index;
   });
 
+
   // Call parent constructor
   // --------
 
@@ -76,16 +77,15 @@ Article.Prototype = function() {
   };
 
   this.getAuthorNames = function() {
-    var authorNames = [];
-    var collaboratorsIndex = this.addIndex({types: ["collaborator"]});
-    var collaborators = collaboratorsIndex.get();
-    _.each(collaborators, function(collaborator) {
-      if (collaborator.role !== "author") {
-        return;
-      }
-      authorNames.push(collaborator.name);
+    return _.map(this.getAuthors(), function(a) {
+      return a.name;
     });
-    return authorNames;
+  };
+
+  this.getAuthors = function() {
+    return _.map(this.authors, function(cid) {
+      return this.get(cid);
+    }, this);
   };
 };
 
@@ -171,6 +171,7 @@ Article.types = {
       "views": ["array", "view"],
       "guid": "string",
       "creator": "string",
+      "authors": ["array", "contributor"],
       "title": "string",
       "abstract": "string",
       "published_on": "date", // should be part of the main type?
@@ -353,53 +354,64 @@ Object.defineProperties(Article.prototype, {
       return this.get("document").guid;
     },
     set: function(id) {
-      this.get("document").guid = id;
+      throw new Error("This is a read-only property alias.");
     }
   },
   creator: {
     get: function() {
       return this.get("document").creator;
     },
-    set: function(creator) {
+    set: function() {
       this.get("document").creator = creator;
+    }
+  },
+  authors: {
+    get: function() {
+      return this.get("document").authors;
+    },
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   created_at: {
     get: function() {
       return this.get("document").created_at;
     },
-    set: function(created_at) {
-      this.get("document").created_at = created_at;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   published_on: {
     get: function() {
       return this.get("document").published_on;
     },
-    set: function(published_on) {
-      this.get("document").published_on = published_on;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   title: {
     get: function() {
       return this.get("document").title;
     },
-    set: function(title) {
-      this.get("document").title = title;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   abstract: {
     get: function() {
       return this.get("document").abstract;
     },
-    set: function(value) {
-      this.get("document").abstract = value;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   views: {
     get: function() {
       // Note: returing a copy to avoid inadvertent changes
       return this.get("document").views.slice(0);
+    },
+    set: function(views) {
+      throw new Error("This is a read-only property alias.");
     }
   }
 });
