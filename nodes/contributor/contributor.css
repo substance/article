@@ -1,0 +1,33 @@
+.content-node.contributor {
+  
+}
+
+/* Displayed as card header */
+.content-node.contributor .name {
+  position: relative;
+}
+
+
+.content-node.contributor .content {
+  overflow: auto;
+}
+
+.content-node.contributor .image {
+  width: 200px;
+  padding-right: 20px;
+  float: left;
+}
+
+.content-node.contributor .label {
+  padding-top: 20px;
+  color: rgba(0,0,0,0.6);
+}
+
+.content-node.contributor .organization {
+  font-size: 18px;
+}
+
+.content-node.contributor .image img {
+  width: 100%;
+}
+

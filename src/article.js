@@ -150,7 +150,7 @@ Article.annotationBehavior = {
     cross_reference: 1,
     figure_reference: 1,
     person_reference: 1,
-    collaborator_reference: 1,
+    contributor_reference: 1,
     citation_reference: 1,
     remark_reference: 1,
     error_reference: 1
@@ -208,7 +208,7 @@ var ARTICLE_DOC_SEED = {
         "info"
       ],
       "title": "The Anatomy of a Substance Article",
-      "collaborators": ["collaborator_1", "collaborator_2"],
+      "authors": ["contributor_1", "contributor_2"],
       "guid": "lens_article"
     },
 
@@ -222,19 +222,18 @@ var ARTICLE_DOC_SEED = {
 
     "cover": {
       "id": "cover",
-      "type": "cover",
-      "collaborators": ["collaborator_1", "collaborator_2"]
+      "type": "cover"
     },
 
-    "collaborator_1": {
-      "id": "collaborator_1",
-      "type": "collaborator",
+    "contributor_1": {
+      "id": "contributor_1",
+      "type": "contributor",
       "name": "Michael Aufreiter"
     },
 
-    "collaborator_2": {
-      "id": "collaborator_2",
-      "type": "collaborator",
+    "contributor_2": {
+      "id": "contributor_2",
+      "type": "contributor",
       "name": "Oliver Buchtala"
     }
   }
