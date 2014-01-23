@@ -1,15 +1,20 @@
 .substance-article .content-node.cover {
-  margin-bottom: 50px;
 }
 
 .substance-article .content-node.cover .content {
   background: none;
 }
 
+
+.substance-article .content-node.cover .published-on {
+  
+}
+
 .substance-article .content-node.cover .title {
+  /*padding-top: 20px;*/
   white-space: pre-wrap;
   line-height: 1.3em;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-size: 40px;
   font-weight: 600;
   color: #1F1F1F;
@@ -23,8 +28,9 @@
 .substance-article .content-node.cover .content .authors .toggle-author {
   display: block;
   float: left;
-  font-size: 20px;
+  padding: 0 2px;
+  font-size: 16px;
+  line-height: 20px;
   margin-right: 10px;
   margin-bottom: 8px;
-  color: rgba(0,0,0, 0.7);
 }
