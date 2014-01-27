@@ -69,7 +69,6 @@ var Article = function(options) {
   }
 };
 
-
 Article.Prototype = function() {
 
   this.fromSnapshot = function(data, options) {
@@ -86,6 +85,17 @@ Article.Prototype = function() {
     return _.map(this.authors, function(cid) {
       return this.get(cid);
     }, this);
+  };
+
+  this.setTitle = function(title) {
+    this.set(["document", "title"], title);
+  };
+
+  // Set authors on document node
+  // --------
+  // 
+  this.setAuthors = function(authors) {
+    this.set(["document", "authors"], authors);
   };
 };
 
