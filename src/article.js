@@ -87,13 +87,34 @@ Article.Prototype = function() {
     }, this);
   };
 
+  // Set publication date
+  // --------
+  // 
+
+  this.setPublishedOn = function(dat) {
+    this.set(["document", "published_on"], dat);
+  };
+
+  // Set document id (stored on document node)
+  // --------
+  // 
+
+  this.setId = function(docId) {
+    this.set(["document", "guid"], docId);
+  }
+
+  // Set document title (stored on document node)
+  // --------
+  // 
+
   this.setTitle = function(title) {
     this.set(["document", "title"], title);
   };
 
-  // Set authors on document node
+  // Set authors (stored on document node)
   // --------
   // 
+
   this.setAuthors = function(authors) {
     this.set(["document", "authors"], authors);
   };
