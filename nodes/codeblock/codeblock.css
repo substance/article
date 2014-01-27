@@ -8,8 +8,8 @@
 }
 
 .content-node.codeblock > .content {
-  font-family: 'Source Code Pro', 'Menlo', monospace;
-  font-size: 14px;
+  font-family: 'Monaco', 'Source Code Pro', 'Menlo', monospace;
+  font-size: 12px;
   color: #777;
   min-height: 28px;
 }

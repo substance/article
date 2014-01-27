@@ -19,6 +19,7 @@
 }
 
 .content-node.contributor .label {
+  font-size: 14px;
   padding-top: 20px;
   color: rgba(0,0,0,0.6);
 }

@@ -6,13 +6,30 @@
   padding-top: 0px;
 }
 
-.content-node .listitem {
+.content-node .list-item {
   padding: 2px 0px;
   padding-left: 20px;
   position: relative;
 }
 
-.content-node .listitem .bullet {
+.content-node .list-item .bullet {
+  position: absolute;
+  left: 0px;
+  top: 15px;
+  width: 4px;
+  height: 4px;
+  background: #bbb;
+}
+
+/*p:before {
+  content:"Read this: ";
+}*/
+
+
+
+
+
+/*.content-node .listitem .bullet {
   position: absolute;
   left: 0px;
   top: 14px;
@@ -23,9 +40,9 @@
 
 .content-node.list .content {
   min-height: 30px;
-}
+}*/
 
-.content-node.list { }
+/*.content-node.list { }
 
 .content-node.list .content {
 
@@ -37,4 +54,4 @@
 
 .content-node.list.level-3 .content {
   font-size: 17px;
-}
+}*/
