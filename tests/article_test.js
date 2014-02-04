@@ -7,7 +7,6 @@ var _ = require("underscore");
 var Test = require('substance-test');
 var Operator = require('substance-operator');
 var assert = Test.assert;
-var registerTest = Test.registerTest;
 var Document = require('substance-document');
 var Article = require('../index');
 
@@ -15,6 +14,10 @@ var Article = require('../index');
 // ========
 
 var ArticleTest = function () {
+  Test.call(this);
+};
+
+ArticleTest.Prototype = function() {
 
   this.setup = function() {
     this.doc = new Article({
@@ -30,5 +33,7 @@ var ArticleTest = function () {
     function() { assert.fail("Not implemented."); }
   ];
 };
+ArticleTest.Prototype.prototype = Test.prototype;
+ArticleTest.prototype = new ArticleTest.Prototype();
 
-registerTest(['Substance.Article', 'Article Nodes'], new ArticleTest());
+Test.registerTest(['Substance.Article', 'Article Nodes'], new ArticleTest());
