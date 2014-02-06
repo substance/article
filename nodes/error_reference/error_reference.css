@@ -1,16 +1,11 @@
-
-
 .content-node .error_reference {
-  color: #925346;
-  background: rgba(228, 67, 34, 0.17);
-  border-bottom: 1px solid rgba(228, 67, 34, 0.3);
+  border-bottom: 3px solid rgba(228, 34, 34, 0.3);
 }
 
 .content-node .error_reference:hover {
-  background: rgba(228, 67, 34, 0.25); 
+  border-bottom: 3px solid rgba(228, 34, 34, 0.5);
 }
 
 .content-node .error_reference.active { 
-  color: white;
-  background: rgba(228, 67, 34, 1);
+  border-bottom: 3px solid rgba(228, 34, 34, 1);
 }

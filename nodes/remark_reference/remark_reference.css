@@ -1,23 +1,11 @@
-
 .content-node .remark_reference {
-  /*background: rgba(46,199,161, 0.2);*/
-  /*background: rgba(11, 157, 217, 0.3);*/
-  /*rgba(11, 157, 217, 0.30);*/
-  /*color: #496F65;*/
-  background: rgba(11, 157, 217, 0.075);
-  color: #1B6685;
-  border-bottom: 1px solid rgba(11, 157, 217, 0.4);
-  /*cursor: pointer;*/
-  /*color: #1B6685;*/
+  border-bottom: 3px solid rgba(11, 157, 217, 0.2);
 }
 
 .content-node .remark_reference:hover {
-  /*background: rgba(46,199,161, 0.3); */
-  background: rgba(11, 157, 217, 0.3);
+  border-bottom: 3px solid rgba(11, 157, 217, 0.5);
 }
 
 .content-node .remark_reference.active { 
-  color: white;
-  /*background: rgba(46,199,161, 1);*/
-  background: rgba(11, 157, 217, 1);
+  border-bottom: 3px solid rgba(11, 157, 217, 1);
 }

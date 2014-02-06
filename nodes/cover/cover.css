@@ -33,7 +33,11 @@
   margin-right: 10px;
   margin-bottom: 8px;
 
-  border: 1px dotted rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,0,0,0.2);
   color: rgba(0,0,0,0.7);
 
+}
+
+.substance-article .content-node.cover .content .authors .toggle-author:hover {
+  border: 1px solid rgba(0,0,0,0.4);
 }
