@@ -32,4 +32,8 @@
   line-height: 20px;
   margin-right: 10px;
   margin-bottom: 8px;
+
+  border: 1px dotted rgba(0,0,0,0.5);
+  color: rgba(0,0,0,0.7);
+
 }
