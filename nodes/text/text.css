@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------*/
 
 
-.content-node.text .content {
+.text  {
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
