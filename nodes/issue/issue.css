@@ -1,4 +1,8 @@
 
+.content-node.issue .issue-title-wrapper {
+  position: relative;
+}
+
 .content-node.issue .description .content {
   padding: 20px;
   background: #fff;
