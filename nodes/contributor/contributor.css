@@ -16,6 +16,7 @@
   width: 200px;
   padding-right: 20px;
   float: left;
+  position: relative;
 }
 
 .content-node.contributor .label {
@@ -32,3 +33,16 @@
   width: 100%;
 }
 
+.contributor-image-file {
+  position: absolute;
+  display: block;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  opacity: 0;
+  
+  background: green;
+  cursor: pointer;
+}
