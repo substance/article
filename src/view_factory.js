@@ -2,7 +2,7 @@
 
 var ViewFactory = function(document) {
   this.document = document;
-  this.nodeTypes = document.constructor.nodeTypes;
+  this.nodeTypes = document.nodeTypes;
 };
 
 ViewFactory.Prototype = function() {

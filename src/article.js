@@ -21,27 +21,31 @@ var Article = function(options) {
   options.schema.version = "0.3.0";
 
   // Merge in custom types
-  _.each(Article.types, function(type, key) {
+  var types = options.types || Article.types;
+  _.each(types, function(type, key) {
     options.schema.types[key] = type;
   });
 
   // Merge in node types
-  _.each(Article.nodeTypes, function(node, key) {
+  var nodeTypes = options.nodeTypes || Article.nodeTypes;
+  _.each(nodeTypes, function(node, key) {
     options.schema.types[key] = node.Model.type;
   });
 
   // Merge in custom indexes
-  _.each(Article.indexes, function(index, key) {
+  var indexes = options.indexes || Article.indexes;
+  _.each(indexes, function(index, key) {
     options.schema.indexes[key] = index;
   });
 
+  var views = options.views || Article.views;
 
   // Call parent constructor
   // --------
 
   Document.call(this, options);
 
-  this.nodeTypes = Article.nodeTypes;
+  this.nodeTypes = nodeTypes;
 
   // Seed the doc
   // --------
@@ -59,7 +63,7 @@ var Article = function(options) {
     });
 
     // Create views on the doc
-    _.each(Article.views, function(view) {
+    _.each(views, function(view) {
       this.create({
         id: view,
         "type": "view",
@@ -89,7 +93,7 @@ Article.Prototype = function() {
 
   // Set publication date
   // --------
-  // 
+  //
 
   this.setPublishedOn = function(dat) {
     this.set(["document", "published_on"], dat);
@@ -97,7 +101,7 @@ Article.Prototype = function() {
 
   // Set document id (stored on document node)
   // --------
-  // 
+  //
 
   this.setId = function(docId) {
     this.set(["document", "guid"], docId);
@@ -105,7 +109,7 @@ Article.Prototype = function() {
 
   // Set document title (stored on document node)
   // --------
-  // 
+  //
 
   this.setTitle = function(title) {
     this.set(["document", "title"], title);
@@ -113,11 +117,19 @@ Article.Prototype = function() {
 
   // Set authors (stored on document node)
   // --------
-  // 
+  //
 
   this.setAuthors = function(authors) {
     this.set(["document", "authors"], authors);
   };
+
+  this.createRenderer = function(viewName) {
+    return new Article.Renderer(this, viewName);
+  };
+
+  this.getAnnotationBehavior = function() {
+    return Article.annotationBehavior;
+  }
 };
 
 // Factory method
