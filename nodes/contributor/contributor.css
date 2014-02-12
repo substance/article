@@ -9,7 +9,7 @@
 
 
 .content-node.contributor .content {
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 .content-node.contributor .image {
