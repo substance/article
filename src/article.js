@@ -217,6 +217,8 @@ Article.types = {
       "authors": ["array", "contributor"],
       "title": "string",
       "abstract": "string",
+      "created_at": "date",
+      "updated_at": "date",
       "published_on": "date", // should be part of the main type?
       "meta": "object"
     }
@@ -413,6 +415,15 @@ Object.defineProperties(Article.prototype, {
     },
     set: function() {
       throw new Error("This is a read-only property alias.");
+    }
+  },
+  updated_at: {
+    get: function() {
+      return this.get("document").updated_at;
+    },
+    set: function(val) {
+      console.log('setting updated_at', val);
+      this.get("document").updated_at = val;
     }
   },
   created_at: {
