@@ -19,10 +19,15 @@ ArticleRenderer.Prototype = function() {
 
   var __super__ = ViewFactory.prototype;
 
-  this.createView = function(node) {
-    if (this.nodeViews[node.id]) {
+  // Note: it is important to recreate a view to be able to dispose child views
+  // and not having to reuse all the time.
+  this.createView = function(node, overwrite) {
+    if (this.nodeViews[node.id] && !overwrite) {
       return this.nodeViews[node.id];
+    } else if (this.nodeViews[node.id] && overwrite) {
+      this.nodeViews[node.id].dispose();
     }
+
     var nodeView = __super__.createView.call(this, node);
     this.nodeViews[node.id] = nodeView;
     return nodeView;
