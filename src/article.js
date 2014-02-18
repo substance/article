@@ -421,8 +421,11 @@ Object.defineProperties(Article.prototype, {
     get: function() {
       return this.get("document").updated_at;
     },
+
+    // This is going to be called very often
+    // Any operation will trigger it
+    // maybe we can optimize here
     set: function(val) {
-      console.log('setting updated_at', val);
       this.get("document").updated_at = val;
     }
   },
@@ -436,7 +439,7 @@ Object.defineProperties(Article.prototype, {
   },
   published_on: {
     get: function() {
-      return this.get("document").published_on;
+      return new Date(this.get("document").published_on);
     },
     set: function() {
       throw new Error("This is a read-only property alias.");
