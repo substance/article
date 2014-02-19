@@ -8,27 +8,27 @@
 
 .content-node .list-item {
   padding: 2px 0px;
-  padding-left: 20px;
   position: relative;
 }
 
-.content-node .list-item .bullet {
-  position: absolute;
-  left: 0px;
-  top: 15px;
-  width: 4px;
-  height: 4px;
-  background: #bbb;
+/* for the time being, classical list and list-styles... */
+
+.content-node.list .list-item.level-1 {
+  margin-left: 20px;
+  list-style-type:square;
 }
 
-.content-node.list .list-item.level-2 .content {
-  padding-left: 20px;
+.content-node.list .list-item.level-2 {
+  margin-left: 40px;
+  list-style-type:disc;
 }
 
-.content-node.list .list-item.level-3 .content {
-  padding-left: 40px;
+.content-node.list .list-item.level-3 {
+  margin-left: 60px;
+  list-style-type:circle;
 }
 
-.content-node.list .list-item.level-4 .content {
-  padding-left: 60px;
+.content-node.list .list-item.level-4 {
+  margin-left: 80px;
+  list-style-type:circle;
 }
