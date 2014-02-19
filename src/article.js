@@ -439,7 +439,7 @@ Object.defineProperties(Article.prototype, {
   },
   published_on: {
     get: function() {
-      return new Date(this.get("document").published_on);
+      return this.get("document").published_on;
     },
     set: function() {
       throw new Error("This is a read-only property alias.");
