@@ -3,6 +3,7 @@
 var _ = require("underscore");
 var util = require("substance-util");
 var Document = require("substance-document");
+var Annotator = Document.Annotator;
 
 // Substance.Article
 // -----------------
@@ -10,41 +11,41 @@ var Document = require("substance-document");
 var Article = function(options) {
   options = options || {};
 
-  // Check if format is compatible
+  // TODO: Check if format is compatible
 
   // Extend Schema
   // --------
 
   options.schema = util.deepclone(Document.schema);
   options.schema.id = "substance-article";
-  options.schema.version = "0.2.0";
+  options.schema.version = "0.3.0";
 
   // Merge in custom types
-  _.each(Article.types, function(type, key) {
+  var types = options.types || Article.types;
+  _.each(types, function(type, key) {
     options.schema.types[key] = type;
   });
 
-  // Register annotation types
-  _.each(Article.annotations, function(aType, key) {
-    options.schema.types[key] = aType;
-  });
-
   // Merge in node types
-  _.each(Article.nodeTypes, function(node, key) {
+  var nodeTypes = options.nodeTypes || Article.nodeTypes;
+  _.each(nodeTypes, function(node, key) {
     options.schema.types[key] = node.Model.type;
   });
 
   // Merge in custom indexes
-  _.each(Article.indexes, function(index, key) {
+  var indexes = options.indexes || Article.indexes;
+  _.each(indexes, function(index, key) {
     options.schema.indexes[key] = index;
   });
+
+  var views = options.views || Article.views;
 
   // Call parent constructor
   // --------
 
   Document.call(this, options);
 
-  this.nodeTypes = Article.nodeTypes;
+  this.nodeTypes = nodeTypes;
 
   // Seed the doc
   // --------
@@ -62,7 +63,7 @@ var Article = function(options) {
     });
 
     // Create views on the doc
-    _.each(Article.views, function(view) {
+    _.each(views, function(view) {
       this.create({
         id: view,
         "type": "view",
@@ -72,14 +73,63 @@ var Article = function(options) {
   }
 };
 
-
 Article.Prototype = function() {
 
   this.fromSnapshot = function(data, options) {
     return Article.fromSnapshot(data, options);
   };
 
+  this.getAuthorNames = function() {
+    return _.map(this.getAuthors(), function(a) {
+      return a.name;
+    });
+  };
 
+  this.getAuthors = function() {
+    return _.map(this.authors, function(cid) {
+      return this.get(cid);
+    }, this);
+  };
+
+  // Set publication date
+  // --------
+  //
+
+  this.setPublishedOn = function(dat) {
+    this.set(["document", "published_on"], dat);
+  };
+
+  // Set document id (stored on document node)
+  // --------
+  //
+
+  this.setId = function(docId) {
+    this.set(["document", "guid"], docId);
+  }
+
+  // Set document title (stored on document node)
+  // --------
+  //
+
+  this.setTitle = function(title) {
+    this.set(["document", "title"], title);
+  };
+
+  // Set authors (stored on document node)
+  // --------
+  //
+
+  this.setAuthors = function(authors) {
+    this.set(["document", "authors"], authors);
+  };
+
+  this.createRenderer = function(viewName) {
+    return new Article.Renderer(this, viewName);
+  };
+
+  this.getAnnotationBehavior = function() {
+    return Article.annotationBehavior;
+  }
 };
 
 // Factory method
@@ -97,7 +147,7 @@ Article.fromSnapshot = function(data, options) {
 // Define available views
 // --------
 
-Article.views = ["content"];
+Article.views = ["content", "figures", "citations", "info"];
 
 // Register node types
 // --------
@@ -105,101 +155,56 @@ Article.views = ["content"];
 
 Article.nodeTypes = require("../nodes");
 
+
 // Define annotation types
 // --------
 
-Article.annotations = {
-  "strong": {
-    "parent": "annotation",
-    "properties": {
-    }
+Article.annotationBehavior = {
+  groups: {
+    "emphasis": "style",
+    "strong": "style",
+    "link": "style",
+    "math": "style",
+    "issue": "marker"
   },
-
-  "emphasis": {
-    "properties": {
+  expansion: {
+    "emphasis": {
+      left: Annotator.isOnNodeStart,
     },
-    "parent": "annotation"
-  },
-
-  "code": {
-    "parent": "annotation",
-    "properties": {
+    "strong": {
+      left: Annotator.isOnNodeStart,
     }
   },
-
-  "link": {
-    "parent": "annotation",
-    "properties": {
-      "url": "string"
-    }
-  },
-
-  "idea": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "error": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "question": {
-    "parent": "annotation",
-    "properties": {
-    }
-  },
-
-  "person_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "person"
-    }
-  },
-  "figure_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "figure"
-    }
-  },
-  "citation_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "content"
-    }
-  },
-  "cross_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "content"
-    }
-  },
-  "formula_reference": {
-    "parent": "annotation",
-    "properties": {
-      "target": "content"
-    }
+  split: ["emphasis", "strong"],
+  levels: {
+    idea: 1,
+    question: 1,
+    remark: 1,
+    error: 1,
+    issue: 1,
+    link: 1,
+    math: 1,
+    strong: 2,
+    emphasis: 2,
+    code: 2,
+    subscript: 2,
+    superscript: 2,
+    underline: 2,
+    cross_reference: 1,
+    figure_reference: 1,
+    person_reference: 1,
+    contributor_reference: 1,
+    citation_reference: 1,
+    remark_reference: 1,
+    error_reference: 1
   }
 };
 
 // Custom type definitions
 // --------
 //
-// Holds comments
 
 Article.types = {
-
-  // Abstarct Annotation Node
-  // --------
-
-  "annotation": {
-    "properties": {
-      "path": ["array", "string"], // -> e.g. ["text_1", "content"]
-      "range": "object"
-    }
-  },
 
   // Document
   // --------
@@ -209,22 +214,13 @@ Article.types = {
       "views": ["array", "view"],
       "guid": "string",
       "creator": "string",
+      "authors": ["array", "contributor"],
       "title": "string",
       "abstract": "string",
+      "created_at": "date",
+      "updated_at": "date",
       "published_on": "date", // should be part of the main type?
       "meta": "object"
-    }
-  },
-
-  // Comments
-  // --------
-
-  "comment": {
-    "properties": {
-      "content": "string",
-      "created_at": "string", // should be date
-      "creator": "string", // should be date
-      "node": "node" // references either a content node or annotation
     }
   }
 };
@@ -234,11 +230,6 @@ Article.types = {
 //
 
 Article.indexes = {
-  // All annotations are now indexed by node
-  // "annotations": {
-  //   "type": "annotation",
-  //   "properties": ["node"]
-  // },
   // all comments are now indexed by node association
   "comments": {
     "type": "comment",
@@ -262,7 +253,7 @@ var ARTICLE_DOC_SEED = {
         "info"
       ],
       "title": "The Anatomy of a Substance Article",
-      "collaborators": ["collaborator_1", "collaborator_2"],
+      "authors": ["contributor_1", "contributor_2"],
       "guid": "lens_article"
     },
 
@@ -276,23 +267,23 @@ var ARTICLE_DOC_SEED = {
 
     "cover": {
       "id": "cover",
-      "type": "cover",
-      "collaborators": ["collaborator_1", "collaborator_2"]
+      "type": "cover"
     },
 
-    "collaborator_1": {
-      "id": "collaborator_1",
-      "type": "collaborator",
+    "contributor_1": {
+      "id": "contributor_1",
+      "type": "contributor",
       "name": "Michael Aufreiter"
     },
 
-    "collaborator_2": {
-      "id": "collaborator_2",
-      "type": "collaborator",
+    "contributor_2": {
+      "id": "contributor_2",
+      "type": "contributor",
       "name": "Oliver Buchtala"
     }
   }
 };
+
 
 Article.describe = function() {
   var doc = new Article({seed: ARTICLE_DOC_SEED});
@@ -326,6 +317,7 @@ Article.describe = function() {
 
     // Show it in the content view
     doc.show("content", [headingId, introId], -1);
+
 
     // Include property description
     // --------
@@ -395,8 +387,6 @@ Article.describe = function() {
 };
 
 
-
-
 Article.Prototype.prototype = Document.prototype;
 Article.prototype = new Article.Prototype();
 Article.prototype.constructor = Article;
@@ -404,59 +394,82 @@ Article.prototype.constructor = Article;
 // Add convenience accessors for builtin document attributes
 Object.defineProperties(Article.prototype, {
   id: {
-    get: function () {
+    get: function() {
       return this.get("document").guid;
     },
     set: function(id) {
-      this.get("document").guid = id;
+      throw new Error("This is a read-only property alias.");
     }
   },
   creator: {
-    get: function () {
+    get: function() {
       return this.get("document").creator;
     },
-    set: function(creator) {
+    set: function() {
       this.get("document").creator = creator;
     }
   },
+  authors: {
+    get: function() {
+      return this.get("document").authors;
+    },
+    set: function() {
+      throw new Error("This is a read-only property alias.");
+    }
+  },
+  updated_at: {
+    get: function() {
+      return this.get("document").updated_at;
+    },
+
+    // This is going to be called very often
+    // Any operation will trigger it
+    // maybe we can optimize here
+    set: function(val) {
+      this.get("document").updated_at = val;
+    }
+  },
   created_at: {
-    get: function () {
+    get: function() {
       return this.get("document").created_at;
     },
-    set: function(created_at) {
-      this.get("document").created_at = created_at;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   published_on: {
-    get: function () {
+    get: function() {
       return this.get("document").published_on;
     },
-    set: function(published_on) {
-      this.get("document").published_on = published_on;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   title: {
-    get: function () {
+    get: function() {
       return this.get("document").title;
     },
-    set: function(title) {
-      this.get("document").title = title;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   abstract: {
-    get: function () {
+    get: function() {
       return this.get("document").abstract;
     },
-    set: function(abstract) {
-      this.get("document").abstract = abstract;
+    set: function() {
+      throw new Error("This is a read-only property alias.");
     }
   },
   views: {
-    get: function () {
+    get: function() {
       // Note: returing a copy to avoid inadvertent changes
       return this.get("document").views.slice(0);
+    },
+    set: function(views) {
+      throw new Error("This is a read-only property alias.");
     }
-  },
+  }
 });
 
 module.exports = Article;
