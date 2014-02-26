@@ -1,0 +1,6 @@
+span.subscript, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: 0.4em;
+  font-size: 12px;
+}

@@ -1,0 +1,10 @@
+/* Cross Reference */
+
+.content-node .cross_reference {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.content-node .cross_reference:hover {
+  background-color: rgba(0, 0, 0, 0.10);
+}

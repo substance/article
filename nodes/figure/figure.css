@@ -7,8 +7,27 @@
 .substance-article .content-node.figure div.image-wrapper {
   text-align: center;
   padding-bottom: 20px;
+  position: relative;
 }
 
 .substance-article .content-node.figure div .image-wrapper img {
+  max-width: 100%;
+}
+
+.substance-article .content-node.figure .label {
+  position: relative;
+}
+
+.figure-image-file {
+  position: absolute;
+  display: block;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
   width: 100%;
+  opacity: 0;
+  
+  background: green;
+  cursor: pointer;
 }

@@ -1,0 +1,11 @@
+.content-node .remark_reference {
+  border-bottom: 3px solid rgba(11, 157, 217, 0.2);
+}
+
+.content-node .remark_reference:hover {
+  border-bottom: 3px solid rgba(11, 157, 217, 0.5);
+}
+
+.content-node .remark_reference.active { 
+  border-bottom: 3px solid rgba(11, 157, 217, 1);
+}

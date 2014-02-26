@@ -1,0 +1,15 @@
+.content-node .citation_reference {
+  padding: 1px 0px;
+  border: 1px dotted rgba(11, 157, 217, 0.8);
+  color: rgba(11, 157, 217, 1);
+}
+
+.content-node .citation_reference:hover { 
+  border-style: solid;
+}
+
+
+.content-node .citation_reference.active {
+  color: white;
+  background: rgba(11, 157, 217, 1);
+}

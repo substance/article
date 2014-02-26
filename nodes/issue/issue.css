@@ -1,0 +1,17 @@
+
+.content-node.issue .issue-title-wrapper {
+  position: relative;
+}
+
+.content-node.issue .description .content {
+  padding: 20px;
+  background: #fff;
+  
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.content-node.issue .title {
+  position: relative;
+}

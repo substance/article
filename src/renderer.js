@@ -1,49 +1,35 @@
-var Article = require('./article');
+"use strict";
+
+var ViewFactory = require("./view_factory");
 var _ = require("underscore");
 
 // Renders an article
 // --------
 //
 
-var Renderer = function(docController, options) {
-  this.docController = docController;
-  // var that = this;
+var ArticleRenderer = function(document, viewName, options) {
+  ViewFactory.call(this, document);
+
+  this.viewName = viewName;
   this.options = options || {};
-
-  // TODO: use reflection
-  this.nodeTypes = Article.nodeTypes;
-
-  // Collect all node views
-  this.nodes = {};
+  this.nodeViews = {};
 };
 
-Renderer.Prototype = function() {
-  // Create a node view
-  // --------
-  //
-  // Experimental: using a factory which creates a view for a given node type
-  // As we want to be able to reuse views
-  // However, as the matter is still under discussion consider the solution here only as provisional.
-  // We should create views, not only elements, as we need more, e.g., event listening stuff
-  // which needs to be disposed later.
+ArticleRenderer.Prototype = function() {
 
-  this.createView = function(node) {
-    var NodeView = this.nodeTypes[node.type].View;
+  var __super__ = ViewFactory.prototype;
 
-    if (!NodeView) {
-      throw new Error('Node type "'+node.type+'" not supported');
+  // Note: it is important to recreate a view to be able to dispose child views
+  // and not having to reuse all the time.
+  this.createView = function(node, overwrite) {
+    if (this.nodeViews[node.id] && !overwrite) {
+      return this.nodeViews[node.id];
+    } else if (this.nodeViews[node.id] && overwrite) {
+      this.nodeViews[node.id].dispose();
     }
 
-    // Note: passing the renderer to the node views
-    // to allow creation of nested views
-    var nodeView = new NodeView(node, this);
-
-    // we connect the listener here to avoid to pass the document itself into the nodeView
-    nodeView.listenTo(this.docController, "operation:applied", nodeView.onGraphUpdate);
-
-    // register node view to be able to look up nested views later
-    this.nodes[node.id] = nodeView;
-
+    var nodeView = __super__.createView.call(this, node);
+    this.nodeViews[node.id] = nodeView;
     return nodeView;
   };
 
@@ -52,26 +38,31 @@ Renderer.Prototype = function() {
   //
 
   this.render = function() {
-    _.each(this.nodes, function(nodeView) {
+    _.each(this.nodeViews, function(nodeView) {
       nodeView.dispose();
     });
 
     var frag = document.createDocumentFragment();
 
-    var docNodes = this.docController.container.getTopLevelNodes();
-    _.each(docNodes, function(n) {
-      var view = this.createView(n);
+    var nodeIds = this.document.get(this.viewName).nodes;
+    _.each(nodeIds, function(id) {
+      var node = this.document.get(id);
+      var view = this.createView(node);
       frag.appendChild(view.render().el);
+
       // Lets you customize the resulting DOM sticking on the el element
       // Example: Lens focus controls
-      if (this.options.afterRender) this.options.afterRender(this.docController, view);
+      if (this.options.afterRender) {
+        this.options.afterRender(this.document, view);
+      }
     }, this);
-    
+
     return frag;
   };
 
 };
 
-Renderer.prototype = new Renderer.Prototype();
+ArticleRenderer.Prototype.prototype = ViewFactory.prototype;
+ArticleRenderer.prototype = new ArticleRenderer.Prototype();
 
-module.exports = Renderer;
+module.exports = ArticleRenderer;
