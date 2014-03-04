@@ -1,11 +1,13 @@
 .content-node .error_reference {
-  border-bottom: 3px solid rgba(228, 34, 34, 0.3);
+  background: rgba(228, 34, 34, 0.1);
+  /*color: rbga(0,0,0,0.1);*/
 }
 
 .content-node .error_reference:hover {
-  border-bottom: 3px solid rgba(228, 34, 34, 0.5);
+
 }
 
-.content-node .error_reference.active { 
-  border-bottom: 3px solid rgba(228, 34, 34, 1);
+.content-node .error_reference.active {
+  background: rgba(228, 34, 34, 1);
+  color: white;
 }
