@@ -1,0 +1,3 @@
+/* LinkReference annotation */
+.content-node .link_reference { color: #1B6685; }
+.content-node .link_reference:hover,.content-node .link_reference.active { color: rgba(11, 157, 217, 1); }

@@ -147,7 +147,7 @@ Article.fromSnapshot = function(data, options) {
 // Define available views
 // --------
 
-Article.views = ["content", "figures", "citations", "info"];
+Article.views = ["content", "figures", "citations", "info", "links"];
 
 // Register node types
 // --------
@@ -163,7 +163,7 @@ Article.annotationBehavior = {
   groups: {
     "emphasis": "style",
     "strong": "style",
-    "link": "style",
+    "link_reference": "style",
     "math": "style",
     "issue": "marker"
   },
@@ -182,7 +182,7 @@ Article.annotationBehavior = {
     remark: 1,
     error: 1,
     issue: 1,
-    link: 1,
+    link_reference: 1,
     math: 1,
     strong: 2,
     emphasis: 2,

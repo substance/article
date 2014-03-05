@@ -1,3 +1,25 @@
-/* Link annotation */
-.content-node .link { color: #1B6685; }
-.content-node .link:hover, .content-node .link.active { color: rgba(11, 157, 217, 1); }
+.content-node.link .link-title-wrapper {
+  position: relative;
+}
+
+.content-node.link .description .content {
+  padding: 20px;
+  background: #fff;
+  
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.content-node.link .url .content {
+  padding: 20px;
+  background: #fff;
+  
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.content-node.link .title {
+  position: relative;
+}
