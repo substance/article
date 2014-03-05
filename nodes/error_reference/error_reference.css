@@ -1,5 +1,6 @@
 .content-node .error_reference {
-  background: rgba(228, 34, 34, 0.1);
+  /*background: rgba(228, 34, 34, 0.1);*/
+  background: rgba(255, 31, 0, 0.1);
   /*color: rbga(0,0,0,0.1);*/
 }
 
@@ -8,6 +9,7 @@
 }
 
 .content-node .error_reference.active {
-  background: rgba(228, 34, 34, 1);
-  color: white;
+  /*background: rgba(228, 34, 34, 1);*/
+  background: rgba(255, 31, 0, 0.5);
+  color: rgb(100, 10, 10);
 }
