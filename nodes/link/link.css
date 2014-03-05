@@ -1,5 +1,7 @@
 .content-node.link .link-title-wrapper {
   position: relative;
+  padding: 20px;
+  background: #eee;
 }
 
 .content-node.link .description .content {
