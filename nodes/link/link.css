@@ -4,6 +4,13 @@
   background: #eee;
 }
 
+.content-node.link.active .link-title-wrapper {
+  background: #5c6570;
+  color: white;
+}
+
+
+
 .content-node.link .description .content {
   padding: 20px;
   background: #fff;
