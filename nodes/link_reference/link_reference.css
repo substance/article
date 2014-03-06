@@ -1,3 +1,9 @@
 /* LinkReference annotation */
-.content-node .link_reference { color: #1B6685; }
-.content-node .link_reference:hover,.content-node .link_reference.active { color: rgba(11, 157, 217, 1); }
+.content-node .link_reference { 
+  background: rgba(11, 157, 217, 0.075);
+  color: #1B6685;
+  border-bottom: 1px solid rgba(11, 157, 217, 0.4);
+}
+.content-node .link_reference:hover,.content-node .link_reference.active {
+  background: rgba(11, 157, 217, 0.6);
+}

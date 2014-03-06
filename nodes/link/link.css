@@ -2,10 +2,11 @@
   position: relative;
   padding: 20px;
   background: #eee;
+  font-weight: 600;
 }
 
 .content-node.link.active .link-title-wrapper {
-  background: #5c6570;
+  background: rgba(11, 157, 217, 1);
   color: white;
 }
 
