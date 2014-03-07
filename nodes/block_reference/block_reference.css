@@ -3,11 +3,10 @@
   margin: 0 auto;
 }
 
-
 .substance-article .content-node.block_reference img {
   max-height: 200px;
   max-width: 100%;
-  border: 2px solid #eee;
+  border: 2px solid transparent;
 }
 
 .substance-article .content-node.block_reference.active img {
