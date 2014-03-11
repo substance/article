@@ -482,11 +482,11 @@ var ElementRenderer = function(attributes) {
   // Pull off preserved properties from attributes
   // --------
 
-  this.tagName = attributes.tag;  
+  this.tagName = attributes.tag;
   this.children = attributes.children || [];
   this.text = attributes.text || "";
   this.html = attributes.html;
-  
+
   delete attributes.children;
   delete attributes.text;
   delete attributes.html;
@@ -506,7 +506,7 @@ ElementRenderer.Prototype = function() {
     if (this.html) {
       el.innerHTML = this.html;
     } else {
-      el.textContent = this.text;  
+      el.textContent = this.text;
     }
 
     // Set attributes based on element spec
@@ -562,7 +562,7 @@ var $$ = function(descriptor, options) {
       return m.match[1];
     }).join(' ');
   }
-  
+
   return new ElementRenderer(options);
 };
 
@@ -7761,7 +7761,7 @@ Contributor.Prototype = function() {
 
   // Depending on wheter there is a blob it returns either the blob url or a regular image url
   // --------
-  // 
+  //
 
   this.getUrl = function() {
     var blob = this.getBlob();
@@ -8424,7 +8424,7 @@ Figure.Prototype = function() {
 
   // Depending on wheter there is a blob it returns either the blob url or a regular image url
   // --------
-  // 
+  //
 
   this.getUrl = function() {
     var blob = this.getBlob();
@@ -8524,7 +8524,7 @@ FigureView.Prototype = function() {
 
     // Prepares blobs etc. for the image
     var url = this.node.image || this.node.image_url;
-    
+
     // Add graphic (img element)
     this.imgWrapper = $$('.image-wrapper', {
       children: [
@@ -8728,7 +8728,7 @@ File.Prototype = function() {
 
     if (version !== this.properties.version) {
       // FigureView / ContributorView is listening to this operation
-      this.document.set([this.properties.id, "version"], version);  
+      this.document.set([this.properties.id, "version"], version);
     }
   };
 
@@ -13128,7 +13128,7 @@ RegExp.Prototype = function() {
 
   this.match = function(str) {
     if (str === undefined) throw new Error('No string given');
-    
+
     if (!this.exp.global) {
       return this.exp.exec(str);
     } else {
@@ -14314,7 +14314,7 @@ util.isEmpty = function(str) {
 util.slug = function(str) {
   str = str.replace(/^\s+|\s+$/g, ''); // trim
   str = str.toLowerCase();
-  
+
   // remove accents, swap ñ for n, etc
   var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
   var to   = "aaaaeeeeiiiioooouuuunc------";
@@ -14620,7 +14620,7 @@ module.exports = util;
     return result.value;
   };
 
-  // Shuffle an array, using the modern version of the 
+  // Shuffle an array, using the modern version of the
   // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
   _.shuffle = function(obj) {
     var rand;

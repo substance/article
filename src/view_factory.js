@@ -1,8 +1,8 @@
 "use strict";
 
-var ViewFactory = function(document) {
-  this.document = document;
-  this.nodeTypes = document.nodeTypes;
+var ViewFactory = function(doc) {
+  this.document = doc;
+  this.nodeTypes = doc.nodeTypes;
 };
 
 ViewFactory.Prototype = function() {

@@ -42,7 +42,7 @@ ArticleRenderer.Prototype = function() {
       nodeView.dispose();
     });
 
-    var frag = document.createDocumentFragment();
+    var frag = window.document.createDocumentFragment();
 
     var nodeIds = this.document.get(this.viewName).nodes;
     _.each(nodeIds, function(id) {
