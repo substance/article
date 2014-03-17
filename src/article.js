@@ -105,7 +105,7 @@ Article.Prototype = function() {
 
   this.setId = function(docId) {
     this.set(["document", "guid"], docId);
-  }
+  };
 
   // Set document title (stored on document node)
   // --------
@@ -129,7 +129,7 @@ Article.Prototype = function() {
 
   this.getAnnotationBehavior = function() {
     return Article.annotationBehavior;
-  }
+  };
 };
 
 // Factory method
@@ -397,7 +397,7 @@ Object.defineProperties(Article.prototype, {
     get: function() {
       return this.get("document").guid;
     },
-    set: function(id) {
+    set: function() {
       throw new Error("This is a read-only property alias.");
     }
   },
@@ -405,7 +405,7 @@ Object.defineProperties(Article.prototype, {
     get: function() {
       return this.get("document").creator;
     },
-    set: function() {
+    set: function(creator) {
       this.get("document").creator = creator;
     }
   },
@@ -466,7 +466,7 @@ Object.defineProperties(Article.prototype, {
       // Note: returing a copy to avoid inadvertent changes
       return this.get("document").views.slice(0);
     },
-    set: function(views) {
+    set: function() {
       throw new Error("This is a read-only property alias.");
     }
   }
