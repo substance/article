@@ -1,17 +1,20 @@
-.content-node.link .link-title-wrapper {
+
+/* URL field */
+
+.content-node.link .url .content {
   position: relative;
-  padding: 20px;
+  /*padding: 20px;*/
   background: #eee;
   font-weight: 600;
 }
 
-.content-node.link .link-title-wrapper:hover {
+.content-node.link .url .content:hover {
   background: #ccc;
 /*  background: rgba(11, 157, 217, 1);
   color: white;*/
 }
 
-.content-node.link.active .link-title-wrapper {
+.content-node.link.active .url .content {
   background: rgba(11, 157, 217, 1);
   color: white;
 }
@@ -19,7 +22,7 @@
 
 
 .content-node.link .description .content {
-  padding: 20px;
+  padding: 10px;
   background: #fff;
   
   border-left: 1px solid #eee;
@@ -28,12 +31,12 @@
 }
 
 .content-node.link .url .content {
-  padding: 20px;
-  background: #fff;
+  padding: 10px;
+  /*background: #fff;*/
   
-  border-left: 1px solid #eee;
+/*  border-left: 1px solid #eee;
   border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee;*/
 }
 
 .content-node.link .title {
