@@ -18,7 +18,7 @@ var Article = function(options) {
 
   options.schema = util.deepclone(Document.schema);
   options.schema.id = "substance-article";
-  options.schema.version = "0.3.0";
+  options.schema.version = "0.4.0";
 
   // Merge in custom types
   var types = options.types || Article.types;
