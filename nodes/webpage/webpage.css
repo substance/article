@@ -1,27 +1,24 @@
-
 /* URL field */
 
-.content-node.link .url .content {
+.content-node.webpage .url .content {
   position: relative;
   /*padding: 20px;*/
   background: #eee;
   font-weight: 600;
 }
 
-.content-node.link .url .content:hover {
+.content-node.webpage .url .content:hover {
   background: #ccc;
 /*  background: rgba(11, 157, 217, 1);
   color: white;*/
 }
 
-.content-node.link.active .url .content {
+.content-node.webpage.active .url .content {
   background: rgba(11, 157, 217, 1);
   color: white;
 }
 
-
-
-.content-node.link .description .content {
+.content-node.webpage .description .content {
   padding: 10px;
   background: #fff;
   
@@ -30,7 +27,7 @@
   border-bottom: 1px solid #eee;
 }
 
-.content-node.link .url .content {
+.content-node.webpage .url .content {
   padding: 10px;
   /*background: #fff;*/
   
@@ -39,6 +36,6 @@
   border-bottom: 1px solid #eee;*/
 }
 
-.content-node.link .title {
+.content-node.webpage .title {
   position: relative;
 }
