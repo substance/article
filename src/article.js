@@ -204,27 +204,7 @@ Article.annotationBehavior = {
 // --------
 //
 
-Article.types = {
-
-  // Document
-  // --------
-
-  "document": {
-    "properties": {
-      "views": ["array", "view"],
-      "guid": "string",
-      "creator": "string",
-      "authors": ["array", "contributor"],
-      "license": "license",
-      "title": "string",
-      "abstract": "string",
-      "created_at": "date",
-      "updated_at": "date",
-      "published_on": "date", // should be part of the main type?
-      "meta": "object"
-    }
-  }
-};
+Article.types = {};
 
 // Custom indexes
 // --------
