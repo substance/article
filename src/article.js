@@ -215,6 +215,7 @@ Article.types = {
       "guid": "string",
       "creator": "string",
       "authors": ["array", "contributor"],
+      "license": "license",
       "title": "string",
       "abstract": "string",
       "created_at": "date",
@@ -440,6 +441,14 @@ Object.defineProperties(Article.prototype, {
   published_on: {
     get: function() {
       return this.get("document").published_on;
+    },
+    set: function() {
+      throw new Error("This is a read-only property alias.");
+    }
+  },
+  license: {
+    get: function() {
+      return this.get("document").license;
     },
     set: function() {
       throw new Error("This is a read-only property alias.");
