@@ -2,3 +2,8 @@
 
 }
 
+.content-node.publication_info .label {
+  font-size: 12px;
+  padding-top: 20px;
+  color: #888;
+}

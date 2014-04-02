@@ -7,7 +7,31 @@
 
 
 .substance-article .content-node.cover .published-on {
-  
+  position: relative;
+  margin-left: -20px;
+  padding-left: 20px;
+  font-size: 14px;
+  font-family: "Monaco", "Courier New";
+}
+
+.substance-article .content-node.cover .published-on .control.prev {
+  display: none;
+  position: absolute;
+  left: 0px;
+  padding: 5px;
+  top: -5px;
+}
+
+.substance-article .content-node.cover .published-on .control.next {
+  display: none;
+  position: absolute;
+  left: 150px;
+  padding: 5px;
+  top: -5px;
+}
+
+.substance-article .content-node.cover .published-on:hover .control {
+  display: block;
 }
 
 .substance-article .content-node.cover .title {
