@@ -1,24 +1,24 @@
 /* URL field */
 
-.content-node.webpage .url .content {
+.content-node.webresource .url .content {
   position: relative;
   /*padding: 20px;*/
   background: #eee;
   font-weight: 600;
 }
 
-.content-node.webpage .url .content:hover {
+.content-node.webresource .url .content:hover {
   background: #ccc;
 /*  background: rgba(11, 157, 217, 1);
   color: white;*/
 }
 
-.content-node.webpage.active .url .content {
+.content-node.webresource.active .url .content {
   background: rgba(11, 157, 217, 1);
   color: white;
 }
 
-.content-node.webpage .description .content {
+.content-node.webresource .description .content {
   padding: 10px;
   background: #fff;
   
@@ -27,7 +27,7 @@
   border-bottom: 1px solid #eee;
 }
 
-.content-node.webpage .url .content {
+.content-node.webresource .url .content {
   padding: 10px;
   /*background: #fff;*/
   
@@ -36,6 +36,6 @@
   border-bottom: 1px solid #eee;*/
 }
 
-.content-node.webpage .title {
+.content-node.webresource .title {
   position: relative;
 }
