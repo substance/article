@@ -1,0 +1,28 @@
+.content-node.web-page iframe {
+  border: none;
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 150%;
+}
+
+
+.content-node.web-page .web-page-file {
+  display: none;
+/*  position: absolute;
+  display: block;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  opacity: 0;
+  
+  background: green;
+  cursor: pointer;*/
+}
+
+.content-node.web-page .caption {
+  font-size: 14px;
+  text-align: center;
+  color: #777;
+}
