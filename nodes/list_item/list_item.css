@@ -3,12 +3,13 @@
 
 .content-node.list_item {
   padding-left: 20px;
+  padding-bottom: 10px !important;
 }
 
 .content-node.list_item .content {
   /*min-height: 40px;*/
   display:list-item;
-  list-style-type:disc;
+  list-style-type:square;
 }
 
 .content-node.list_item .content {
