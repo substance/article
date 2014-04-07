@@ -10,7 +10,7 @@
   position: relative;
   margin-left: -20px;
   padding-left: 20px;
-  font-size: 14px;
+  /*font-size: 14px;*/
 }
 
 .substance-article .content-node.cover .published-on .control.prev {
