@@ -356,8 +356,8 @@ Article.describe = function() {
       });
 
       doc.create({
-        id: headingId+"_example_codeblock",
-        type: "codeblock",
+        id: headingId+"_example_code_block",
+        type: "code_block",
         content: JSON.stringify(nodeType.example, null, '  '),
       });
       doc.show("content", [headingId+"_example", headingId+"_example_codeblock"], -1);

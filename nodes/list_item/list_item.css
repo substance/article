@@ -1,32 +1,32 @@
 /* Heading Node
 -------------------------------------------------------------------------------*/
 
-.content-node.list_item {
+.content-node.list-item {
   padding-left: 20px;
   padding-bottom: 10px !important;
 }
 
-.content-node.list_item .content {
+.content-node.list-item .content {
   /*min-height: 40px;*/
   display:list-item;
   list-style-type:square;
 }
 
-.content-node.list_item .content {
+.content-node.list-item .content {
 }
 
-.content-node.list_item.level-1 .content {
+.content-node.list-item.level-1 .content {
   margin-left: 20px;
 }
 
-.content-node.list_item.level-2 .content {
+.content-node.list-item.level-2 .content {
   margin-left: 40px;
 }
 
-.content-node.list_item.level-3 .content {
+.content-node.list-item.level-3 .content {
   margin-left: 60px;
 }
 
-.content-node.list_item.level-4 .content {
+.content-node.list-item.level-4 .content {
   margin-left: 80px;
 }
