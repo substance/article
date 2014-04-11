@@ -6,7 +6,7 @@
   font-weight: 600;
 }
 
-.content-node.web-resource .url .content:hover {
+.content-node.web-resource .url:hover .content {
   background: #ccc;
 }
 
