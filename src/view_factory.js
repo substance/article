@@ -16,14 +16,14 @@ ViewFactory.Prototype = function() {
   // We should create views, not only elements, as we need more, e.g., event listening stuff
   // which needs to be disposed later.
 
-  this.createView = function(node) {
+  this.createView = function(node, options) {
     var NodeView = this.nodeTypes[node.type].View;
     if (!NodeView) {
       throw new Error('Node type "'+node.type+'" not supported');
     }
     // Note: passing the renderer to the node views
     // to allow creation of nested views
-    var nodeView = new NodeView(node, this);
+    var nodeView = new NodeView(node, this, options);
 
     // we connect the listener here to avoid to pass the document itself into the nodeView
     nodeView.listenTo(this.document, "operation:applied", nodeView.onGraphUpdate);

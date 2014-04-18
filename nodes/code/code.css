@@ -1,7 +1,7 @@
 .content-node .code {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   /*background: #f5f5f5;*/
-  font-size: 13px;
-  padding: 2px 3px;
-  -webkit-font-smoothing: subpixel-antialiased;
+  font-size: 14px;
+  /*padding: 2px 3px;*/
+  /*-webkit-font-smoothing: subpixel-antialiased;*/
 }

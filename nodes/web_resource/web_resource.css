@@ -1,0 +1,44 @@
+/* URL field */
+
+.content-node.web-resource .url .content {
+  position: relative;
+  background: #eee;
+  font-weight: 600;
+}
+
+.content-node.web-resource .url:hover .content {
+  background: #ccc;
+}
+
+.content-node.web-resource.active .url .content {
+  background: rgba(11, 157, 217, 1);
+  color: white;
+}
+
+.content-node.web-resource .description .content {
+  padding: 10px;
+  background: #fff;
+  
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.content-node.web-resource .url .content {
+  padding: 10px;
+}
+
+.content-node.web-resource .title {
+  position: relative;
+}
+
+.content-node.web-resource .select-citation {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 30px;
+  padding: 0 5px;
+  z-index: 50000;
+  font-style: italic;
+  color: #777;
+}

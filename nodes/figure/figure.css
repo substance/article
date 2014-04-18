@@ -31,3 +31,9 @@
   background: green;
   cursor: pointer;
 }
+
+.content-node.figure .caption {
+  font-size: 14px;
+  text-align: center;
+  color: #777;
+}

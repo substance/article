@@ -18,7 +18,7 @@ var Article = function(options) {
 
   options.schema = util.deepclone(Document.schema);
   options.schema.id = "substance-article";
-  options.schema.version = "0.3.0";
+  options.schema.version = "0.4.0";
 
   // Merge in custom types
   var types = options.types || Article.types;
@@ -147,7 +147,7 @@ Article.fromSnapshot = function(data, options) {
 // Define available views
 // --------
 
-Article.views = ["content", "figures", "citations", "info"];
+Article.views = ["content", "figures", "citations", "info", "links"];
 
 // Register node types
 // --------
@@ -163,7 +163,7 @@ Article.annotationBehavior = {
   groups: {
     "emphasis": "style",
     "strong": "style",
-    "link": "style",
+    "link_reference": "style",
     "math": "style",
     "issue": "marker"
   },
@@ -182,7 +182,7 @@ Article.annotationBehavior = {
     remark: 1,
     error: 1,
     issue: 1,
-    link: 1,
+    link_reference: 1,
     math: 1,
     strong: 2,
     emphasis: 2,
@@ -204,26 +204,7 @@ Article.annotationBehavior = {
 // --------
 //
 
-Article.types = {
-
-  // Document
-  // --------
-
-  "document": {
-    "properties": {
-      "views": ["array", "view"],
-      "guid": "string",
-      "creator": "string",
-      "authors": ["array", "contributor"],
-      "title": "string",
-      "abstract": "string",
-      "created_at": "date",
-      "updated_at": "date",
-      "published_on": "date", // should be part of the main type?
-      "meta": "object"
-    }
-  }
-};
+Article.types = {};
 
 // Custom indexes
 // --------
@@ -375,8 +356,8 @@ Article.describe = function() {
       });
 
       doc.create({
-        id: headingId+"_example_codeblock",
-        type: "codeblock",
+        id: headingId+"_example_code_block",
+        type: "code_block",
         content: JSON.stringify(nodeType.example, null, '  '),
       });
       doc.show("content", [headingId+"_example", headingId+"_example_codeblock"], -1);
@@ -440,6 +421,14 @@ Object.defineProperties(Article.prototype, {
   published_on: {
     get: function() {
       return this.get("document").published_on;
+    },
+    set: function() {
+      throw new Error("This is a read-only property alias.");
+    }
+  },
+  license: {
+    get: function() {
+      return this.get("document").license;
     },
     set: function() {
       throw new Error("This is a read-only property alias.");
