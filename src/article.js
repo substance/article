@@ -79,6 +79,10 @@ Article.Prototype = function() {
     return Article.fromSnapshot(data, options);
   };
 
+  this.newInstance = function() {
+    return new Article({ "schema": this.schema });
+  };
+
   this.getAuthorNames = function() {
     return _.map(this.getAuthors(), function(a) {
       return a.name;
