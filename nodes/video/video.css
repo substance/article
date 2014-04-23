@@ -1,0 +1,14 @@
+.video-wrapper {
+  text-align: center;
+}
+
+.video-wrapper video {
+  max-width: 100%;
+  max-height: 500px;
+}
+
+.content-node.video .caption {
+  font-size: 14px;
+  text-align: center;
+  color: #777;
+}
