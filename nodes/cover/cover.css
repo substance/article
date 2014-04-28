@@ -6,6 +6,69 @@
 }
 
 
+.cover-image-file {
+  display: none;
+
+/*  position: absolute;
+  display: block;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;*/
+}
+
+.cover-image {
+  /*border: 1px solid #eee;*/
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* Image status bar */
+
+.cover-image .image-status {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #262626;
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.cover-image .image-status .file-info {
+  float: left;
+  padding-left: 5px;
+}
+
+.cover-image .image-status .actions {
+  float: right;
+}
+
+.cover-image .image-status .actions a {
+  float: left;
+  display: block;
+  padding: 0px 4px;
+  color: #fff;
+}
+
+.cover-image .image-status .actions a:hover {
+  background: #000;
+}
+
+.cover-image img {
+  display: block;
+  width: 100%;
+}
+
+/* Published on */
+
 .substance-article .content-node.cover .published-on {
   position: relative;
   margin-left: -20px;

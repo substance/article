@@ -1,8 +1,79 @@
 .video-wrapper {
   text-align: center;
+  position: relative;
+  background: black;
+}
+
+.video-wrapper .video-files {
+  display: none;
+}
+
+.video-wrapper .video-status {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #262626;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.video-wrapper .video-status .file-info {
+  float: left;
+  padding-left: 5px;
+}
+
+.video-wrapper .video-status .file-info > span {
+  padding-right: 10px;
+}
+
+.video-wrapper .video-status .file-info a {
+  color: white;
+}
+
+.video-wrapper .video-status .file-info span .file-size {
+  font-size: 10px;
+  /*color: rgba(255,255,255,0.5);*/
+  display: none;
+}
+
+.video-wrapper .video-status .file-info span.info {
+  padding-left: 50px;
+}
+
+.video-wrapper .video-status .file-info span.active {
+  color: white;
+  font-weight: bold;
+}
+
+.video-wrapper .video-status .file-info span.active .file-size {
+  display: inline;
+}
+
+
+
+.video-wrapper .video-status .actions {
+  float: right;
+}
+
+.video-wrapper .video-status .actions a {
+  font-weight: bold;
+  float: left;
+  display: block;
+  padding: 0px 4px;
+  color: #fff;
+}
+
+.video-wrapper .video-status .actions a:hover {
+  background: #000;
 }
 
 .video-wrapper video {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 25px;
   max-width: 100%;
   max-height: 500px;
 }

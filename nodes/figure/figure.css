@@ -1,25 +1,76 @@
 /* Figure Node
 -------------------------------------------------------------------------------*/
 
-.substance-article .content-node.figure { 
+.substance-article .content-node.figure {
 }
 
 .substance-article .content-node.figure div.image-wrapper {
   text-align: center;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
   position: relative;
 }
 
 .substance-article .content-node.figure div .image-wrapper img {
   max-width: 100%;
+  display: block;
 }
+
+.substance-article .content-node.figure div.image-wrapper {
+  /*border: 1px solid #eee;*/
+/*  max-height: 400px;
+  overflow: hidden;*/
+  position: relative;
+  /*margin-bottom: 40px;*/
+}
+
+/* Image status bar */
+
+.substance-article .content-node.figure div.image-wrapper .image-status {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #262626;
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.substance-article .content-node.figure div.image-wrapper .image-status .file-info {
+  float: left;
+  padding-left: 5px;
+}
+
+.substance-article .content-node.figure div.image-wrapper .image-status .actions {
+  float: right;
+}
+
+.substance-article .content-node.figure div.image-wrapper .image-status .actions a {
+  float: left;
+  display: block;
+  padding: 0px 4px;
+  color: #fff;
+}
+
+.substance-article .content-node.figure div.image-wrapper .image-status .actions a:hover {
+  background: #000;
+}
+
+
 
 .substance-article .content-node.figure .label {
   position: relative;
 }
 
+
+
+
+
+
 .figure-image-file {
-  position: absolute;
+  display: none;
+/*  position: absolute;
   display: block;
   left: 0px;
   right: 0px;
@@ -27,12 +78,11 @@
   bottom: 0px;
   width: 100%;
   opacity: 0;
-  
-  background: green;
-  cursor: pointer;
+  cursor: pointer;*/
 }
 
 .content-node.figure .caption {
+  padding-top: 10px;
   font-size: 14px;
   text-align: center;
   color: #777;
