@@ -10,11 +10,6 @@ ViewFactory.Prototype = function() {
   // Create a node view
   // --------
   //
-  // Experimental: using a factory which creates a view for a given node type
-  // As we want to be able to reuse views
-  // However, as the matter is still under discussion consider the solution here only as provisional.
-  // We should create views, not only elements, as we need more, e.g., event listening stuff
-  // which needs to be disposed later.
 
   this.createView = function(node, options) {
     var NodeView = this.nodeTypes[node.type].View;

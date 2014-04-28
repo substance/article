@@ -27,10 +27,17 @@ ArticleRenderer.Prototype = function() {
     } else if (this.nodeViews[node.id] && overwrite) {
       this.nodeViews[node.id].dispose();
     }
-
     var nodeView = __super__.createView.call(this, node);
     this.nodeViews[node.id] = nodeView;
     return nodeView;
+  };
+
+  this.getView = function(nodeId) {
+    if (this.nodeViews[nodeId]) {
+      return this.nodeViews[nodeId];
+    }
+    var node = this.document.get(nodeId);
+    return this.createView(node);
   };
 
   // Render it
