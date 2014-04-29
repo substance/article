@@ -29,6 +29,7 @@
 }
 
 .content-node.web-page .caption {
+  padding-top: 10px;
   font-size: 14px;
   text-align: center;
   color: #777;
