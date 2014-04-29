@@ -26,10 +26,10 @@
 /* Image status bar */
 
 .substance-article .content-node.figure div.image-wrapper .image-status {
-  position: absolute;
+  /*position: absolute;
   bottom: 0px;
   left: 0px;
-  right: 0px;
+  right: 0px;*/
   background: #262626;
   color: rgba(255,255,255,0.8);
   font-size: 12px;

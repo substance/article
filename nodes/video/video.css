@@ -9,10 +9,7 @@
 }
 
 .video-wrapper .video-status {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+
   background: #262626;
   color: rgba(255,255,255,0.4);
   font-size: 12px;
@@ -73,12 +70,12 @@
 .video-wrapper video {
   display: block;
   margin: 0 auto;
-  padding-bottom: 25px;
   max-width: 100%;
   max-height: 500px;
 }
 
 .content-node.video .caption {
+  padding-top: 10px;
   font-size: 14px;
   text-align: center;
   color: #777;

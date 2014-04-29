@@ -1,14 +1,98 @@
-.audio-wrapper {
+.content-node.audio > .content {
+  max-width: 400px;
+  margin: 0px auto;
+  /*background: #000;*/
+  background: #262626;
+}
+
+.content-node.audio .caption .content {
+  padding: 20px;
+  font-family: "Georgia";
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(255,255,255, 0.7);
+  background: #000;
   text-align: center;
+
+}
+
+.audio-wrapper {
+  border-radius: 5px;
+  background: #000;
+  text-align: center;
+  position: relative;
 }
 
 .audio-wrapper audio {
+  background: #000;
+  border-radius: 0px;
+  display: block;
   max-width: 100%;
   max-height: 500px;
+  margin: 0px auto;
 }
 
-.content-node.audio .caption {
+
+.audio-wrapper .audio-files {
+  display: none;
+}
+
+.content-node.audio .audio-status {
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.content-node.audio .audio-status .file-info {
+  float: left;
+  padding-left: 5px;
+}
+
+.content-node.audio .audio-status .file-info > span {
+  padding-right: 10px;
+}
+
+.content-node.audio .audio-status .file-info a {
+  color: white;
+}
+
+.content-node.audio .audio-status .file-info span .file-size {
+  font-size: 10px;
+  display: none;
+}
+
+.content-node.audio .audio-status .file-info span.info {
+  padding-left: 10px;
+}
+
+.content-node.audio .audio-status .file-info span.active {
+  color: white;
+  font-weight: bold;
+}
+
+.content-node.audio .audio-status .file-info span.active .file-size {
+  display: inline;
+}
+
+.content-node.audio .audio-status .actions {
+  float: right;
+}
+
+.content-node.audio .audio-status .actions a {
+  font-weight: bold;
+  float: left;
+  display: block;
+  padding: 0px 4px;
+  color: #fff;
+}
+
+.content-node.audio .audio-status .actions a:hover {
+  background: #000;
+}
+
+/*.content-node.audio .caption {
   font-size: 14px;
   text-align: center;
   color: #777;
-}
+}*/

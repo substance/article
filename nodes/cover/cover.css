@@ -8,16 +8,6 @@
 
 .cover-image-file {
   display: none;
-
-/*  position: absolute;
-  display: block;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 100%;
-  opacity: 0;
-  cursor: pointer;*/
 }
 
 .cover-image {
@@ -64,6 +54,7 @@
 
 .cover-image img {
   display: block;
+  padding-bottom: 25px;
   width: 100%;
 }
 
