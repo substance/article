@@ -5,6 +5,19 @@
   background: none;
 }
 
+a.add-cover-image {
+  display: block;
+  border: 1px dashed #eee;
+  padding: 5px;
+  text-align: center;
+  color: #aaa;
+
+}
+
+a.add-cover-image:hover {
+  color: #555;
+  border-color: #888;
+}
 
 .cover-image-file {
   display: none;
@@ -105,8 +118,10 @@
 .substance-article .content-node.cover .content .authors .toggle-author {
   display: block;
   float: left;
+  min-width: 50px;
   padding: 0 2px;
   line-height: 20px;
+  height: 20px;
   margin-right: 10px;
   margin-bottom: 8px;
   background: rgba(0,0,0,0.1);
