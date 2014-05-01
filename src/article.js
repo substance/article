@@ -8,6 +8,9 @@ var Annotator = Document.Annotator;
 // Substance.Article
 // -----------------
 
+var SCHEMA_ID = "substance-article";
+var SCHEMA_VERSION = "0.5.0";
+
 var Article = function(options) {
   options = options || {};
 
@@ -17,8 +20,8 @@ var Article = function(options) {
   // --------
 
   options.schema = util.deepclone(Document.schema);
-  options.schema.id = "substance-article";
-  options.schema.version = "0.5.0";
+  options.schema.id = SCHEMA_ID;
+  options.schema.version = SCHEMA_VERSION;
 
   // Merge in custom types
   var types = options.types || Article.types;
@@ -273,6 +276,8 @@ var ARTICLE_DOC_SEED = {
   }
 };
 
+Article.SCHEMA_ID = SCHEMA_ID;
+Article.SCHEMA_VERSION = SCHEMA_VERSION;
 
 Article.describe = function() {
   var doc = new Article({seed: ARTICLE_DOC_SEED});
