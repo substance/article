@@ -134,6 +134,10 @@ Article.Prototype = function() {
   this.getAnnotationBehavior = function() {
     return Article.annotationBehavior;
   };
+
+  this.getMigrations = function() {
+    return require("./article_migrations");
+  };
 };
 
 // Factory method
