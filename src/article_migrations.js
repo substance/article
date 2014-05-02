@@ -61,7 +61,10 @@ var v040_to_v050 = function (migrator) {
 
   // Note: Article migration is supported beginning from version 0.5.0
   // Migration from 0.4.0 to 0.5.0 is only a stub
-}
+
+  migrator.addProperty("web_page", "width", "400px");
+  migrator.addProperty("web_page", "height", "400px");
+};
 
 var NOP = function(){};
 
