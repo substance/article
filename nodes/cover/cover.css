@@ -146,3 +146,14 @@ a.add-cover-image:hover {
   background: rgba(0,0,0,0.7);
   color: #fff;
 }
+
+
+.substance-article .content-node.cover .abstract {
+  line-height: 32px;
+  margin-top: 50px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  font-size: 20px;
+  color: #555;
+}
