@@ -29,6 +29,32 @@
   padding-left: 5px;
 }
 
+
+
+
+.content-node.web-page div.page-wrapper .page-status .file-info {
+  float: left;
+  padding-left: 5px;
+}
+
+.content-node.web-page div.page-wrapper .page-status .file-info > span {
+  padding-right: 10px;
+}
+
+.content-node.web-page div.page-wrapper .page-status .file-info a {
+  color: white;
+}
+
+.content-node.web-page div.page-wrapper .page-status .file-info span.file-size {
+  font-size: 10px;
+}
+
+.content-node.web-page div.page-wrapper .page-status .file-info span.info {
+  padding-left: 20px;
+}
+
+
+
 .content-node.web-page div.page-wrapper .page-status .actions {
   float: right;
 }
