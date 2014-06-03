@@ -1,27 +1,29 @@
 /* URL field */
 
+.content-node.web-resource {
+  border-left: 3px solid transparent;
+}
+
+.content-node.web-resource.active {
+  background: #fff;
+  border-left: 3px solid rgba(11, 157, 217, 1);; 
+}
+
 .content-node.web-resource .url .content {
   position: relative;
-  background: #eee;
+  background: none;
   font-weight: 600;
 }
 
-.content-node.web-resource .url:hover .content {
-  background: #ccc;
-}
 
-.content-node.web-resource.active .url .content {
+/*.content-node.web-resource.active .url .content {
   background: rgba(11, 157, 217, 1);
   color: white;
-}
+}*/
 
 .content-node.web-resource .description .content {
   padding: 10px;
-  background: #fff;
-  
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  background: none;
 }
 
 .content-node.web-resource .url .content {

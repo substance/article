@@ -1,14 +1,14 @@
 .content-node.issue {
-  background: #fff;
-  
+  border-left: 3px solid transparent;
 }
 
 .content-node.issue > .content {
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;*/
 }
 
 .content-node.issue.active {
- 
+  background: white;
+  border-left: 3px solid rgba(255, 235, 0, 1);
 }
 
 .content-node.issue .issue-title-wrapper {
@@ -16,33 +16,35 @@
 }
 
 .content-node.issue .description .content {
-  border-left: 5px solid #CECCAC;
-  padding: 10px 20px;
-  /*background: #fafafa;*/
-  background: #FEFAB7;
-  margin-left: -5px;
-  margin-right: -5px;
+  /*border-left: 5px solid #CECCAC;*/
+  padding: 0px 20px;
+  padding-bottom: 20px;
+  /*background: #FEFAB7;*/
   color: rgba(0,0,0,0.7);
 }
 
 .content-node.issue.active .description .content {
-  border-left: 5px solid #6D5239; 
-  background: #FDF671;
+
+  /*border-left: 5px solid #6D5239; */
+  /*background: #FDF671;*/
 }
 
 
 .content-node.issue .title {
   position: relative;
-  /*border: 2px solid transparent;*/
 }
 
 .content-node.issue.active .title {
 
 }
 
+.content-node.issue .content {
+  background: none;
+}
+
 .content-node.issue .creator {
   padding: 10px 20px;
-  background: #fff;
+  /*background: #fff;*/
   font-size: 12px;
   color: rgba(0,0,0,0.4);
 }

@@ -1,5 +1,10 @@
 .content-node.contributor {
-  
+  border-left: 3px solid transparent;
+}
+
+.content-node.contributor.active {
+  border-left: 3px solid rgba(0,0,0,0.7);
+  background: #fff;
 }
 
 /* Displayed as card header */
@@ -9,6 +14,7 @@
 
 .content-node.contributor .content {
   /*overflow: auto;*/
+  background: none;
 }
 
 .content-node.contributor .image {
