@@ -1,0 +1,11 @@
+/* Blockquote Node
+-------------------------------------------------------------------------------*/
+
+.content-node.blockquote {
+  font-family: 'Palatino';
+  font-style: italic;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 40px;
+}
+

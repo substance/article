@@ -8,7 +8,7 @@
 }
 
 .content-node.code-block > .content {
-  font-family: Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+  font-family: Menlo, Bitstream, 'Vera Sans Mono', Monaco, Consolas, monospace;
   font-size: 13px;
   color: #777;
   min-height: 28px;
