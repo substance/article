@@ -24,8 +24,6 @@ a.add-cover-image:hover {
 }
 
 .cover-image {
-  /*border: 1px solid #eee;*/
-  max-height: 400px;
   overflow: hidden;
   position: relative;
   margin-bottom: 40px;
