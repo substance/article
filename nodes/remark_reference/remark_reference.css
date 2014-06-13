@@ -1,6 +1,6 @@
 .content-node .remark_reference {
   /*background: rgba(11, 157, 217, 0.1);*/
-  background: rgba(255, 245, 0, 0.18);
+  background: rgba(0, 0, 0, 0.07);
   color: rbga(0,0,0,0.1);
 }
 
@@ -10,7 +10,8 @@
 
 .content-node .remark_reference.active { 
   /*background: rgba(11, 157, 217, 1);*/
-  background: rgba(255, 235, 0, 0.64); /* rgba(255, 245, 0, 0.44);*/
-
-  color: rgb(102, 99, 14);
+  background: rgba(0, 0, 0, 0.7); /* rgba(255, 245, 0, 0.44);*/
+  color: #fff;
+  /*color: #333;*/
+  /*color: rgb(102, 99, 14);*/
 }
