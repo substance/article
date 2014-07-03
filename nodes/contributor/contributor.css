@@ -2,6 +2,10 @@
   border-left: 3px solid transparent;
 }
 
+.content-node.contributor:hover {
+  background: #f1f1f1;
+}
+
 .content-node.contributor.active {
   border-left: 3px solid rgba(0,0,0,0.7);
   background: #fff;

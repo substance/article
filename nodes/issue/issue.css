@@ -6,10 +6,16 @@
   /*border: 1px solid #ddd;*/
 }
 
+.content-node.issue:hover {
+  background: #f1f1f1;
+}
+
 .content-node.issue.active {
   background: white;
   border-left: 3px solid rgba(0, 0, 0, 0.8);
 }
+
+
 
 .content-node.issue .issue-title-wrapper {
   position: relative;
