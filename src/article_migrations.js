@@ -1,5 +1,7 @@
 "use strict";
 
+var _ = require("underscore");
+
 /*
   For the future we should bump the schema version whenever
 
@@ -66,11 +68,23 @@ var v040_to_v050 = function (migrator) {
   migrator.addProperty("web_page", "height", "400px");
 };
 
-var NOP = function(){};
+
+var v050_to_v060 = function (migrator) {
+  // Use n.url as a default for new property n.title
+  _.each(migrator.data.nodes, function(n) {
+    if (n.type === "web_resource") {
+      n.title = n.url;
+    }
+  });
+};
+
+
+var NOP = function() {};
 
 var migrations = {
   "0.4.0": NOP,
-  "0.5.0": v040_to_v050
+  "0.5.0": v040_to_v050,
+  "0.6.0": v050_to_v060
 };
 
 module.exports = migrations;

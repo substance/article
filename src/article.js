@@ -9,7 +9,7 @@ var Annotator = Document.Annotator;
 // -----------------
 
 var SCHEMA_ID = "substance-article";
-var SCHEMA_VERSION = "0.5.0";
+var SCHEMA_VERSION = "0.6.0";
 
 var Article = function(options) {
   options = options || {};

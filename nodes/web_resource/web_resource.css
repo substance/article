@@ -12,7 +12,15 @@
 .content-node.web-resource .url .content {
   position: relative;
   background: none;
+  font-size: 13px;
+  font-family: Menlo, Bitstream, 'Vera Sans Mono', Monaco, Consolas, monospace;
+}
+
+.content-node.web-resource .title .content {
+  position: relative;
+  background: none;
   font-weight: 600;
+  padding: 10px;
 }
 
 /*.content-node.web-resource.active .url .content {
