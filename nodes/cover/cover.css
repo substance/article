@@ -5,7 +5,7 @@
   background: none;
 }
 
-a.add-cover-image {
+a.add-image.cover {
   display: block;
   border: 1px dashed #eee;
   padding: 5px;
@@ -14,7 +14,7 @@ a.add-cover-image {
 
 }
 
-a.add-cover-image:hover {
+a.add-image.cover:hover {
   color: #555;
   border-color: #888;
 }
