@@ -12,6 +12,7 @@
 
 .substance-article .content-node.figure div .image-wrapper img {
   max-width: 100%;
+  margin: 0px auto;
   display: block;
 }
 
@@ -19,6 +20,7 @@
   /*border: 1px solid #eee;*/
 /*  max-height: 400px;
   overflow: hidden;*/
+  background: #eee;
   position: relative;
   /*margin-bottom: 40px;*/
 }
