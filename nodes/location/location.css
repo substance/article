@@ -1,0 +1,74 @@
+/* URL field */
+
+.content-node.location {
+  border-left: 3px solid transparent;
+}
+
+.content-node.location:hover {
+  background: #f1f1f1;
+}
+
+.content-node.location.active {
+  background: #fff;
+  border-left: 3px solid rgba(11, 157, 217, 1);; 
+}
+
+/*.content-node.web-resource.active .resource-active {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 3px;
+  background: rgba(11, 157, 217, 1);
+}*/
+
+/*.content-node.location .url .content {
+  position: relative;
+  background: none;
+  font-size: 13px;
+  font-family: Menlo, Bitstream, 'Vera Sans Mono', Monaco, Consolas, monospace;
+}*/
+
+.content-node.location .name {
+  position: relative;
+  background: none;
+  font-weight: 600;
+  padding: 10px;
+}
+
+/*.content-node.web-resource.active .url .content {
+  background: rgba(11, 157, 217, 1);
+  color: white;
+}*/
+
+.content-node.location .synonyms {
+  padding: 10px;
+  background: none;
+}
+
+.content-node.location .url .content {
+  padding: 10px;
+}
+
+/*.content-node.location .title {
+  position: relative;
+}
+*/
+/*.content-node.location .select-citation {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  padding: 0 5px;
+  z-index: 50000;
+  font-size: 12px;
+  font-weight: bold;
+  background: #262626;
+  color: white;
+  curosr: pointer;
+}*/
+/*
+.content-node.web-resource:hover .select-citation {
+  background: rgba(11, 157, 217, 1);
+  color: white;
+}*/

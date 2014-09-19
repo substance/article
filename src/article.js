@@ -158,7 +158,7 @@ Article.fromSnapshot = function(data, options) {
 // Define available views
 // --------
 
-Article.views = ["content", "figures", "citations", "info", "links"];
+Article.views = ["content", "figures", "citations", "info", "links", "locations"];
 
 // Register node types
 // --------
@@ -207,7 +207,8 @@ Article.annotationBehavior = {
     contributor_reference: 1,
     citation_reference: 1,
     remark_reference: 1,
-    error_reference: 1
+    error_reference: 1,
+    location_reference: 1
   }
 };
 
