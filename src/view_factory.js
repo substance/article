@@ -18,7 +18,7 @@ ViewFactory.Prototype = function() {
     }
     // Note: passing the renderer to the node views
     // to allow creation of nested views
-    var nodeView = new NodeView(node, this, options);
+    var nodeView = new NodeView(node, surface, options);
 
     // we connect the listener here to avoid to pass the document itself into the nodeView
     nodeView.listenTo(this.document, "operation:applied", nodeView.onGraphUpdate);
