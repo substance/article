@@ -64,3 +64,34 @@
   background: green;
   cursor: pointer;
 }
+
+/* Interview Subject */
+
+.content-node.interview-subject .movement-entries {
+  overflow: auto;
+}
+
+.content-node.interview-subject .movement-entry {
+  float: left;
+  margin-right: 10px;
+  background: #ccc;
+  padding: 2px 5px;
+  padding-right: 45px;
+  position: relative;
+}
+
+.content-node.interview-subject .movement-entry input {
+  position: absolute;
+  right: 25px;
+  top: 4px;
+  width: 15px;
+  background: #fff;
+  border: none;
+}
+
+
+.content-node.interview-subject .movement-entry .remove {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+}
