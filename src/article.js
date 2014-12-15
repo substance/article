@@ -19,9 +19,13 @@ var Article = function(options) {
   // Extend Schema
   // --------
 
-  options.schema = util.deepclone(Document.schema);
-  options.schema.id = SCHEMA_ID;
-  options.schema.version = SCHEMA_VERSION;
+  // TODO: the schema should actually be defined on application
+  // level, i.e., where node types are specified
+  if (!options.schema) {
+    options.schema = util.deepclone(Document.schema);
+    options.schema.id = SCHEMA_ID;
+    options.schema.version = SCHEMA_VERSION;
+  }
 
   // Merge in custom types
   var types = options.types || Article.types;
