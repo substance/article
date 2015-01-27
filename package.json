@@ -5,7 +5,7 @@
     "url": "https://github.com/substance/article.git"
   },
   "dependencies": {
-    "underscore": "1.5.x",
+    "underscore": "*",
     "substance-document": "git+https://github.com/substance/document.git#master",
     "substance-util": "git+https://github.com/substance/util.git#master",
     "substance-application": "git+https://github.com/substance/application.git#master",
