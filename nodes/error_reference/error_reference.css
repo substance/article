@@ -1,9 +1,6 @@
+
 .content-node .error_reference {
   background: rgba(251, 107, 75, 0.08);
-}
-
-.content-node .error_reference:hover {
-
 }
 
 .content-node .error_reference.active {

@@ -1,4 +1,4 @@
-/* URL field */
+/* Web Resource */
 
 .content-node.web-resource {
   border-left: 3px solid transparent;
@@ -10,17 +10,8 @@
 
 .content-node.web-resource.active {
   background: #fff;
-  border-left: 3px solid rgba(11, 157, 217, 1);; 
+  border-left: 3px solid rgba(11, 157, 217, 1);;
 }
-
-/*.content-node.web-resource.active .resource-active {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 3px;
-  background: rgba(11, 157, 217, 1);
-}*/
 
 .content-node.web-resource .url .content {
   position: relative;
@@ -35,11 +26,6 @@
   font-weight: 600;
   padding: 10px;
 }
-
-/*.content-node.web-resource.active .url .content {
-  background: rgba(11, 157, 217, 1);
-  color: white;
-}*/
 
 .content-node.web-resource .description .content {
   padding: 10px;
@@ -61,12 +47,11 @@
   top: 30px;
   padding: 0 5px;
   z-index: 50000;
-  /*font-style: italic;*/
   font-size: 12px;
   font-weight: bold;
   background: #262626;
   color: white;
-  curosr: pointer;
+  cursor: pointer;
 }
 
 .content-node.web-resource:hover .select-citation {

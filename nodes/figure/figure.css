@@ -59,28 +59,12 @@
   background: #000;
 }
 
-
-
 .substance-article .content-node.figure .label {
   position: relative;
 }
 
-
-
-
-
-
 .figure-image-file {
   display: none;
-/*  position: absolute;
-  display: block;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 100%;
-  opacity: 0;
-  cursor: pointer;*/
 }
 
 .content-node.figure .caption {
